@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Weiqing Chen")]
 [assembly: AssemblyProduct("GeoJSON.Net")]
-[assembly: AssemblyCopyright("Copyright © Weiqing Chen 2014")]
+[assembly: AssemblyCopyright("Copyright © Weiqing Chen 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

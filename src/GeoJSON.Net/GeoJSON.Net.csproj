@@ -51,7 +51,7 @@
     <Compile Include="CoordinateReferenceSystem\LinkedCRS.cs" />
     <Compile Include="CoordinateReferenceSystem\NamedCRS.cs" />
     <Compile Include="CoordinateReferenceSystem\UnspecifiedCRS.cs" />
-    <Compile Include="DoubleTenDecimalPlaceComparer.cs" />
+    <Compile Include="DoubleComparers.cs" />
     <Compile Include="Exceptions\ParsingException.cs" />
     <Compile Include="Feature\Feature.cs" />
     <Compile Include="Feature\FeatureCollection.cs" />
@@ -68,7 +68,6 @@
     <Compile Include="Geometry\Point.cs" />
     <Compile Include="Geometry\Polygon.cs" />
     <Compile Include="IGeoJSONObject.cs" />
-    <Compile Include="NullableDoubleTenDecimalPlaceComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
