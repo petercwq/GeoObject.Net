@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //
@@ -17,7 +16,6 @@ namespace GeoJSON.Net.Converters
     /// </summary>
     public class PointConverter : JsonConverter
     {
-
         /// <summary>
         /// Determines whether this instance can convert the specified object type.
         /// </summary>

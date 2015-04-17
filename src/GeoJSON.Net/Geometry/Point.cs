@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //
@@ -12,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// In geography, a point refers to a Position on a map, expressed in y and x.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#point" />

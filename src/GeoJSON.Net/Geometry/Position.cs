@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //

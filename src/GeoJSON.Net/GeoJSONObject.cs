@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //
@@ -15,27 +14,45 @@ using Newtonsoft.Json.Converters;
 
 namespace GeoJSON.Net
 {
-	/// <summary>
+    /// <summary>
     /// Base class for all IGeometryObject implementing types
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class GeoJSONObject : IGeoJSONObject
     {
+        internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
+
+        //protected double[] box;
 
         /// <summary>
         /// Gets or sets the (optional)
         /// <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Bounding Boxes</see>.
         /// </summary>
         /// <value>
-        /// The value of <see cref="BoundingBoxes" /> must be a 2*n array where n is the number of dimensions represented in
-        /// the
+        /// The value of <see cref="BoundingBoxes" /> must be a 2*n array where n is the number of dimensions represented in the
         /// contained geometries, with the lowest values for all axes followed by the highest values.
         /// The axes order of a bbox follows the axes order of geometries.
         /// In addition, the coordinate reference system for the bbox is assumed to match the coordinate reference
         /// system of the GeoJSON object of which it is a member.
         /// </value>
         [JsonProperty(PropertyName = "bbox", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
-        public double[] BoundingBoxes { get; set; }
+        public double[] BoundingBoxes
+        {
+            get;
+            set;
+            //get
+            //{
+            //    if (box == null)
+            //        box = ComputeBoxInternal();
+            //    return (double[])box.Clone();
+            //}
+            //set
+            //{
+            //    box = value;
+            //}
+        }
+
+        //protected abstract double[] ComputeBoxInternal();
 
         /// <summary>
         /// Gets or sets the (optional)
@@ -52,8 +69,6 @@ namespace GeoJSON.Net
         [JsonConverter(typeof(CrsConverter))]
         //[DefaultValue(typeof(DefaultCRS), "")]
         public ICRSObject CRS { get; set; }
-
-        internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
 
         /// <summary>
         /// Gets the (mandatory) type of the

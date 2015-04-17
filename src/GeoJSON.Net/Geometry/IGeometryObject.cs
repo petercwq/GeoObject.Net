@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //
@@ -13,7 +12,6 @@ namespace GeoJSON.Net.Geometry
     /// </summary>
     public interface IGeometryObject
     {
-
         /// <summary>
         /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.
         /// However, for <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Objects</see> only

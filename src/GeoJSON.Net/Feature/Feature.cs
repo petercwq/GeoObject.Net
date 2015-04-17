@@ -1,5 +1,4 @@
-﻿//  Author:
-//       Weiqing Chen <kevincwq@gmail.com>
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
 //
 //  Copyright (c) 2015 Weiqing Chen
 //
@@ -20,7 +19,6 @@ namespace GeoJSON.Net.Feature
     /// </summary>
     public class Feature : GeoJSONObject
     {
-
         /// <summary>
         /// Gets or sets the geometry.
         /// </summary>
