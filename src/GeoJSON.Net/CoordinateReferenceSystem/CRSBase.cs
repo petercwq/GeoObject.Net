@@ -1,11 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CRSBase.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the CRSBase type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -13,12 +7,14 @@ using Newtonsoft.Json.Converters;
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
+
     /// <summary>
     ///     Base class for all IGeometryObject implementing types
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class CRSBase
     {
+
         /// <summary>
         ///     Gets the properties.
         /// </summary>

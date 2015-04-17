@@ -1,21 +1,19 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ParsingException.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the ParsingException type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net.Exceptions
 {
+
+    #region __CodeSorter_unsorted
     using System;
+    #endregion
 
     /// <summary>
     /// Exception raised when response from SimpleGeo API cannot be parsed
     /// </summary>
     public class ParsingException : Exception
     {
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ParsingException"/> class.
         /// </summary>

@@ -1,34 +1,22 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GeoJSONObject.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the GeoJSONObject type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System.Linq;
 using System.Runtime.Serialization;
 using GeoJSON.Net.Converters;
 using GeoJSON.Net.CoordinateReferenceSystem;
-using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace GeoJSON.Net
 {
+
     /// <summary>
     ///     Base class for all IGeometryObject implementing types
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public abstract class GeoJSONObject : IGeoJSONObject
     {
-        internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
-
-        protected GeoJSONObject()
-        {
-            CRS = DefaultCRS.Instance;
-        }
 
         /// <summary>
         ///     Gets or sets the (optional)
@@ -61,6 +49,8 @@ namespace GeoJSON.Net
         //[DefaultValue(typeof(DefaultCRS), "")]
         public ICRSObject CRS { get; set; }
 
+        internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
+
         /// <summary>
         ///     Gets the (mandatory) type of the
         ///     <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">GeoJSON Object</see>.
@@ -72,74 +62,9 @@ namespace GeoJSON.Net
         [JsonConverter(typeof(StringEnumConverter))]
         public GeoJSONObjectType Type { get; internal set; }
 
-        /// <summary>
-        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
-        /// </summary>
-        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool Equals(object obj)
+        protected GeoJSONObject()
         {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            if (obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            return Equals((GeoJSONObject)obj);
-        }
-
-        /// <summary>
-        /// Returns a hash code for this instance.
-        /// </summary>
-        /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
-        /// </returns>
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var hashCode = (BoundingBoxes != null ? BoundingBoxes.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (CRS != null ? CRS.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (int)Type;
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// Implements the operator ==.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
-        public static bool operator ==(GeoJSONObject left, GeoJSONObject right)
-        {
-            return Equals(left, right);
-        }
-
-        /// <summary>
-        /// Implements the operator !=.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
-        public static bool operator !=(GeoJSONObject left, GeoJSONObject right)
-        {
-            return !Equals(left, right);
+            CRS = DefaultCRS.Instance;
         }
 
         /// <summary>
@@ -211,6 +136,76 @@ namespace GeoJSON.Net
             if (CRS is DefaultCRS)
             {
                 CRS = null;
+            }
+        }
+
+        /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator !=(GeoJSONObject left, GeoJSONObject right)
+        {
+            return !Equals(left, right);
+        }
+
+        /// <summary>
+        /// Implements the operator ==.
+        /// </summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator ==(GeoJSONObject left, GeoJSONObject right)
+        {
+            return Equals(left, right);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((GeoJSONObject)obj);
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (BoundingBoxes != null ? BoundingBoxes.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (CRS != null ? CRS.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (int)Type;
+                return hashCode;
             }
         }
     }

@@ -1,22 +1,18 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NamedCRS.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the <see cref="!:http://geojson.org/geojson-spec.html#named-crs">Named CRS type</see>.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
 using System.Collections.Generic;
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
+
     /// <summary>
     ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#named-crs">Named CRS type</see>.
     /// </summary>
     public class NamedCRS : CRSBase, ICRSObject
     {
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="NamedCRS" /> class.
         /// </summary>

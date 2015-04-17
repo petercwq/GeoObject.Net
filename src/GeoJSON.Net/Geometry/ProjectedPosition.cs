@@ -1,52 +1,29 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ProjectedPosition.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the Projected Position type a.k.a. <see cref="!:http://geojson.org/geojson-spec.html#positions">Projected Coordinate Reference System</see>.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net.Geometry
 {
+
+    #region __CodeSorter_unsorted
     using System;
     using System.Globalization;
+    #endregion
 
     /// <summary>
     /// Defines the Projected Position type a.k.a. <see cref="!:http://geojson.org/geojson-spec.html#positions">Projected Coordinate Reference System</see>.
     /// </summary>
     public class ProjectedPosition : Position
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
-        /// </summary>
-        /// <param name="easting">The easting.</param>
-        /// <param name="northing">The northing.</param>
-        /// <param name="altitude">The altitude in m(eter).</param>
-        public ProjectedPosition(double easting, double northing, double? altitude)
-            : this()
-        {
-            throw new NotImplementedException("Someone needs to do this...");
-        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
+        /// Gets the altitude.
         /// </summary>
-        /// <param name="easting">The easting, e.g. '38.889722'.</param>
-        /// <param name="northing">The northing, e.g. '-77.008889'.</param>
-        /// <param name="altitude">The altitude in m(eter).</param>
-        public ProjectedPosition(string easting, string northing, string altitude)
-            : this()
+        public double? Altitude
         {
-            throw new NotImplementedException("Someone needs to do this...");
-        }
-
-        /// <summary>
-        /// Prevents a default instance of the <see cref="ProjectedPosition"/> class from being created.
-        /// </summary>
-        private ProjectedPosition()
-        {
-            throw new NotImplementedException("Someone needs to do this...");
+            get
+            {
+                throw new NotImplementedException("Someone needs to do this...");
+            }
         }
 
         /// <summary>
@@ -74,14 +51,35 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        /// Gets the altitude.
+        /// Prevents a default instance of the <see cref="ProjectedPosition"/> class from being created.
         /// </summary>
-        public double? Altitude
+        private ProjectedPosition()
         {
-            get
-            {
-                throw new NotImplementedException("Someone needs to do this...");
-            }
+            throw new NotImplementedException("Someone needs to do this...");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
+        /// </summary>
+        /// <param name="easting">The easting.</param>
+        /// <param name="northing">The northing.</param>
+        /// <param name="altitude">The altitude in m(eter).</param>
+        public ProjectedPosition(double easting, double northing, double? altitude)
+            : this()
+        {
+            throw new NotImplementedException("Someone needs to do this...");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProjectedPosition"/> class.
+        /// </summary>
+        /// <param name="easting">The easting, e.g. '38.889722'.</param>
+        /// <param name="northing">The northing, e.g. '-77.008889'.</param>
+        /// <param name="altitude">The altitude in m(eter).</param>
+        public ProjectedPosition(string easting, string northing, string altitude)
+            : this()
+        {
+            throw new NotImplementedException("Someone needs to do this...");
         }
 
         /// <summary>

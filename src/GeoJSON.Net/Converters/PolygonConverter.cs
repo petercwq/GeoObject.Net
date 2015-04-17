@@ -1,11 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PolygonConverter.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the PolygonConverter type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
 using System.Collections.Generic;
@@ -14,11 +8,13 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Converters
 {
+
     /// <summary>
     ///     Converter to read and write the <see cref="Polygon" /> type.
     /// </summary>
     public class PolygonConverter : JsonConverter
     {
+
         private static readonly LineStringConverter LineStringConverter = new LineStringConverter();
 
         /// <summary>

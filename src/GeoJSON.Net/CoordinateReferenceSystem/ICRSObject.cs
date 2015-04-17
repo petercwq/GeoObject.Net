@@ -1,19 +1,15 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ICRSObject.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Base Interface for CRSBase Object types.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
+
     /// <summary>
     /// Base Interface for CRSBase Object types.
     /// </summary>
     public interface ICRSObject
     {
+
         /// <summary>
         /// Gets the CRS type.
         /// </summary>

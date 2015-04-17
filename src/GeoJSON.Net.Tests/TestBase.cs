@@ -4,8 +4,10 @@ using System.Runtime.CompilerServices;
 
 namespace GeoJSON.Net.Tests
 {
+
     public abstract class TestBase
     {
+
         private static readonly string AssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 
         protected string GetExpectedJson([CallerMemberName] string name = null)

@@ -1,8 +1,12 @@
-﻿using System;
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
+
+using System;
 using System.Collections.Generic;
 
 namespace GeoJSON.Net
 {
+
     /// <summary>
     ///     Compares doubles for equality.
     /// </summary>
@@ -11,6 +15,7 @@ namespace GeoJSON.Net
     /// </remarks>
     public class DoubleTenDecimalPlaceComparer : IEqualityComparer<double>
     {
+
         public bool Equals(double x, double y)
         {
             return Math.Abs(x - y) < 0.0000000001;

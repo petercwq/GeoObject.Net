@@ -1,11 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Polygon.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
 using System.Collections.Generic;
@@ -15,6 +9,7 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Geometry
 {
+
     /// <summary>
     ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
     ///     Coordinates of a Polygon are a list of
@@ -25,6 +20,19 @@ namespace GeoJSON.Net.Geometry
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#polygon" />
     public class Polygon : GeoJSONObject, IGeometryObject
     {
+
+        /// <summary>
+        ///     Gets the list of points outlining this Polygon.
+        /// </summary>
+        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        [JsonConverter(typeof(PolygonConverter))]
+        public List<LineString> Coordinates { get; set; }
+
+        protected bool Equals(Polygon other)
+        {
+            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+        }
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Polygon" /> class.
         /// </summary>
@@ -49,12 +57,15 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.Polygon;
         }
 
-        /// <summary>
-        ///     Gets the list of points outlining this Polygon.
-        /// </summary>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(PolygonConverter))]
-        public List<LineString> Coordinates { get; set; }
+        public static bool operator !=(Polygon left, Polygon right)
+        {
+            return !Equals(left, right);
+        }
+
+        public static bool operator ==(Polygon left, Polygon right)
+        {
+            return Equals(left, right);
+        }
 
         public override bool Equals(object obj)
         {
@@ -79,21 +90,6 @@ namespace GeoJSON.Net.Geometry
         public override int GetHashCode()
         {
             return Coordinates.GetHashCode();
-        }
-
-        public static bool operator ==(Polygon left, Polygon right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Polygon left, Polygon right)
-        {
-            return !Equals(left, right);
-        }
-
-        protected bool Equals(Polygon other)
-        {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
     }
 }

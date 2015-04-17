@@ -1,34 +1,14 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IGeoJSONObject.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the IGeoJSONObject interface.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net
 {
+
     /// <summary>
     /// Base Interface for GeoJSONObject types.
     /// </summary>
     public interface IGeoJSONObject
     {
-        /// <summary>
-        /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">GeoJSON Object</see>.
-        /// </summary>
-        /// <value>
-        /// The type of the object.
-        /// </value>
-        GeoJSONObjectType Type { get; }
-
-        /// <summary>
-        /// Gets the (optional) <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Coordinate Reference System Object</see>.
-        /// </summary>
-        /// <value>
-        /// The Coordinate Reference System Objects.
-        /// </value>
-        CoordinateReferenceSystem.ICRSObject CRS { get; }
 
         /// <summary>
         /// Gets or sets the (optional) <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Bounding Boxes</see>.
@@ -41,5 +21,21 @@ namespace GeoJSON.Net
         /// system of the GeoJSON object of which it is a member.
         /// </value>
         double[] BoundingBoxes { get; set; }
+
+        /// <summary>
+        /// Gets the (optional) <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Coordinate Reference System Object</see>.
+        /// </summary>
+        /// <value>
+        /// The Coordinate Reference System Objects.
+        /// </value>
+        CoordinateReferenceSystem.ICRSObject CRS { get; }
+
+        /// <summary>
+        /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">GeoJSON Object</see>.
+        /// </summary>
+        /// <value>
+        /// The type of the object.
+        /// </value>
+        GeoJSONObjectType Type { get; }
     }
 }

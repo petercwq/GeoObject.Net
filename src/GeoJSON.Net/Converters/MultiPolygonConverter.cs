@@ -1,4 +1,7 @@
-﻿using System;
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Geometry;
@@ -7,11 +10,13 @@ using Newtonsoft.Json.Linq;
 
 namespace GeoJSON.Net.Converters
 {
+
     /// <summary>
     /// Converter to read and write the <see cref="MultiPolygon" /> type.
     /// </summary>
     public class MultiPolygonConverter : JsonConverter
     {
+
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
         /// </summary>
@@ -57,15 +62,15 @@ namespace GeoJSON.Net.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var polygons = (List<Polygon>)value;
-            
+
             writer.WriteStartArray();
-            
+
             if (polygons != null && polygons.Count > 0)
             {
                 for (int i = 0; i < polygons.Count; i++)
                 {
                     var polygon = polygons[i];
-                    
+
                     // start of polygon
                     writer.WriteStartArray();
 

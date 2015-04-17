@@ -1,11 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LineString.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
 using System.Collections.Generic;
@@ -15,12 +9,27 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Geometry
 {
+
     /// <summary>
     ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class LineString : GeoJSONObject, IGeometryObject
     {
+
+        /// <summary>
+        ///     Gets the Positions.
+        /// </summary>
+        /// <value>The Positions.</value>
+        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        [JsonConverter(typeof(LineStringConverter))]
+        public List<IPosition> Coordinates { get; set; }
+
+        protected bool Equals(LineString other)
+        {
+            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+        }
+
         [JsonConstructor]
         protected internal LineString()
         {
@@ -42,7 +51,7 @@ namespace GeoJSON.Net.Geometry
             if (coordsList.Count < 2)
             {
                 throw new ArgumentOutOfRangeException(
-                    "coordinates", 
+                    "coordinates",
                     "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
             }
 
@@ -50,13 +59,15 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.LineString;
         }
 
-        /// <summary>
-        ///     Gets the Positions.
-        /// </summary>
-        /// <value>The Positions.</value>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(LineStringConverter))]
-        public List<IPosition> Coordinates { get; set; }
+        public static bool operator !=(LineString left, LineString right)
+        {
+            return !Equals(left, right);
+        }
+
+        public static bool operator ==(LineString left, LineString right)
+        {
+            return Equals(left, right);
+        }
 
         public override bool Equals(object obj)
         {
@@ -115,21 +126,6 @@ namespace GeoJSON.Net.Geometry
         public bool IsLinearRing()
         {
             return Coordinates.Count >= 4 && IsClosed();
-        }
-
-        public static bool operator ==(LineString left, LineString right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(LineString left, LineString right)
-        {
-            return !Equals(left, right);
-        }
-
-        protected bool Equals(LineString other)
-        {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
     }
 }

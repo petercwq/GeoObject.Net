@@ -1,5 +1,9 @@
-﻿namespace GeoJSON.Net.Geometry
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
+
+namespace GeoJSON.Net.Geometry
 {
+
     /// <summary>
     /// A position is the fundamental geometry construct. 
     /// The "coordinates" member of a geometry object is composed of one position (in the case of a Point geometry)
@@ -8,6 +12,5 @@
     /// or a multidimensional array of positions (MultiPolygon).
     /// </summary>
     public class Position : IPosition
-    {
-    }
+    { }
 }

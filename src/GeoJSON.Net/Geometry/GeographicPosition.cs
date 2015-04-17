@@ -1,11 +1,5 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GeographicPosition.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the Geographic Position type a.k.a. <see cref="!:http://geojson.org/geojson-spec.html#positions">Geographic Coordinate Reference System</see>.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
 using System.Globalization;
@@ -13,13 +7,72 @@ using System.Linq;
 
 namespace GeoJSON.Net.Geometry
 {
+
     /// <summary>
     ///     Defines the Geographic Position type a.k.a.
     ///     <see cref="!:http://geojson.org/geojson-spec.html#positions">Geographic Coordinate Reference System</see>.
     /// </summary>
     public class GeographicPosition : Position
     {
+
+        /// <summary>
+        ///     Gets the altitude.
+        /// </summary>
+        public double? Altitude
+        {
+            get { return Coordinates[2]; }
+            private set { Coordinates[2] = value; }
+        }
+
+        /// <summary>
+        ///     Gets or sets the coordinates, is a 2-size array
+        /// </summary>
+        /// <value>
+        ///     The coordinates.
+        /// </value>
+        private double?[] Coordinates { get; set; }
+
         private static readonly NullableDoubleTenDecimalPlaceComparer DoubleComparer = new NullableDoubleTenDecimalPlaceComparer();
+
+        /// <summary>
+        ///     Gets the latitude.
+        /// </summary>
+        /// <value>The latitude.</value>
+        public double Latitude
+        {
+            get { return Coordinates[0].GetValueOrDefault(); }
+            private set { Coordinates[0] = value; }
+        }
+
+        /// <summary>
+        ///     Gets the longitude.
+        /// </summary>
+        /// <value>The longitude.</value>
+        public double Longitude
+        {
+            get { return Coordinates[1].GetValueOrDefault(); }
+            private set { Coordinates[1] = value; }
+        }
+
+        /// <summary>
+        ///     Prevents a default instance of the <see cref="GeographicPosition" /> class from being created.
+        /// </summary>
+        private GeographicPosition()
+        {
+            Coordinates = new double?[3];
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="GeographicPosition" />, is equal to this instance.
+        /// </summary>
+        /// <param name="other">The <see cref="GeographicPosition" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="GeographicPosition" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        protected bool Equals(GeographicPosition other)
+        {
+            return Coordinates.SequenceEqual(other.Coordinates, DoubleComparer);
+        }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="GeographicPosition" /> class.
@@ -93,49 +146,30 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Prevents a default instance of the <see cref="GeographicPosition" /> class from being created.
+        /// Implements the operator !=.
         /// </summary>
-        private GeographicPosition()
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator !=(GeographicPosition left, GeographicPosition right)
         {
-            Coordinates = new double?[3];
+            return !Equals(left, right);
         }
 
         /// <summary>
-        ///     Gets the altitude.
+        /// Implements the operator ==.
         /// </summary>
-        public double? Altitude
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>
+        /// The result of the operator.
+        /// </returns>
+        public static bool operator ==(GeographicPosition left, GeographicPosition right)
         {
-            get { return Coordinates[2]; }
-            private set { Coordinates[2] = value; }
+            return Equals(left, right);
         }
-
-        /// <summary>
-        ///     Gets the latitude.
-        /// </summary>
-        /// <value>The latitude.</value>
-        public double Latitude
-        {
-            get { return Coordinates[0].GetValueOrDefault(); }
-            private set { Coordinates[0] = value; }
-        }
-
-        /// <summary>
-        ///     Gets the longitude.
-        /// </summary>
-        /// <value>The longitude.</value>
-        public double Longitude
-        {
-            get { return Coordinates[1].GetValueOrDefault(); }
-            private set { Coordinates[1] = value; }
-        }
-
-        /// <summary>
-        ///     Gets or sets the coordinates, is a 2-size array
-        /// </summary>
-        /// <value>
-        ///     The coordinates.
-        /// </value>
-        private double?[] Coordinates { get; set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object" />, is equal to this instance.
@@ -176,32 +210,6 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        /// Implements the operator ==.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
-        public static bool operator ==(GeographicPosition left, GeographicPosition right)
-        {
-            return Equals(left, right);
-        }
-
-        /// <summary>
-        /// Implements the operator !=.
-        /// </summary>
-        /// <param name="left">The left.</param>
-        /// <param name="right">The right.</param>
-        /// <returns>
-        /// The result of the operator.
-        /// </returns>
-        public static bool operator !=(GeographicPosition left, GeographicPosition right)
-        {
-            return !Equals(left, right);
-        }
-
-        /// <summary>
         ///     Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>
@@ -212,18 +220,6 @@ namespace GeoJSON.Net.Geometry
             return Altitude == null
                 ? string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}", Latitude, Longitude)
                 : string.Format(CultureInfo.InvariantCulture, "Latitude: {0}, Longitude: {1}, Altitude: {2}", Latitude, Longitude, Altitude);
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="GeographicPosition" />, is equal to this instance.
-        /// </summary>
-        /// <param name="other">The <see cref="GeographicPosition" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="GeographicPosition" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        protected bool Equals(GeographicPosition other)
-        {
-            return Coordinates.SequenceEqual(other.Coordinates, DoubleComparer);
         }
     }
 }

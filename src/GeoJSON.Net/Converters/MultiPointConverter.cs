@@ -1,3 +1,6 @@
+//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright ? 2014 J?rg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,28 +10,16 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Converters
 {
+
     /// <summary>
     /// 
     /// </summary>
     public class MultiPointConverter : JsonConverter
     {
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+
+        public override bool CanConvert(Type objectType)
         {
-            var points = (List<Point>)value;
-
-            if (points.Any())
-            {
-                var converter = new PointConverter();
-
-                writer.WriteStartArray();
-
-                foreach (var point in points)
-                {
-                    converter.WriteJson(writer, point.Coordinates, serializer);
-                }
-
-                writer.WriteEndArray();
-            }
+            return objectType == typeof(MultiPoint);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -59,9 +50,23 @@ namespace GeoJSON.Net.Converters
             }
         }
 
-        public override bool CanConvert(Type objectType)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            return objectType == typeof(MultiPoint);
+            var points = (List<Point>)value;
+
+            if (points.Any())
+            {
+                var converter = new PointConverter();
+
+                writer.WriteStartArray();
+
+                foreach (var point in points)
+                {
+                    converter.WriteJson(writer, point.Coordinates, serializer);
+                }
+
+                writer.WriteEndArray();
+            }
         }
     }
 }

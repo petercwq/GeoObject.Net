@@ -1,19 +1,15 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IGeometryObject.cs" company="Joerg Battermann">
-//   Copyright © Joerg Battermann 2014
-// </copyright>
-// <summary>
-//   Defines the IGeometryObject type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net.Geometry
 {
+
     /// <summary>
     /// Base Interface for GeometryObject types.
     /// </summary>
     public interface IGeometryObject
     {
+
         /// <summary>
         /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.
         /// However, for <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Objects</see> only
