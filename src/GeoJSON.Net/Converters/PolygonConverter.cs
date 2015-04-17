@@ -1,15 +1,19 @@
-﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+﻿//  Author:
+//       Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+//
+//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
-
 using System;
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 
+
 namespace GeoJSON.Net.Converters
 {
-
-    /// <summary>
+	/// <summary>
     ///     Converter to read and write the <see cref="Polygon" /> type.
     /// </summary>
     public class PolygonConverter : JsonConverter

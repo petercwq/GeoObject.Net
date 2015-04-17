@@ -1,14 +1,18 @@
-﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+﻿//  Author:
+//       Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+//
+//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
-
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
+
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
-
-    /// <summary>
+	/// <summary>
     ///     Base class for all IGeometryObject implementing types
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]

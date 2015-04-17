@@ -1,16 +1,20 @@
-﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+﻿//  Author:
+//       Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+//
+//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
+
 namespace GeoJSON.Net.Geometry
 {
-
-    /// <summary>
+	/// <summary>
     ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
     public class MultiPolygon : GeoJSONObject, IGeometryObject

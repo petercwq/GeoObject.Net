@@ -1,6 +1,10 @@
+﻿//  Author:
+//       Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+//
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
-//  Copyright ? 2014 J?rg Battermann & Other Contributors
-
+//  Copyright © 2014 Jörg Battermann & Other Contributors
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +12,10 @@ using GeoJSON.Net.Exceptions;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 
+
 namespace GeoJSON.Net.Converters
 {
-
-    /// <summary>
+	/// <summary>
     /// 
     /// </summary>
     public class MultiPointConverter : JsonConverter

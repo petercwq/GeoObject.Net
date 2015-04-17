@@ -2,9 +2,10 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
+
 namespace GeoJSON.Net.Tests
 {
-    /// <summary>
+	/// <summary>
     ///     Assertions for json strings
     /// </summary>
     public static class JsonAssert

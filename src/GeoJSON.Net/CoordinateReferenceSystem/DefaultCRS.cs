@@ -1,10 +1,14 @@
-﻿//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
+﻿//  Author:
+//       Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+//
+//  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
-
-    /// <summary>
+	/// <summary>
     ///     The default CRS is a geographic coordinate reference system,
     ///     using the WGS84 datum, and with longitude and latitude units of decimal degrees.
     ///     see http://geojson.org/geojson-spec.html#coordinate-reference-system-objects
