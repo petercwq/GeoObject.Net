@@ -8,8 +8,9 @@
 
 namespace GeoJSON.Net.Geometry
 {
-
     //[JsonArray]
     public interface IPosition
-    { }
+    {
+        bool Equals(IPosition position);
+    }
 }

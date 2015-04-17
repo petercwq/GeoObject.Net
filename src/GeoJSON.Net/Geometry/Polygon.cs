@@ -5,28 +5,28 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
-    ///     Coordinates of a Polygon are a list of
-    ///     <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see>
-    ///     coordinate arrays. The first element in the array represents the exterior ring. Any subsequent elements
-    ///     represent interior rings (or holes).
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
+    /// Coordinates of a Polygon are a list of
+    /// <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see>
+    /// coordinate arrays. The first element in the array represents the exterior ring. Any subsequent elements
+    /// represent interior rings (or holes).
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#polygon" />
     public class Polygon : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the list of points outlining this Polygon.
+        /// Gets the list of points outlining this Polygon.
         /// </summary>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(PolygonConverter))]
@@ -38,11 +38,11 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Polygon" /> class.
+        /// Initializes a new instance of the <see cref="Polygon" /> class.
         /// </summary>
         /// <param name="coordinates">
-        ///     The <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see> with the first element
-        ///     in the array representing the exterior ring. Any subsequent elements represent interior rings (or holes).
+        /// The <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see> with the first element
+        /// in the array representing the exterior ring. Any subsequent elements represent interior rings (or holes).
         /// </param>
         public Polygon(List<LineString> coordinates)
         {

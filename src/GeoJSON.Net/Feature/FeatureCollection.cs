@@ -5,28 +5,28 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Feature
 {
 	/// <summary>
-    ///     Defines the FeatureCollection type.
+    /// Defines the FeatureCollection type.
     /// </summary>
     public class FeatureCollection : GeoJSONObject
     {
 
         /// <summary>
-        ///     Gets the features.
+        /// Gets the features.
         /// </summary>
         /// <value>The features.</value>
         [JsonProperty(PropertyName = "features", Required = Required.Always)]
         public List<Feature> Features { get; private set; }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="FeatureCollection" /> class.
+        /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
         /// </summary>
         public FeatureCollection()
             : this(new List<Feature>())
@@ -34,7 +34,7 @@ namespace GeoJSON.Net.Feature
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="FeatureCollection" /> class.
+        /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
         /// </summary>
         /// <param name="features">The features.</param>
         public FeatureCollection(List<Feature> features)

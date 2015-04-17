@@ -6,7 +6,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.Feature
 {
     [TestFixture]
@@ -40,8 +39,8 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 var geom = new LineString(new[]
                 {
-                    new GeographicPosition(51.010, -1.034), 
-                    new GeographicPosition(51.010, -0.034)
+                    new Position(51.010, -1.034), 
+                    new Position(51.010, -0.034)
                 });
 
                 var props = new Dictionary<string, object>

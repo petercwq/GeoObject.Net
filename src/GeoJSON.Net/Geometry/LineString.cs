@@ -5,24 +5,24 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class LineString : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the Positions.
+        /// Gets the Positions.
         /// </summary>
         /// <value>The Positions.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
@@ -40,7 +40,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="LineString" /> class.
+        /// Initializes a new instance of the <see cref="LineString" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public LineString(IEnumerable<IPosition> coordinates)
@@ -99,33 +99,33 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Determines whether this instance has its first and last coordinate at the same position and thereby is closed.
+        /// Determines whether this instance has its first and last coordinate at the same position and thereby is closed.
         /// </summary>
         /// <returns>
-        ///     <c>true</c> if this instance is closed; otherwise, <c>false</c>.
+        /// <c>true</c> if this instance is closed; otherwise, <c>false</c>.
         /// </returns>
         public bool IsClosed()
         {
-            var firstCoordinate = Coordinates[0] as GeographicPosition;
+            var firstCoordinate = Coordinates[0] as Position;
 
             if (firstCoordinate != null)
             {
-                var lastCoordinate = Coordinates[Coordinates.Count - 1] as GeographicPosition;
+                var lastCoordinate = Coordinates[Coordinates.Count - 1] as Position;
 
-                return firstCoordinate.Latitude == lastCoordinate.Latitude
-                       && firstCoordinate.Longitude == lastCoordinate.Longitude
-                       && firstCoordinate.Altitude == lastCoordinate.Altitude;
+                return firstCoordinate.Y == lastCoordinate.Y
+                       && firstCoordinate.X == lastCoordinate.X
+                       && firstCoordinate.Z == lastCoordinate.Z;
             }
 
             return Coordinates[0].Equals(Coordinates[Coordinates.Count - 1]);
         }
 
         /// <summary>
-        ///     Determines whether this LineString is a
-        ///     <see cref="!:http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
+        /// Determines whether this LineString is a
+        /// <see cref="!:http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
         /// </summary>
         /// <returns>
-        ///     <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
+        /// <c>true</c> if it is a linear ring; otherwise, <c>false</c>.
         /// </returns>
         public bool IsLinearRing()
         {

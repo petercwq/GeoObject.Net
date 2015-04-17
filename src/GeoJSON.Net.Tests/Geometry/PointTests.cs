@@ -2,7 +2,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.Geometry
 {
     [TestFixture]
@@ -11,7 +10,7 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Serialize_With_Lat_Lon()
         {
-            var point = new Point(new GeographicPosition(53.2455662, 90.65464646));
+            var point = new Point(new Position(53.2455662, 90.65464646));
 
             var expectedJson = "{\"coordinates\":[90.65464646,53.2455662],\"type\":\"Point\"}";
 
@@ -23,7 +22,7 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Serialize_With_Lat_Lon_Alt()
         {
-            var point = new Point(new GeographicPosition(53.2455662, 90.65464646, 200.4567));
+            var point = new Point(new Position(53.2455662, 90.65464646, 200.4567));
 
             var expectedJson = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
@@ -37,7 +36,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
-            var expectedPoint = new Point(new GeographicPosition(53.2455662, 90.65464646, 200.4567));
+            var expectedPoint = new Point(new Position(53.2455662, 90.65464646, 200.4567));
 
             var actualPoint = JsonConvert.DeserializeObject<Point>(json);
 
@@ -49,7 +48,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662],\"type\":\"Point\"}";
 
-            var expectedPoint = new Point(new GeographicPosition(53.2455662, 90.65464646));
+            var expectedPoint = new Point(new Position(53.2455662, 90.65464646));
 
             var actualPoint = JsonConvert.DeserializeObject<Point>(json);
 

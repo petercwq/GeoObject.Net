@@ -3,7 +3,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.Geometry
 {
     [TestFixture]
@@ -12,12 +11,12 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Is_Closed()
         {
-            var coordinates = new List<GeographicPosition>
+            var coordinates = new List<Position>
             {
-                new GeographicPosition(52.370725881211314, 4.889259338378906),
-                new GeographicPosition(52.3711451105601, 4.895267486572266),
-                new GeographicPosition(52.36931095278263, 4.892091751098633),
-                new GeographicPosition(52.370725881211314, 4.889259338378906)
+                new Position(52.370725881211314, 4.889259338378906),
+                new Position(52.3711451105601, 4.895267486572266),
+                new Position(52.36931095278263, 4.892091751098633),
+                new Position(52.370725881211314, 4.889259338378906)
             };
 
             var lineString = new LineString(coordinates);
@@ -28,12 +27,12 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Is_Not_Closed()
         {
-            var coordinates = new List<GeographicPosition>
+            var coordinates = new List<Position>
             {
-                new GeographicPosition(52.370725881211314, 4.889259338378906),
-                new GeographicPosition(52.3711451105601, 4.895267486572266),
-                new GeographicPosition(52.36931095278263, 4.892091751098633),
-                new GeographicPosition(52.370725881211592, 4.889259338378955)
+                new Position(52.370725881211314, 4.889259338378906),
+                new Position(52.3711451105601, 4.895267486572266),
+                new Position(52.36931095278263, 4.892091751098633),
+                new Position(52.370725881211592, 4.889259338378955)
             };
 
             var lineString = new LineString(coordinates);
@@ -44,12 +43,12 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Serialize()
         {
-            var coordinates = new List<GeographicPosition>
+            var coordinates = new List<Position>
             {
-                new GeographicPosition(52.370725881211314, 4.889259338378906),
-                new GeographicPosition(52.3711451105601, 4.895267486572266),
-                new GeographicPosition(52.36931095278263, 4.892091751098633),
-                new GeographicPosition(52.370725881211314, 4.889259338378906)
+                new Position(52.370725881211314, 4.889259338378906),
+                new Position(52.3711451105601, 4.895267486572266),
+                new Position(52.36931095278263, 4.892091751098633),
+                new Position(52.370725881211314, 4.889259338378906)
             };
 
             var lineString = new LineString(coordinates);
@@ -62,12 +61,12 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Deserialize()
         {
-            var coordinates = new List<GeographicPosition>
+            var coordinates = new List<Position>
             {
-                new GeographicPosition(52.370725881211314, 4.889259338378906),
-                new GeographicPosition(52.3711451105601, 4.895267486572266),
-                new GeographicPosition(52.36931095278263, 4.892091751098633),
-                new GeographicPosition(52.370725881211314, 4.889259338378906)
+                new Position(52.370725881211314, 4.889259338378906),
+                new Position(52.3711451105601, 4.895267486572266),
+                new Position(52.36931095278263, 4.892091751098633),
+                new Position(52.370725881211314, 4.889259338378906)
             };
 
             var expectedLineString = new LineString(coordinates);

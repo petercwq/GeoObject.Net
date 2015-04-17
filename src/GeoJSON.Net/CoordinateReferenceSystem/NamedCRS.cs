@@ -5,9 +5,9 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
-
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {

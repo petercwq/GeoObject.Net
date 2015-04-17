@@ -5,22 +5,22 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
     /// </summary>
     public class MultiLineString : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the Coordinates.
+        /// Gets the Coordinates.
         /// </summary>
         /// <value>The Coordinates.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
@@ -33,7 +33,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MultiLineString" /> class.
+        /// Initializes a new instance of the <see cref="MultiLineString" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public MultiLineString(List<LineString> coordinates)

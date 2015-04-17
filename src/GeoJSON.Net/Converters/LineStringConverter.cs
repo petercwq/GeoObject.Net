@@ -5,27 +5,27 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    ///     Converter to read and write the <see cref="LineString" /> type.
+    /// Converter to read and write the <see cref="LineString" /> type.
     /// </summary>
     public class LineStringConverter : JsonConverter
     {
 
         /// <summary>
-        ///     Determines whether this instance can convert the specified object type.
+        /// Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>
-        ///     <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+        /// <c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
@@ -33,14 +33,14 @@ namespace GeoJSON.Net.Converters
         }
 
         /// <summary>
-        ///     Reads the JSON representation of the object.
+        /// Reads the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
         /// <returns>
-        ///     The object value.
+        /// The object value.
         /// </returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
@@ -52,23 +52,23 @@ namespace GeoJSON.Net.Converters
 
             foreach (var coordinate in coordinates)
             {
-                var longitude = coordinate[0];
-                var latitude = coordinate[1];
-                double? altitude = null;
+                var x = coordinate[0];
+                var y = coordinate[1];
+                double? z = null;
 
                 if (coordinate.Length == 3)
                 {
-                    altitude = coordinate[2];
+                    z = coordinate[2];
                 }
 
-                positions.Add(new GeographicPosition(latitude, longitude, altitude));
+                positions.Add(new Position(y, x, z));
             }
 
             return positions;
         }
 
         /// <summary>
-        ///     Writes the JSON representation of the object.
+        /// Writes the JSON representation of the object.
         /// </summary>
         /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
@@ -83,11 +83,11 @@ namespace GeoJSON.Net.Converters
                 foreach (var position in coordinateElements)
                 {
                     // TODO: position types should expose a double[] coordinates property that can be used to write values 
-                    var coordinates = (GeographicPosition)position;
-                    var coordinateElement = new JArray(coordinates.Longitude, coordinates.Latitude);
-                    if (coordinates.Altitude.HasValue)
+                    var coordinates = (Position)position;
+                    var coordinateElement = new JArray(coordinates.X, coordinates.Y);
+                    if (coordinates.Z.HasValue)
                     {
-                        coordinateElement = new JArray(coordinates.Longitude, coordinates.Latitude, coordinates.Altitude);
+                        coordinateElement = new JArray(coordinates.X, coordinates.Y, coordinates.Z);
                     }
 
                     coordinateArray.Add(coordinateElement);

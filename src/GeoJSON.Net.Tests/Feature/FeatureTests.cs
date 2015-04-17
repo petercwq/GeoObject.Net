@@ -5,7 +5,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.Feature
 {
     [TestFixture]
@@ -37,23 +36,22 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 new List<IPosition>
                 {
-                    new GeographicPosition(52.370725881211314, 4.889259338378906),
-                    new GeographicPosition(52.3711451105601, 4.895267486572266),
-                    new GeographicPosition(52.36931095278263, 4.892091751098633),
-                    new GeographicPosition(52.370725881211314, 4.889259338378906)
+                    new Position(52.370725881211314, 4.889259338378906),
+                    new Position(52.3711451105601, 4.895267486572266),
+                    new Position(52.36931095278263, 4.892091751098633),
+                    new Position(52.370725881211314, 4.889259338378906)
                 },
                 new List<IPosition>
                 {
-                    new GeographicPosition(52.370725881211314, 4.989259338378906),
-                    new GeographicPosition(52.3711451105601, 4.995267486572266),
-                    new GeographicPosition(52.36931095278263, 4.992091751098633),
-                    new GeographicPosition(52.370725881211314, 4.989259338378906)
+                    new Position(52.370725881211314, 4.989259338378906),
+                    new Position(52.3711451105601, 4.995267486572266),
+                    new Position(52.36931095278263, 4.992091751098633),
+                    new Position(52.370725881211314, 4.989259338378906)
                 }
             };
 
             var geometry = new LineString(coordinates[0]);
 
-            
             var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
 
             Console.WriteLine(actualJson);
@@ -70,17 +68,17 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 new LineString(new List<IPosition>
                 {
-                    new GeographicPosition(52.370725881211314, 4.889259338378906),
-                    new GeographicPosition(52.3711451105601, 4.895267486572266),
-                    new GeographicPosition(52.36931095278263, 4.892091751098633),
-                    new GeographicPosition(52.370725881211314, 4.889259338378906)
+                    new Position(52.370725881211314, 4.889259338378906),
+                    new Position(52.3711451105601, 4.895267486572266),
+                    new Position(52.36931095278263, 4.892091751098633),
+                    new Position(52.370725881211314, 4.889259338378906)
                 }),
                 new LineString(new List<IPosition>
                 {
-                    new GeographicPosition(52.370725881211314, 4.989259338378906),
-                    new GeographicPosition(52.3711451105601, 4.995267486572266),
-                    new GeographicPosition(52.36931095278263, 4.992091751098633),
-                    new GeographicPosition(52.370725881211314, 4.989259338378906)
+                    new Position(52.370725881211314, 4.989259338378906),
+                    new Position(52.3711451105601, 4.995267486572266),
+                    new Position(52.36931095278263, 4.992091751098633),
+                    new Position(52.370725881211314, 4.989259338378906)
                 })
             });
 
@@ -94,7 +92,7 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_Point_Feature()
         {
-            var geometry = new Point(new GeographicPosition(1, 2));
+            var geometry = new Point(new Position(1, 2));
             var expectedJson = GetExpectedJson();
 
             var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
@@ -105,12 +103,12 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_Polygon_Feature()
         {
-            var coordinates = new List<GeographicPosition>
+            var coordinates = new List<Position>
             {
-                new GeographicPosition(52.370725881211314, 4.889259338378906),
-                new GeographicPosition(52.3711451105601, 4.895267486572266),
-                new GeographicPosition(52.36931095278263, 4.892091751098633),
-                new GeographicPosition(52.370725881211314, 4.889259338378906)
+                new Position(52.370725881211314, 4.889259338378906),
+                new Position(52.3711451105601, 4.895267486572266),
+                new Position(52.36931095278263, 4.892091751098633),
+                new Position(52.370725881211314, 4.889259338378906)
             };
 
             var polygon = new Polygon(new List<LineString> { new LineString(coordinates) });
@@ -130,32 +128,32 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 new Polygon(new List<LineString>
                 {
-                    new LineString(new List<GeographicPosition>
+                    new LineString(new List<Position>
                     {
-                        new GeographicPosition(0, 0),
-                        new GeographicPosition(0, 1),
-                        new GeographicPosition(1, 1),
-                        new GeographicPosition(1, 0),
-                        new GeographicPosition(0, 0)
+                        new Position(0, 0),
+                        new Position(0, 1),
+                        new Position(1, 1),
+                        new Position(1, 0),
+                        new Position(0, 0)
                     })
                 }),
                 new Polygon(new List<LineString>
                 {
-                    new LineString(new List<GeographicPosition>
+                    new LineString(new List<Position>
                     {
-                        new GeographicPosition(100, 100),
-                        new GeographicPosition(100, 101),
-                        new GeographicPosition(101, 101),
-                        new GeographicPosition(101, 100),
-                        new GeographicPosition(100, 100)
+                        new Position(100, 100),
+                        new Position(100, 101),
+                        new Position(101, 101),
+                        new Position(101, 100),
+                        new Position(100, 100)
                     }),
-                    new LineString(new List<GeographicPosition>
+                    new LineString(new List<Position>
                     {
-                        new GeographicPosition(200, 200),
-                        new GeographicPosition(200, 201),
-                        new GeographicPosition(201, 201),
-                        new GeographicPosition(201, 200),
-                        new GeographicPosition(200, 200)
+                        new Position(200, 200),
+                        new Position(200, 201),
+                        new Position(201, 201),
+                        new Position(201, 200),
+                        new Position(200, 200)
                     })
                 })
             });
@@ -181,7 +179,7 @@ namespace GeoJSON.Net.Tests.Feature
                 StringProperty = "Hello, GeoJSON !"
             };
 
-            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new GeographicPosition(10, 10)), properties);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new Position(10, 10)), properties);
 
             Assert.IsNotNull(feature.Properties);
             Assert.IsTrue(feature.Properties.Count > 1);
@@ -191,7 +189,7 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Ctor_Creates_Properties_Collection_When_Passed_Null_Proper_Object()
         {
-            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new GeographicPosition(10, 10)), (object)null);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new Position(10, 10)), (object)null);
 
             Assert.IsNotNull(feature.Properties);
             CollectionAssert.IsEmpty(feature.Properties);

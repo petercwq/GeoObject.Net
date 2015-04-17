@@ -2,20 +2,19 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests
 {
 	/// <summary>
-    ///     Assertions for json strings
+    /// Assertions for json strings
     /// </summary>
     public static class JsonAssert
     {
         /// <summary>
-        ///     Asserts that the json strings are equal.
+        /// Asserts that the json strings are equal.
         /// </summary>
         /// <remarks>
-        ///     Parses each json string into a <see cref="JObject" />, sorts the properties of each
-        ///     and then serializes each back to a json string for comparison.
+        /// Parses each json string into a <see cref="JObject" />, sorts the properties of each
+        /// and then serializes each back to a json string for comparison.
         /// </remarks>
         /// <param name="expectJson">The expect json.</param>
         /// <param name="actualJson">The actual json.</param>
@@ -27,7 +26,7 @@ namespace GeoJSON.Net.Tests
         }
 
         /// <summary>
-        ///     Asserts that <paramref name="actualJson" /> contains <paramref name="expectedJson" />
+        /// Asserts that <paramref name="actualJson" /> contains <paramref name="expectedJson" />
         /// </summary>
         /// <param name="expectedJson">The expected json.</param>
         /// <param name="actualJson">The actual json.</param>
@@ -37,7 +36,7 @@ namespace GeoJSON.Net.Tests
         }
 
         /// <summary>
-        ///     Sorts the properties of a JObject
+        /// Sorts the properties of a JObject
         /// </summary>
         /// <param name="jObject">The json object whhose properties to sort</param>
         /// <returns>A new instance of a <see cref="JObject" /> with sorted properties</returns>

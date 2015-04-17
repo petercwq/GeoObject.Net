@@ -5,22 +5,21 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     In geography, a point refers to a Position on a map, expressed in latitude and longitude.
+    /// In geography, a point refers to a Position on a map, expressed in y and x.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#point" />
     public class Point : GeoJSONObject, IGeometryObject
     {
-
         /// <summary>
-        ///     Gets or sets the Coordinate(s).
+        /// Gets or sets the Coordinate(s).
         /// </summary>
         /// <value>The Coordinates.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
@@ -36,7 +35,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Point" /> class.
+        /// Initializes a new instance of the <see cref="Point" /> class.
         /// </summary>
         /// <param name="coordinates">The Position.</param>
         public Point(IPosition coordinates)

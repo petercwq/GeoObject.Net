@@ -5,13 +5,13 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Exceptions;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
-
 
 namespace GeoJSON.Net.Converters
 {
@@ -34,23 +34,23 @@ namespace GeoJSON.Net.Converters
             {
                 foreach (var coordinate in coordinates)
                 {
-                    var longitude = coordinate[0];
-                    var latitude = coordinate[1];
-                    double? altitude = null;
+                    var x = coordinate[0];
+                    var y = coordinate[1];
+                    double? z = null;
 
                     if (coordinate.Length == 3)
                     {
-                        altitude = coordinate[2];
+                        z = coordinate[2];
                     }
 
-                    positions.Add(new Point(new GeographicPosition(latitude, longitude, altitude)));
+                    positions.Add(new Point(new Position(y, x, z)));
                 }
 
                 return positions;
             }
             catch (Exception ex)
             {
-                throw new ParsingException("Could not parse GeoJSON Response. (Latitude or Longitude missing from Point geometry?)", ex);
+                throw new ParsingException("Could not parse GeoJSON Response. (Y or X missing from Point geometry?)", ex);
             }
         }
 

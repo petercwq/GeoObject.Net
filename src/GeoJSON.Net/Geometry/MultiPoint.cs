@@ -5,23 +5,23 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Contains an array of <see cref="Point" />s.
+    /// Contains an array of <see cref="Point" />s.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#multipoint" />
     public class MultiPoint : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the Coordinates.
+        /// Gets the Coordinates.
         /// </summary>
         /// <value>The Coordinates.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
@@ -34,7 +34,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MultiPoint" /> class.
+        /// Initializes a new instance of the <see cref="MultiPoint" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
         public MultiPoint(List<Point> coordinates = null)

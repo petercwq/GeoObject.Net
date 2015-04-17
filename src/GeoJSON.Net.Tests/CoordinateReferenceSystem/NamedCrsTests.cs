@@ -4,7 +4,6 @@ using GeoJSON.Net.Feature;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
 {
     [TestFixture]

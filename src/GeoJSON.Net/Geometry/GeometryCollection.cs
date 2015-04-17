@@ -5,23 +5,23 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#geometry-collection">GeometryCollection</see> type.
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#geometry-collection">GeometryCollection</see> type.
     /// </summary>
     public class GeometryCollection : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the list of Polygons enclosed in this MultiPolygon.
+        /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
         [JsonProperty(PropertyName = "geometries", Required = Required.Always)]
         [JsonConverter(typeof(GeometryConverter))]
@@ -38,7 +38,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GeometryCollection" /> class.
+        /// Initializes a new instance of the <see cref="GeometryCollection" /> class.
         /// </summary>
         public GeometryCollection()
             : this(new List<IGeometryObject>())
@@ -46,7 +46,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="GeometryCollection" /> class.
+        /// Initializes a new instance of the <see cref="GeometryCollection" /> class.
         /// </summary>
         /// <param name="geometries">The geometries contained in this GeometryCollection.</param>
         public GeometryCollection(List<IGeometryObject> geometries)

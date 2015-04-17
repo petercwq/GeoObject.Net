@@ -9,23 +9,23 @@
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
 	/// <summary>
-    ///     The default CRS is a geographic coordinate reference system,
-    ///     using the WGS84 datum, and with longitude and latitude units of decimal degrees.
-    ///     see http://geojson.org/geojson-spec.html#coordinate-reference-system-objects
+    /// The default CRS is a geographic coordinate reference system,
+    /// using the WGS84 datum, and with x and y units of decimal degrees.
+    /// see http://geojson.org/geojson-spec.html#coordinate-reference-system-objects
     /// </summary>
     public class DefaultCRS : NamedCRS
     {
 
         /// <summary>
-        ///     The CRS
+        /// The CRS
         /// </summary>
         private static readonly DefaultCRS Crs = new DefaultCRS();
 
         /// <summary>
-        ///     Gets the instance.
+        /// Gets the instance.
         /// </summary>
         /// <value>
-        ///     The instance.
+        /// The instance.
         /// </value>
         public static DefaultCRS Instance
         {
@@ -33,7 +33,7 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="DefaultCRS" /> class.
+        /// Initializes a new instance of the <see cref="DefaultCRS" /> class.
         /// </summary>
         private DefaultCRS()
             : base("urn:ogc:def:crs:OGC::CRS84")

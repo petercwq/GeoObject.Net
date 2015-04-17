@@ -5,6 +5,7 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -12,41 +13,40 @@ using GeoJSON.Net.Converters;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Feature
 {
 	/// <summary>
-    ///     A GeoJSON <see cref="!:http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
+    /// A GeoJSON <see cref="!:http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
     /// </summary>
     public class Feature : GeoJSONObject
     {
 
         /// <summary>
-        ///     Gets or sets the geometry.
+        /// Gets or sets the geometry.
         /// </summary>
         /// <value>
-        ///     The geometry.
+        /// The geometry.
         /// </value>
         [JsonProperty(PropertyName = "geometry", Required = Required.AllowNull)]
         [JsonConverter(typeof(GeometryConverter))]
         public IGeometryObject Geometry { get; set; }
 
         /// <summary>
-        ///     Gets or sets the id.
+        /// Gets or sets the id.
         /// </summary>
         /// <value>The handle.</value>
         [JsonProperty(PropertyName = "id", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
 
         /// <summary>
-        ///     Gets the properties.
+        /// Gets the properties.
         /// </summary>
         /// <value>The properties.</value>
         [JsonProperty(PropertyName = "properties", Required = Required.AllowNull)]
         public Dictionary<string, object> Properties { get; private set; }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Feature" /> class.
+        /// Initializes a new instance of the <see cref="Feature" /> class.
         /// </summary>
         /// <param name="geometry">The Geometry Object.</param>
         /// <param name="properties">The properties.</param>
@@ -62,12 +62,12 @@ namespace GeoJSON.Net.Feature
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Feature" /> class.
+        /// Initializes a new instance of the <see cref="Feature" /> class.
         /// </summary>
         /// <param name="geometry">The Geometry Object.</param>
         /// <param name="properties">
-        ///     Class used to fill feature properties. Any public member will be added to feature
-        ///     properties
+        /// Class used to fill feature properties. Any public member will be added to feature
+        /// properties
         /// </param>
         /// <param name="id">The (optional) identifier.</param>
         public Feature(IGeometryObject geometry, object properties, string id = null)

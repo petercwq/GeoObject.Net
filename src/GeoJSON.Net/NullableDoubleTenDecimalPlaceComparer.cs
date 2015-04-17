@@ -5,17 +5,17 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
-
 
 namespace GeoJSON.Net
 {
 	/// <summary>
-    ///     Compares nullable doubles for equality.
+    /// Compares nullable doubles for equality.
     /// </summary>
     /// <remarks>
-    ///     10 decimal places equates to accuracy to 11.1 μm.
+    /// 10 decimal places equates to accuracy to 11.1 μm.
     /// </remarks>
     public class NullableDoubleTenDecimalPlaceComparer : IEqualityComparer<double?>
     {

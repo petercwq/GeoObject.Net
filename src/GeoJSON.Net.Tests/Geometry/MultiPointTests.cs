@@ -3,7 +3,6 @@ using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-
 namespace GeoJSON.Net.Tests.Geometry
 {
     [TestFixture]
@@ -14,10 +13,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var points = new List<Point>
             {
-                new Point(new GeographicPosition(52.370725881211314, 4.889259338378906)),
-                new Point(new GeographicPosition(52.3711451105601, 4.895267486572266)),
-                new Point(new GeographicPosition(52.36931095278263, 4.892091751098633)),
-                new Point(new GeographicPosition(52.370725881211314, 4.889259338378906))
+                new Point(new Position(52.370725881211314, 4.889259338378906)),
+                new Point(new Position(52.3711451105601, 4.895267486572266)),
+                new Point(new Position(52.36931095278263, 4.892091751098633)),
+                new Point(new Position(52.370725881211314, 4.889259338378906))
             };
 
             var multiPoint = new MultiPoint(points);
@@ -32,8 +31,8 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var points = new List<Point>
             {
-                new Point(new GeographicPosition(39.57422, -105.01621)),
-                new Point(new GeographicPosition(35.0539943, -80.6665134)),
+                new Point(new Position(39.57422, -105.01621)),
+                new Point(new Position(35.0539943, -80.6665134)),
             };
 
             var expectedMultiPoint = new MultiPoint(points);

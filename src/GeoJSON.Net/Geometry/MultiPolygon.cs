@@ -5,23 +5,23 @@
 //
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Converters;
 using Newtonsoft.Json;
 
-
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
     public class MultiPolygon : GeoJSONObject, IGeometryObject
     {
 
         /// <summary>
-        ///     Gets the list of Polygons enclosed in this MultiPolygon.
+        /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(MultiPolygonConverter))]
@@ -38,7 +38,7 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MultiPolygon" /> class.
+        /// Initializes a new instance of the <see cref="MultiPolygon" /> class.
         /// </summary>
         /// <param name="polygons">The polygons contained in this MultiPolygon.</param>
         public MultiPolygon(List<Polygon> polygons)
