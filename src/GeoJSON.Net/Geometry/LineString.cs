@@ -3,7 +3,7 @@
 //   Copyright © Joerg Battermann 2014
 // </copyright>
 // <summary>
-//   Defines the <see cref="http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
+//   Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 namespace GeoJSON.Net.Geometry
 {
     /// <summary>
-    ///     Defines the <see cref="http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
+    ///     Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class LineString : GeoJSONObject, IGeometryObject
@@ -107,7 +107,7 @@ namespace GeoJSON.Net.Geometry
 
         /// <summary>
         ///     Determines whether this LineString is a
-        ///     <see cref="http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
+        ///     <see cref="!:http://geojson.org/geojson-spec.html#linestring">LinearRing</see>.
         /// </summary>
         /// <returns>
         ///     <c>true</c> if it is a linear ring; otherwise, <c>false</c>.

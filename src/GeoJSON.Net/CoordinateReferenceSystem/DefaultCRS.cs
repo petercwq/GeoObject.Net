@@ -3,7 +3,7 @@
 //   Copyright © Joerg Battermann 2014
 // </copyright>
 // <summary>
-//   Defines the <see cref="http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">default CRS</see> type.
+//   Defines the <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">default CRS</see> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
