@@ -61,6 +61,7 @@
     <Compile Include="Geometry\MultiPolygonTests.cs" />
     <Compile Include="Geometry\PointTests.cs" />
     <Compile Include="Geometry\PolygonTests.cs" />
+    <Compile Include="Geometry\WktTests.cs" />
     <Compile Include="JsonAssert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />

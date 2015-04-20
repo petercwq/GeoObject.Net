@@ -48,7 +48,7 @@ namespace GeoJSON.Net.Geometry
             {
                 string multiLineString = GeometryToWkt((GeoMultiLineString)geometry);
 
-                return string.Format("GEOMULTILINESTRING({0})", multiLineString);
+                return string.Format("MULTILINESTRING({0})", multiLineString);
             }
 
             if (geometry is GeoMultiPolygon)
@@ -60,7 +60,7 @@ namespace GeoJSON.Net.Geometry
 
             if (geometry is GeoCollection)
             {
-                return string.Format("GEOMETRYCOLLECTION({0})", string.Join(",", ((GeoCollection)geometry).Geometries.Select(ToWkt)));
+                return string.Format("GEOMETRYCOLLECTION({0})", string.Join(",", ((GeoCollection)geometry).Geometries.Select(x => x.ToWkt())));
             }
 
             return null;
@@ -91,7 +91,7 @@ namespace GeoJSON.Net.Geometry
 
         static string GeometryToWkt(GeoMultiPoint multiPoint)
         {
-            return string.Format("({0})", string.Join("),(", multiPoint.Coordinates.Select(GeometryToWkt)));
+            return string.Format("({0})", string.Join(",", multiPoint.Coordinates.Select(GeometryToWkt)));
         }
 
         static string GeometryToWkt(GeoMultiLineString multiLine)
@@ -129,8 +129,13 @@ namespace GeoJSON.Net.Geometry
                     case "MULTIPOLYGON":
                         return WktToMultiPolygon(match.Groups[2].Value);
                     case "GEOMETRYCOLLECTION":
-                        var iterms = match.Groups[2].Value.Split(',');
-                        return new GeoCollection(iterms.Select(x => x.ToGeometry()).ToList());
+                        var iterms = Regex.Matches(match.Groups[2].Value, @"\w+[\s\d,.\+\-\(\)]+\)");
+                        List<IGeoObject> objects = new List<IGeoObject>();
+                        foreach (Match item in iterms)
+                        {
+                            objects.Add(item.Value.ToGeometry());
+                        }
+                        return new GeoCollection(objects);
                 }
             }
             throw new NotImplementedException(match.Groups[1].Value);
@@ -144,7 +149,7 @@ namespace GeoJSON.Net.Geometry
         static GeoPoint WktToPoint(string wkt)
         {
             string[] values;
-            values = wkt.Split(' ');
+            values = wkt.Trim('(', ')').Split(' ');
             string z = (values.Length > 2 ? values[2] : null);
             var geopos = new GeoEntity(values[1], values[0], z);
             return new GeoPoint(geopos);
@@ -199,16 +204,7 @@ namespace GeoJSON.Net.Geometry
         static GeoMultiPoint WktToMultiPoint(string wkt)
         {
             string[] terms = wkt.Split(',');
-            string[] values;
-            List<GeoPoint> points = new List<GeoPoint>(terms.Length);
-            for (int i = 0; i < terms.Length; i++)
-            {
-                values = terms[i].Split(' ');
-                string z = (values.Length > 2 ? values[2] : null);
-                var geopos = new GeoPoint(new GeoEntity(values[1], values[0], z));
-                points.Add(geopos);
-            }
-            return new GeoMultiPoint(points);
+            return new GeoMultiPoint(terms.Select(WktToPoint).ToList());
         }
 
         /// <summary>
@@ -236,7 +232,7 @@ namespace GeoJSON.Net.Geometry
         /// <param name="wkt">WKT.</param>
         static GeoMultiPolygon WktToMultiPolygon(string wkt)
         {
-            MatchCollection matches = Regex.Matches(wkt, @"\((\([^\)]+\))\)");
+            MatchCollection matches = Regex.Matches(wkt, @"\(((\([\s\d,.\+\-]+\)(,\s*)?)+)\)");
             List<GeoPolygon> polygons = new List<GeoPolygon>(matches.Count);
             for (int i = 0; i < matches.Count; i++)
             {
