@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    /// Converts <see cref="IGeometryObject"/> types to and from JSON.
+    /// Converts <see cref="IGeoObject"/> types to and from JSON.
     /// </summary>
     public class GeometryConverter : JsonConverter
     {
@@ -32,7 +32,7 @@ namespace GeoJSON.Net.Converters
         /// <exception cref="System.NotSupportedException">
         /// Feature and FeatureCollection types are Feature objects and not Geometry objects
         /// </exception>
-        private static IGeometryObject ReadGeoJson(JObject value)
+        private static IGeoObject ReadGeoJson(JObject value)
         {
             JToken token;
 
@@ -51,19 +51,19 @@ namespace GeoJSON.Net.Converters
             switch (geoJsonType)
             {
                 case GeoJSONObjectType.Point:
-                    return value.ToObject<Point>();
+                    return value.ToObject<GeoPoint>();
                 case GeoJSONObjectType.MultiPoint:
-                    return value.ToObject<MultiPoint>();
+                    return value.ToObject<GeoMultiPoint>();
                 case GeoJSONObjectType.LineString:
-                    return value.ToObject<LineString>();
+                    return value.ToObject<GeoLineString>();
                 case GeoJSONObjectType.MultiLineString:
-                    return value.ToObject<MultiLineString>();
+                    return value.ToObject<GeoMultiLineString>();
                 case GeoJSONObjectType.Polygon:
-                    return value.ToObject<Polygon>();
+                    return value.ToObject<GeoPolygon>();
                 case GeoJSONObjectType.MultiPolygon:
-                    return value.ToObject<MultiPolygon>();
+                    return value.ToObject<GeoMultiPolygon>();
                 case GeoJSONObjectType.GeometryCollection:
-                    return value.ToObject<GeometryCollection>();
+                    return value.ToObject<GeoCollection>();
                 case GeoJSONObjectType.Feature:
                 case GeoJSONObjectType.FeatureCollection:
                 default:
@@ -80,7 +80,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(IGeometryObject).IsAssignableFrom(objectType);
+            return typeof(IGeoObject).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace GeoJSON.Net.Converters
                     return ReadGeoJson(value);
                 case JsonToken.StartArray:
                     var values = JArray.Load(reader);
-                    var geometries = new List<IGeometryObject>(values.Count);
+                    var geometries = new List<IGeoObject>(values.Count);
                     geometries.AddRange(values.Cast<JObject>().Select(ReadGeoJson));
                     return geometries;
             }

@@ -19,7 +19,7 @@ namespace GeoJSON.Net.Geometry
     /// or a multidimensional array of positions (MultiPolygon).
     /// <see cref="!:http://geojson.org/geojson-spec.html#positions">
     /// </summary>
-    public class Position : IPosition
+    public class GeoEntity : IGeoEntity
     {
         /// <summary>
         /// Gets or sets the coordinates, is a 2-size array
@@ -61,40 +61,40 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="Position" /> class from being created.
+        /// Prevents a default instance of the <see cref="GeoEntity" /> class from being created.
         /// </summary>
-        private Position()
+        private GeoEntity()
         {
             Coordinates = new double?[3];
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="Position" />, is equal to this instance.
+        /// Determines whether the specified <see cref="GeoEntity" />, is equal to this instance.
         /// </summary>
-        /// <param name="other">The <see cref="Position" /> to compare with this instance.</param>
+        /// <param name="other">The <see cref="GeoEntity" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="Position" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="GeoEntity" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        protected bool Equals(Position other)
+        protected bool Equals(GeoEntity other)
         {
             return Coordinates.SequenceEqual(other.Coordinates, DoubleComparer);
         }
 
-        public bool Equals(IPosition pos)
+        public bool Equals(IGeoEntity pos)
         {
-            if (pos == null || !(pos is Position))
+            if (pos == null || !(pos is GeoEntity))
                 return false;
             else
-                return Equals(pos as Position);
+                return Equals(pos as GeoEntity);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Position" /> class.
+        /// Initializes a new instance of the <see cref="GeoEntity" /> class.
         /// </summary>
         /// <param name="y">The y.</param>
         /// <param name="x">The x.</param>
         /// <param name="z">The z in m(eter).</param>
-        public Position(double y, double x, double? z = null)
+        public GeoEntity(double y, double x, double? z = null)
             : this()
         {
             Y = y;
@@ -103,12 +103,12 @@ namespace GeoJSON.Net.Geometry
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Position" /> class.
+        /// Initializes a new instance of the <see cref="GeoEntity" /> class.
         /// </summary>
         /// <param name="y">The y, in degree when use X, in meters when use Easting, e.g. '38.889722'.</param>
         /// <param name="x">The x, in degree when use Y, in meters when use Northing, e.g. '-77.008889'.</param>
         /// <param name="z">The z in m(eters).</param>
-        public Position(string y, string x, string z = null)
+        public GeoEntity(string y, string x, string z = null)
             : this()
         {
             if (y == null)
@@ -167,7 +167,7 @@ namespace GeoJSON.Net.Geometry
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator !=(Position left, Position right)
+        public static bool operator !=(GeoEntity left, GeoEntity right)
         {
             return !Equals(left, right);
         }
@@ -180,7 +180,7 @@ namespace GeoJSON.Net.Geometry
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator ==(Position left, Position right)
+        public static bool operator ==(GeoEntity left, GeoEntity right)
         {
             return Equals(left, right);
         }
@@ -209,7 +209,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((Position)obj);
+            return Equals((GeoEntity)obj);
         }
 
         /// <summary>

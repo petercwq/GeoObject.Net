@@ -16,7 +16,7 @@ namespace GeoJSON.Net.Geometry
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#geometry-collection">GeometryCollection</see> type.
     /// </summary>
-    public class GeometryCollection : GeoJSONObject, IGeometryObject
+    public class GeoCollection : GeoJSONObject, IGeoObject
     {
 
         /// <summary>
@@ -24,31 +24,31 @@ namespace GeoJSON.Net.Geometry
         /// </summary>
         [JsonProperty(PropertyName = "geometries", Required = Required.Always)]
         [JsonConverter(typeof(GeometryConverter))]
-        public List<IGeometryObject> Geometries { get; private set; }
+        public List<IGeoObject> Geometries { get; private set; }
 
         /// <summary>
-        /// Determines whether the specified <see cref="GeometryCollection"/>, is equal to this instance.
+        /// Determines whether the specified <see cref="GeoCollection"/>, is equal to this instance.
         /// </summary>
         /// <param name="other">The other.</param>
         /// <returns></returns>
-        protected bool Equals(GeometryCollection other)
+        protected bool Equals(GeoCollection other)
         {
             return base.Equals(other) && Geometries.SequenceEqual(other.Geometries);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryCollection" /> class.
+        /// Initializes a new instance of the <see cref="GeoCollection" /> class.
         /// </summary>
-        public GeometryCollection()
-            : this(new List<IGeometryObject>())
+        public GeoCollection()
+            : this(new List<IGeoObject>())
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeometryCollection" /> class.
+        /// Initializes a new instance of the <see cref="GeoCollection" /> class.
         /// </summary>
         /// <param name="geometries">The geometries contained in this GeometryCollection.</param>
-        public GeometryCollection(List<IGeometryObject> geometries)
+        public GeoCollection(List<IGeoObject> geometries)
         {
             if (geometries == null)
             {
@@ -67,7 +67,7 @@ namespace GeoJSON.Net.Geometry
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator !=(GeometryCollection left, GeometryCollection right)
+        public static bool operator !=(GeoCollection left, GeoCollection right)
         {
             return !Equals(left, right);
         }
@@ -80,7 +80,7 @@ namespace GeoJSON.Net.Geometry
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator ==(GeometryCollection left, GeometryCollection right)
+        public static bool operator ==(GeoCollection left, GeoCollection right)
         {
             return Equals(left, right);
         }
@@ -109,7 +109,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((GeometryCollection)obj);
+            return Equals((GeoCollection)obj);
         }
 
         /// <summary>

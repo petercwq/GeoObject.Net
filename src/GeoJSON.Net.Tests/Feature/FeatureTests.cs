@@ -34,23 +34,23 @@ namespace GeoJSON.Net.Tests.Feature
         {
             var coordinates = new[]
             {
-                new List<IPosition>
+                new List<IGeoEntity>
                 {
-                    new Position(52.370725881211314, 4.889259338378906),
-                    new Position(52.3711451105601, 4.895267486572266),
-                    new Position(52.36931095278263, 4.892091751098633),
-                    new Position(52.370725881211314, 4.889259338378906)
+                    new GeoEntity(52.370725881211314, 4.889259338378906),
+                    new GeoEntity(52.3711451105601, 4.895267486572266),
+                    new GeoEntity(52.36931095278263, 4.892091751098633),
+                    new GeoEntity(52.370725881211314, 4.889259338378906)
                 },
-                new List<IPosition>
+                new List<IGeoEntity>
                 {
-                    new Position(52.370725881211314, 4.989259338378906),
-                    new Position(52.3711451105601, 4.995267486572266),
-                    new Position(52.36931095278263, 4.992091751098633),
-                    new Position(52.370725881211314, 4.989259338378906)
+                    new GeoEntity(52.370725881211314, 4.989259338378906),
+                    new GeoEntity(52.3711451105601, 4.995267486572266),
+                    new GeoEntity(52.36931095278263, 4.992091751098633),
+                    new GeoEntity(52.370725881211314, 4.989259338378906)
                 }
             };
 
-            var geometry = new LineString(coordinates[0]);
+            var geometry = new GeoLineString(coordinates[0]);
 
             var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
 
@@ -64,21 +64,21 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_MultiLineString_Feature()
         {
-            var geometry = new MultiLineString(new List<LineString>
+            var geometry = new GeoMultiLineString(new List<GeoLineString>
             {
-                new LineString(new List<IPosition>
+                new GeoLineString(new List<IGeoEntity>
                 {
-                    new Position(52.370725881211314, 4.889259338378906),
-                    new Position(52.3711451105601, 4.895267486572266),
-                    new Position(52.36931095278263, 4.892091751098633),
-                    new Position(52.370725881211314, 4.889259338378906)
+                    new GeoEntity(52.370725881211314, 4.889259338378906),
+                    new GeoEntity(52.3711451105601, 4.895267486572266),
+                    new GeoEntity(52.36931095278263, 4.892091751098633),
+                    new GeoEntity(52.370725881211314, 4.889259338378906)
                 }),
-                new LineString(new List<IPosition>
+                new GeoLineString(new List<IGeoEntity>
                 {
-                    new Position(52.370725881211314, 4.989259338378906),
-                    new Position(52.3711451105601, 4.995267486572266),
-                    new Position(52.36931095278263, 4.992091751098633),
-                    new Position(52.370725881211314, 4.989259338378906)
+                    new GeoEntity(52.370725881211314, 4.989259338378906),
+                    new GeoEntity(52.3711451105601, 4.995267486572266),
+                    new GeoEntity(52.36931095278263, 4.992091751098633),
+                    new GeoEntity(52.370725881211314, 4.989259338378906)
                 })
             });
 
@@ -92,7 +92,7 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_Point_Feature()
         {
-            var geometry = new Point(new Position(1, 2));
+            var geometry = new GeoPoint(new GeoEntity(1, 2));
             var expectedJson = GetExpectedJson();
 
             var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
@@ -103,15 +103,15 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_Polygon_Feature()
         {
-            var coordinates = new List<Position>
+            var coordinates = new List<GeoEntity>
             {
-                new Position(52.370725881211314, 4.889259338378906),
-                new Position(52.3711451105601, 4.895267486572266),
-                new Position(52.36931095278263, 4.892091751098633),
-                new Position(52.370725881211314, 4.889259338378906)
+                new GeoEntity(52.370725881211314, 4.889259338378906),
+                new GeoEntity(52.3711451105601, 4.895267486572266),
+                new GeoEntity(52.36931095278263, 4.892091751098633),
+                new GeoEntity(52.370725881211314, 4.889259338378906)
             };
 
-            var polygon = new Polygon(new List<LineString> { new LineString(coordinates) });
+            var polygon = new GeoPolygon(new List<GeoLineString> { new GeoLineString(coordinates) });
             var properties = new Dictionary<string, object> { { "Name", "Foo" } };
             var feature = new Net.Feature.Feature(polygon, properties);
 
@@ -124,36 +124,36 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_MultiPolygon_Feature()
         {
-            var multiPolygon = new MultiPolygon(new List<Polygon>
+            var multiPolygon = new GeoMultiPolygon(new List<GeoPolygon>
             {
-                new Polygon(new List<LineString>
+                new GeoPolygon(new List<GeoLineString>
                 {
-                    new LineString(new List<Position>
+                    new GeoLineString(new List<GeoEntity>
                     {
-                        new Position(0, 0),
-                        new Position(0, 1),
-                        new Position(1, 1),
-                        new Position(1, 0),
-                        new Position(0, 0)
+                        new GeoEntity(0, 0),
+                        new GeoEntity(0, 1),
+                        new GeoEntity(1, 1),
+                        new GeoEntity(1, 0),
+                        new GeoEntity(0, 0)
                     })
                 }),
-                new Polygon(new List<LineString>
+                new GeoPolygon(new List<GeoLineString>
                 {
-                    new LineString(new List<Position>
+                    new GeoLineString(new List<GeoEntity>
                     {
-                        new Position(100, 100),
-                        new Position(100, 101),
-                        new Position(101, 101),
-                        new Position(101, 100),
-                        new Position(100, 100)
+                        new GeoEntity(100, 100),
+                        new GeoEntity(100, 101),
+                        new GeoEntity(101, 101),
+                        new GeoEntity(101, 100),
+                        new GeoEntity(100, 100)
                     }),
-                    new LineString(new List<Position>
+                    new GeoLineString(new List<GeoEntity>
                     {
-                        new Position(200, 200),
-                        new Position(200, 201),
-                        new Position(201, 201),
-                        new Position(201, 200),
-                        new Position(200, 200)
+                        new GeoEntity(200, 200),
+                        new GeoEntity(200, 201),
+                        new GeoEntity(201, 201),
+                        new GeoEntity(201, 200),
+                        new GeoEntity(200, 200)
                     })
                 })
             });
@@ -179,7 +179,7 @@ namespace GeoJSON.Net.Tests.Feature
                 StringProperty = "Hello, GeoJSON !"
             };
 
-            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new Position(10, 10)), properties);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint(new GeoEntity(10, 10)), properties);
 
             Assert.IsNotNull(feature.Properties);
             Assert.IsTrue(feature.Properties.Count > 1);
@@ -189,7 +189,7 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Ctor_Creates_Properties_Collection_When_Passed_Null_Proper_Object()
         {
-            Net.Feature.Feature feature = new Net.Feature.Feature(new Point(new Position(10, 10)), (object)null);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint(new GeoEntity(10, 10)), (object)null);
 
             Assert.IsNotNull(feature.Properties);
             CollectionAssert.IsEmpty(feature.Properties);

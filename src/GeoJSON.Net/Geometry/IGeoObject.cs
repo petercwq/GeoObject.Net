@@ -10,7 +10,7 @@ namespace GeoJSON.Net.Geometry
 	/// <summary>
     /// Base Interface for GeometryObject types.
     /// </summary>
-    public interface IGeometryObject
+    public interface IGeoObject
     {
         /// <summary>
         /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.

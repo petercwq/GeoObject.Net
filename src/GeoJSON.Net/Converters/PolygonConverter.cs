@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    /// Converter to read and write the <see cref="Polygon" /> type.
+    /// Converter to read and write the <see cref="GeoPolygon" /> type.
     /// </summary>
     public class PolygonConverter : JsonConverter
     {
@@ -29,7 +29,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Polygon);
+            return objectType == typeof(GeoPolygon);
         }
 
         /// <summary>
@@ -45,12 +45,12 @@ namespace GeoJSON.Net.Converters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var rings = serializer.Deserialize<double[][][]>(reader);
-            var lineStrings = new List<LineString>(rings.Length);
+            var lineStrings = new List<GeoLineString>(rings.Length);
 
             foreach (var ring in rings)
             {
-                var positions = (IEnumerable<IPosition>)LineStringConverter.ReadJson(reader, typeof(LineString), ring, serializer);
-                lineStrings.Add(new LineString(positions));
+                var positions = (IEnumerable<IGeoEntity>)LineStringConverter.ReadJson(reader, typeof(GeoLineString), ring, serializer);
+                lineStrings.Add(new GeoLineString(positions));
             }
 
             return lineStrings;
@@ -64,10 +64,10 @@ namespace GeoJSON.Net.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var coordinateElements = value as List<LineString>;
+            var coordinateElements = value as List<GeoLineString>;
             if (coordinateElements != null && coordinateElements.Count > 0)
             {
-                if (coordinateElements[0].Coordinates[0] is Position)
+                if (coordinateElements[0].Coordinates[0] is GeoEntity)
                 {
                     writer.WriteStartArray();
 

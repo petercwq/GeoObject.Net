@@ -13,11 +13,11 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
-    public class LineString : GeoJSONObject, IGeometryObject
+    public class GeoLineString : GeoJSONObject, IGeoObject
     {
         /// <summary>
         /// Gets the Positions.
@@ -25,23 +25,23 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Positions.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(LineStringConverter))]
-        public List<IPosition> Coordinates { get; set; }
+        public List<IGeoEntity> Coordinates { get; set; }
 
-        protected bool Equals(LineString other)
+        protected bool Equals(GeoLineString other)
         {
             return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
 
         [JsonConstructor]
-        protected internal LineString()
+        protected internal GeoLineString()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LineString" /> class.
+        /// Initializes a new instance of the <see cref="GeoLineString" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
-        public LineString(IEnumerable<IPosition> coordinates)
+        public GeoLineString(IEnumerable<IGeoEntity> coordinates)
         {
             if (coordinates == null)
             {
@@ -61,12 +61,12 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.LineString;
         }
 
-        public static bool operator !=(LineString left, LineString right)
+        public static bool operator !=(GeoLineString left, GeoLineString right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator ==(LineString left, LineString right)
+        public static bool operator ==(GeoLineString left, GeoLineString right)
         {
             return Equals(left, right);
         }
@@ -88,7 +88,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((LineString)obj);
+            return Equals((GeoLineString)obj);
         }
 
         public override int GetHashCode()
@@ -104,11 +104,11 @@ namespace GeoJSON.Net.Geometry
         /// </returns>
         public bool IsClosed()
         {
-            var firstCoordinate = Coordinates[0] as Position;
+            var firstCoordinate = Coordinates[0] as IGeoEntity;
 
             if (firstCoordinate != null)
             {
-                var lastCoordinate = Coordinates[Coordinates.Count - 1] as Position;
+                var lastCoordinate = Coordinates[Coordinates.Count - 1] as IGeoEntity;
 
                 return firstCoordinate.Y == lastCoordinate.Y
                        && firstCoordinate.X == lastCoordinate.X

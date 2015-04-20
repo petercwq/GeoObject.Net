@@ -37,10 +37,10 @@ namespace GeoJSON.Net.Tests.Feature
             var model = new FeatureCollection();
             for (var i = 10; i-- > 0;)
             {
-                var geom = new LineString(new[]
+                var geom = new GeoLineString(new[]
                 {
-                    new Position(51.010, -1.034), 
-                    new Position(51.010, -0.034)
+                    new GeoEntity(51.010, -1.034), 
+                    new GeoEntity(51.010, -0.034)
                 });
 
                 var props = new Dictionary<string, object>

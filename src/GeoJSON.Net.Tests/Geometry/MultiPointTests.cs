@@ -11,15 +11,15 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Serialize()
         {
-            var points = new List<Point>
+            var points = new List<GeoPoint>
             {
-                new Point(new Position(52.370725881211314, 4.889259338378906)),
-                new Point(new Position(52.3711451105601, 4.895267486572266)),
-                new Point(new Position(52.36931095278263, 4.892091751098633)),
-                new Point(new Position(52.370725881211314, 4.889259338378906))
+                new GeoPoint(new GeoEntity(52.370725881211314, 4.889259338378906)),
+                new GeoPoint(new GeoEntity(52.3711451105601, 4.895267486572266)),
+                new GeoPoint(new GeoEntity(52.36931095278263, 4.892091751098633)),
+                new GeoPoint(new GeoEntity(52.370725881211314, 4.889259338378906))
             };
 
-            var multiPoint = new MultiPoint(points);
+            var multiPoint = new GeoMultiPoint(points);
 
             var actualJson = JsonConvert.SerializeObject(multiPoint);
 
@@ -29,16 +29,16 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Deserialize()
         {
-            var points = new List<Point>
+            var points = new List<GeoPoint>
             {
-                new Point(new Position(39.57422, -105.01621)),
-                new Point(new Position(35.0539943, -80.6665134)),
+                new GeoPoint(new GeoEntity(39.57422, -105.01621)),
+                new GeoPoint(new GeoEntity(35.0539943, -80.6665134)),
             };
 
-            var expectedMultiPoint = new MultiPoint(points);
+            var expectedMultiPoint = new GeoMultiPoint(points);
 
             var json = GetExpectedJson();
-            var actualMultiPoint = JsonConvert.DeserializeObject<MultiPoint>(json);
+            var actualMultiPoint = JsonConvert.DeserializeObject<GeoMultiPoint>(json);
 
             Assert.AreEqual(expectedMultiPoint, actualMultiPoint);
         }

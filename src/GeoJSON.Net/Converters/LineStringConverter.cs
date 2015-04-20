@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    /// Converter to read and write the <see cref="LineString" /> type.
+    /// Converter to read and write the <see cref="GeoLineString" /> type.
     /// </summary>
     public class LineStringConverter : JsonConverter
     {
@@ -28,7 +28,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(LineString);
+            return objectType == typeof(GeoLineString);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace GeoJSON.Net.Converters
                 ? serializer.Deserialize<double[][]>(reader)
                 : (double[][])existingValue;
 
-            IList<IPosition> positions = new List<IPosition>(coordinates.Length);
+            IList<IGeoEntity> positions = new List<IGeoEntity>(coordinates.Length);
 
             foreach (var coordinate in coordinates)
             {
@@ -60,7 +60,7 @@ namespace GeoJSON.Net.Converters
                     z = coordinate[2];
                 }
 
-                positions.Add(new Position(y, x, z));
+                positions.Add(new GeoEntity(y, x, z));
             }
 
             return positions;
@@ -74,7 +74,7 @@ namespace GeoJSON.Net.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var coordinateElements = value as List<IPosition>;
+            var coordinateElements = value as List<IGeoEntity>;
             if (coordinateElements != null && coordinateElements.Count > 0)
             {
                 var coordinateArray = new JArray();
@@ -82,7 +82,7 @@ namespace GeoJSON.Net.Converters
                 foreach (var position in coordinateElements)
                 {
                     // TODO: position types should expose a double[] coordinates property that can be used to write values 
-                    var coordinates = (Position)position;
+                    var coordinates = (GeoEntity)position;
                     var coordinateElement = new JArray(coordinates.X, coordinates.Y);
                     if (coordinates.Z.HasValue)
                     {

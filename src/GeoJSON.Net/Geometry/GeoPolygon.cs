@@ -21,7 +21,7 @@ namespace GeoJSON.Net.Geometry
     /// represent interior rings (or holes).
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#polygon" />
-    public class Polygon : GeoJSONObject, IGeometryObject
+    public class GeoPolygon : GeoJSONObject, IGeoObject
     {
 
         /// <summary>
@@ -29,21 +29,21 @@ namespace GeoJSON.Net.Geometry
         /// </summary>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(PolygonConverter))]
-        public List<LineString> Coordinates { get; set; }
+        public List<GeoLineString> Coordinates { get; set; }
 
-        protected bool Equals(Polygon other)
+        protected bool Equals(GeoPolygon other)
         {
             return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Polygon" /> class.
+        /// Initializes a new instance of the <see cref="GeoPolygon" /> class.
         /// </summary>
         /// <param name="coordinates">
         /// The <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see> with the first element
         /// in the array representing the exterior ring. Any subsequent elements represent interior rings (or holes).
         /// </param>
-        public Polygon(List<LineString> coordinates)
+        public GeoPolygon(List<GeoLineString> coordinates)
         {
             if (coordinates == null)
             {
@@ -60,12 +60,12 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.Polygon;
         }
 
-        public static bool operator !=(Polygon left, Polygon right)
+        public static bool operator !=(GeoPolygon left, GeoPolygon right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator ==(Polygon left, Polygon right)
+        public static bool operator ==(GeoPolygon left, GeoPolygon right)
         {
             return Equals(left, right);
         }
@@ -87,7 +87,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((Polygon)obj);
+            return Equals((GeoPolygon)obj);
         }
 
         public override int GetHashCode()

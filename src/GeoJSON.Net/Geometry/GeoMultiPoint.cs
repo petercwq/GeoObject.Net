@@ -13,9 +13,10 @@ using Newtonsoft.Json;
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
+    /// Contains an array of <see cref="GeoPoint" />s.
     /// </summary>
-    public class MultiLineString : GeoJSONObject, IGeometryObject
+    /// <seealso cref="!:http://geojson.org/geojson-spec.html#multipoint" />
+    public class GeoMultiPoint : GeoJSONObject, IGeoObject
     {
 
         /// <summary>
@@ -23,30 +24,30 @@ namespace GeoJSON.Net.Geometry
         /// </summary>
         /// <value>The Coordinates.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(PolygonConverter))]
-        public List<LineString> Coordinates { get; private set; }
+        [JsonConverter(typeof(MultiPointConverter))]
+        public List<GeoPoint> Coordinates { get; private set; }
 
-        protected bool Equals(MultiLineString other)
+        protected bool Equals(GeoMultiPoint other)
         {
             return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiLineString" /> class.
+        /// Initializes a new instance of the <see cref="GeoMultiPoint" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
-        public MultiLineString(List<LineString> coordinates)
+        public GeoMultiPoint(List<GeoPoint> coordinates = null)
         {
-            Coordinates = coordinates ?? new List<LineString>();
-            Type = GeoJSONObjectType.MultiLineString;
+            this.Coordinates = coordinates ?? new List<GeoPoint>();
+            this.Type = GeoJSONObjectType.MultiPoint;
         }
 
-        public static bool operator !=(MultiLineString left, MultiLineString right)
+        public static bool operator !=(GeoMultiPoint left, GeoMultiPoint right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator ==(MultiLineString left, MultiLineString right)
+        public static bool operator ==(GeoMultiPoint left, GeoMultiPoint right)
         {
             return Equals(left, right);
         }
@@ -57,18 +58,15 @@ namespace GeoJSON.Net.Geometry
             {
                 return false;
             }
-
             if (ReferenceEquals(this, obj))
             {
                 return true;
             }
-
-            if (obj.GetType() != GetType())
+            if (obj.GetType() != this.GetType())
             {
                 return false;
             }
-
-            return Equals((MultiLineString)obj);
+            return Equals((GeoMultiPoint)obj);
         }
 
         public override int GetHashCode()

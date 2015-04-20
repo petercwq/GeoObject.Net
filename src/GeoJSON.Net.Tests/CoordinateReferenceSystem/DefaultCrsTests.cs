@@ -24,7 +24,7 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
-            var point = JsonConvert.DeserializeObject<Point>(json);
+            var point = JsonConvert.DeserializeObject<GeoPoint>(json);
 
             Assert.IsInstanceOf<DefaultCRS>(point.CRS);
         }

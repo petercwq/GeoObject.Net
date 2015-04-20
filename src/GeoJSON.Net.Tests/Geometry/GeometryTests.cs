@@ -9,86 +9,86 @@ namespace GeoJSON.Net.Tests.Geometry
     [TestFixture]
     public class GeometryTests : TestBase
     {
-        public IEnumerable<IGeometryObject> Geometries
+        public IEnumerable<IGeoObject> Geometries
         {
             get
             {
-                var point = new Point(new Position(1, 2, 3));
+                var point = new GeoPoint(new GeoEntity(1, 2, 3));
 
-                var multiPoint = new MultiPoint(new List<Point>
+                var multiPoint = new GeoMultiPoint(new List<GeoPoint>
                 {
-                    new Point(new Position(52.379790828551016, 5.3173828125)),
-                    new Point(new Position(52.36721467920585, 5.456085205078125)),
-                    new Point(new Position(52.303440474272755, 5.386047363281249, 4.23))
+                    new GeoPoint(new GeoEntity(52.379790828551016, 5.3173828125)),
+                    new GeoPoint(new GeoEntity(52.36721467920585, 5.456085205078125)),
+                    new GeoPoint(new GeoEntity(52.303440474272755, 5.386047363281249, 4.23))
                 });
 
-                var lineString = new LineString(new List<IPosition>
+                var lineString = new GeoLineString(new List<IGeoEntity>
                 {
-                    new Position(52.379790828551016, 5.3173828125),
-                    new Position(52.36721467920585, 5.456085205078125),
-                    new Position(52.303440474272755, 5.386047363281249, 4.23)
+                    new GeoEntity(52.379790828551016, 5.3173828125),
+                    new GeoEntity(52.36721467920585, 5.456085205078125),
+                    new GeoEntity(52.303440474272755, 5.386047363281249, 4.23)
                 });
 
-                var multiLineString = new MultiLineString(new List<LineString>
+                var multiLineString = new GeoMultiLineString(new List<GeoLineString>
                 {
-                    new LineString(new List<IPosition>
+                    new GeoLineString(new List<IGeoEntity>
                     {
-                        new Position(52.379790828551016, 5.3173828125),
-                        new Position(52.36721467920585, 5.456085205078125),
-                        new Position(52.303440474272755, 5.386047363281249, 4.23)
+                        new GeoEntity(52.379790828551016, 5.3173828125),
+                        new GeoEntity(52.36721467920585, 5.456085205078125),
+                        new GeoEntity(52.303440474272755, 5.386047363281249, 4.23)
                     }),
-                    new LineString(new List<IPosition>
+                    new GeoLineString(new List<IGeoEntity>
                     {
-                        new Position(52.379790828551016, 5.3273828125),
-                        new Position(52.36721467920585, 5.486085205078125),
-                        new Position(52.303440474272755, 5.426047363281249, 4.23)
+                        new GeoEntity(52.379790828551016, 5.3273828125),
+                        new GeoEntity(52.36721467920585, 5.486085205078125),
+                        new GeoEntity(52.303440474272755, 5.426047363281249, 4.23)
                     })
                 });
 
-                var polygon = new Polygon(new List<LineString>
+                var polygon = new GeoPolygon(new List<GeoLineString>
                 {
-                    new LineString(new List<Position>
+                    new GeoLineString(new List<GeoEntity>
                     {
-                        new Position(52.379790828551016, 5.3173828125),
-                        new Position(52.36721467920585, 5.456085205078125),
-                        new Position(52.303440474272755, 5.386047363281249, 4.23),
-                        new Position(52.379790828551016, 5.3173828125)
+                        new GeoEntity(52.379790828551016, 5.3173828125),
+                        new GeoEntity(52.36721467920585, 5.456085205078125),
+                        new GeoEntity(52.303440474272755, 5.386047363281249, 4.23),
+                        new GeoEntity(52.379790828551016, 5.3173828125)
                     })
                 });
 
-                var multiPolygon = new MultiPolygon(new List<Polygon>
+                var multiPolygon = new GeoMultiPolygon(new List<GeoPolygon>
                 {
-                    new Polygon(new List<LineString>
+                    new GeoPolygon(new List<GeoLineString>
                     {
-                        new LineString(new List<IPosition>
+                        new GeoLineString(new List<IGeoEntity>
                         {
-                            new Position(52.959676831105995, -2.6797102391514338),
-                            new Position(52.9608756693609, -2.6769029474483279),
-                            new Position(52.908449372833715, -2.6079763270327119),
-                            new Position(52.891287242948195, -2.5815104708998668),
-                            new Position(52.875476700983896, -2.5851645010668989),
-                            new Position(52.882954723868622, -2.6050779098387191),
-                            new Position(52.875255907042678, -2.6373482332006359),
-                            new Position(52.878791122091066, -2.6932445076063951),
-                            new Position(52.89564268523565, -2.6931334629377890),
-                            new Position(52.930592009390175, -2.6548779332193022),
-                            new Position(52.959676831105995, -2.6797102391514338)
+                            new GeoEntity(52.959676831105995, -2.6797102391514338),
+                            new GeoEntity(52.9608756693609, -2.6769029474483279),
+                            new GeoEntity(52.908449372833715, -2.6079763270327119),
+                            new GeoEntity(52.891287242948195, -2.5815104708998668),
+                            new GeoEntity(52.875476700983896, -2.5851645010668989),
+                            new GeoEntity(52.882954723868622, -2.6050779098387191),
+                            new GeoEntity(52.875255907042678, -2.6373482332006359),
+                            new GeoEntity(52.878791122091066, -2.6932445076063951),
+                            new GeoEntity(52.89564268523565, -2.6931334629377890),
+                            new GeoEntity(52.930592009390175, -2.6548779332193022),
+                            new GeoEntity(52.959676831105995, -2.6797102391514338)
                         })
                     }),
-                    new Polygon(new List<LineString>
+                    new GeoPolygon(new List<GeoLineString>
                     {
-                        new LineString(new List<IPosition>
+                        new GeoLineString(new List<IGeoEntity>
                         {
-                            new Position(52.89610842810761, -2.69628632041613),
-                            new Position(52.8894641454077, -2.75901233808515),
-                            new Position(52.89938894657412, -2.7663172788742449),
-                            new Position(52.90253773227807, -2.804554822840895),
-                            new Position(52.929801009654575, -2.83848602260174),
-                            new Position(52.94013913205788, -2.838979264607087),
-                            new Position(52.937353122653533, -2.7978187468478741),
-                            new Position(52.920394929466184, -2.772273870352612),
-                            new Position(52.926572918779222, -2.6996509024137052),
-                            new Position(52.89610842810761, -2.69628632041613)
+                            new GeoEntity(52.89610842810761, -2.69628632041613),
+                            new GeoEntity(52.8894641454077, -2.75901233808515),
+                            new GeoEntity(52.89938894657412, -2.7663172788742449),
+                            new GeoEntity(52.90253773227807, -2.804554822840895),
+                            new GeoEntity(52.929801009654575, -2.83848602260174),
+                            new GeoEntity(52.94013913205788, -2.838979264607087),
+                            new GeoEntity(52.937353122653533, -2.7978187468478741),
+                            new GeoEntity(52.920394929466184, -2.772273870352612),
+                            new GeoEntity(52.926572918779222, -2.6996509024137052),
+                            new GeoEntity(52.89610842810761, -2.69628632041613)
                         })
                     })
                 });
@@ -99,7 +99,7 @@ namespace GeoJSON.Net.Tests.Geometry
                 yield return multiLineString;
                 yield return polygon;
                 yield return multiPolygon;
-                yield return new GeometryCollection(new List<IGeometryObject>
+                yield return new GeoCollection(new List<IGeoObject>
                 {
                     point,
                     multiPoint,
@@ -113,18 +113,18 @@ namespace GeoJSON.Net.Tests.Geometry
 
         [Test]
         [TestCaseSource("Geometries")]
-        public void Can_Serialize_And_Deserialize_Geometry(IGeometryObject geometry)
+        public void Can_Serialize_And_Deserialize_Geometry(IGeoObject geometry)
         {
             var json = JsonConvert.SerializeObject(geometry);
 
-            var deserializedGeometry = JsonConvert.DeserializeObject<IGeometryObject>(json, new GeometryConverter());
+            var deserializedGeometry = JsonConvert.DeserializeObject<IGeoObject>(json, new GeometryConverter());
 
             Assert.AreEqual(geometry, deserializedGeometry);
         }
 
         [Test]
         [TestCaseSource("Geometries")]
-        public void Serialization_Observes_Indenting_Setting_Of_Serializer(IGeometryObject geometry)
+        public void Serialization_Observes_Indenting_Setting_Of_Serializer(IGeoObject geometry)
         {
             var json = JsonConvert.SerializeObject(geometry, Formatting.Indented);
             Assert.IsTrue(json.Contains("\r\n"));
@@ -132,7 +132,7 @@ namespace GeoJSON.Net.Tests.Geometry
 
         [Test]
         [TestCaseSource("Geometries")]
-        public void Serialization_Observes_No_Indenting_Setting_Of_Serializer(IGeometryObject geometry)
+        public void Serialization_Observes_No_Indenting_Setting_Of_Serializer(IGeoObject geometry)
         {
             var json = JsonConvert.SerializeObject(geometry, Formatting.None);
             Assert.IsFalse(json.Contains("\r\n"));
@@ -141,7 +141,7 @@ namespace GeoJSON.Net.Tests.Geometry
 
         [Test]
         [TestCaseSource("Geometries")]
-        public void Can_Serialize_And_Deserialize_Geometry_As_Object_Property(IGeometryObject geometry)
+        public void Can_Serialize_And_Deserialize_Geometry_As_Object_Property(IGeoObject geometry)
         {
             var classWithGeometry = new ClassWithGeometryProperty(geometry);
 
@@ -154,13 +154,13 @@ namespace GeoJSON.Net.Tests.Geometry
 
         private class ClassWithGeometryProperty
         {
-            public ClassWithGeometryProperty(IGeometryObject geometry)
+            public ClassWithGeometryProperty(IGeoObject geometry)
             {
                 Geometry = geometry;
             }
 
             [JsonConverter(typeof(GeometryConverter))]
-            public IGeometryObject Geometry { get; private set; }
+            public IGeoObject Geometry { get; private set; }
 
             /// <summary>
             /// Determines whether the specified <see cref="T:System.Object" /> is equal to the current

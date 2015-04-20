@@ -27,7 +27,7 @@ namespace GeoJSON.Net.Feature
         /// </value>
         [JsonProperty(PropertyName = "geometry", Required = Required.AllowNull)]
         [JsonConverter(typeof(GeometryConverter))]
-        public IGeometryObject Geometry { get; set; }
+        public IGeoObject Geometry { get; set; }
 
         /// <summary>
         /// Gets or sets the id.
@@ -50,7 +50,7 @@ namespace GeoJSON.Net.Feature
         /// <param name="properties">The properties.</param>
         /// <param name="id">The (optional) identifier.</param>
         [JsonConstructor]
-        public Feature(IGeometryObject geometry, Dictionary<string, object> properties = null, string id = null)
+        public Feature(IGeoObject geometry, Dictionary<string, object> properties = null, string id = null)
         {
             Geometry = geometry;
             Properties = properties ?? new Dictionary<string, object>();
@@ -68,7 +68,7 @@ namespace GeoJSON.Net.Feature
         /// properties
         /// </param>
         /// <param name="id">The (optional) identifier.</param>
-        public Feature(IGeometryObject geometry, object properties, string id = null)
+        public Feature(IGeoObject geometry, object properties, string id = null)
         {
             Geometry = geometry;
             Id = id;

@@ -16,30 +16,30 @@ namespace GeoJSON.Net.Geometry
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
-    public class MultiPolygon : GeoJSONObject, IGeometryObject
+    public class GeoMultiPolygon : GeoJSONObject, IGeoObject
     {
         /// <summary>
         /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(MultiPolygonConverter))]
-        public List<Polygon> Coordinates { get; private set; }
+        public List<GeoPolygon> Coordinates { get; private set; }
 
-        protected bool Equals(MultiPolygon other)
+        protected bool Equals(GeoMultiPolygon other)
         {
             return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
         }
 
-        public MultiPolygon()
-            : this(new List<Polygon>())
+        public GeoMultiPolygon()
+            : this(new List<GeoPolygon>())
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultiPolygon" /> class.
+        /// Initializes a new instance of the <see cref="GeoMultiPolygon" /> class.
         /// </summary>
         /// <param name="polygons">The polygons contained in this MultiPolygon.</param>
-        public MultiPolygon(List<Polygon> polygons)
+        public GeoMultiPolygon(List<GeoPolygon> polygons)
         {
             if (polygons == null)
             {
@@ -50,12 +50,12 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.MultiPolygon;
         }
 
-        public static bool operator !=(MultiPolygon left, MultiPolygon right)
+        public static bool operator !=(GeoMultiPolygon left, GeoMultiPolygon right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator ==(MultiPolygon left, MultiPolygon right)
+        public static bool operator ==(GeoMultiPolygon left, GeoMultiPolygon right)
         {
             return Equals(left, right);
         }
@@ -77,7 +77,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((MultiPolygon)obj);
+            return Equals((GeoMultiPolygon)obj);
         }
 
         public override int GetHashCode()

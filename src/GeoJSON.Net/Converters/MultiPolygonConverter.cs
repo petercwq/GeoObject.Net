@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    /// Converter to read and write the <see cref="MultiPolygon" /> type.
+    /// Converter to read and write the <see cref="GeoMultiPolygon" /> type.
     /// </summary>
     public class MultiPolygonConverter : JsonConverter
     {
@@ -29,7 +29,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(MultiPolygon);
+            return objectType == typeof(GeoMultiPolygon);
         }
 
         /// <summary>
@@ -49,8 +49,8 @@ namespace GeoJSON.Net.Converters
             var polygons =
                 o.Select(
                     polygonObject =>
-                        polygonConverter.ReadJson(polygonObject.CreateReader(), typeof(Polygon), polygonObject, serializer) as List<LineString>)
-                    .Select(lines => new Polygon(lines))
+                        polygonConverter.ReadJson(polygonObject.CreateReader(), typeof(GeoPolygon), polygonObject, serializer) as List<GeoLineString>)
+                    .Select(lines => new GeoPolygon(lines))
                     .ToList();
 
             return polygons;
@@ -64,7 +64,7 @@ namespace GeoJSON.Net.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var polygons = (List<Polygon>)value;
+            var polygons = (List<GeoPolygon>)value;
 
             writer.WriteStartArray();
 
@@ -80,7 +80,7 @@ namespace GeoJSON.Net.Converters
                     for (int j = 0; j < polygon.Coordinates.Count; j++)
                     {
                         var lineString = polygon.Coordinates[j];
-                        var coordinateElements = lineString.Coordinates.OfType<Position>();
+                        var coordinateElements = lineString.Coordinates.OfType<GeoEntity>();
                         if (coordinateElements.Any())
                         {
                             // start linear rings of polygon

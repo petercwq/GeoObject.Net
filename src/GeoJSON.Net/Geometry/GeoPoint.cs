@@ -15,7 +15,7 @@ namespace GeoJSON.Net.Geometry
     /// In geography, a point refers to a Position on a map, expressed in y and x.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#point" />
-    public class Point : GeoJSONObject, IGeometryObject
+    public class GeoPoint : GeoJSONObject, IGeoObject
     {
         /// <summary>
         /// Gets or sets the Coordinate(s).
@@ -23,21 +23,21 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Coordinates.</value>
         [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         [JsonConverter(typeof(PointConverter))]
-        public IPosition Coordinates { get; set; }
+        public IGeoEntity Coordinates { get; set; }
 
         [JsonConstructor]
-        private Point() { }
+        private GeoPoint() { }
 
-        protected bool Equals(Point other)
+        protected bool Equals(GeoPoint other)
         {
             return base.Equals(other) && Coordinates.Equals(other.Coordinates);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Point" /> class.
+        /// Initializes a new instance of the <see cref="GeoPoint" /> class.
         /// </summary>
         /// <param name="coordinates">The Position.</param>
-        public Point(IPosition coordinates)
+        public GeoPoint(IGeoEntity coordinates)
         {
             if (coordinates == null)
             {
@@ -48,12 +48,12 @@ namespace GeoJSON.Net.Geometry
             Type = GeoJSONObjectType.Point;
         }
 
-        public static bool operator !=(Point left, Point right)
+        public static bool operator !=(GeoPoint left, GeoPoint right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator ==(Point left, Point right)
+        public static bool operator ==(GeoPoint left, GeoPoint right)
         {
             return Equals(left, right);
         }
@@ -75,7 +75,7 @@ namespace GeoJSON.Net.Geometry
                 return false;
             }
 
-            return Equals((Point)obj);
+            return Equals((GeoPoint)obj);
         }
 
         public override int GetHashCode()

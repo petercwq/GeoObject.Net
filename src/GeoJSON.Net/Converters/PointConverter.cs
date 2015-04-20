@@ -11,8 +11,8 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Converters
 {
-	/// <summary>
-    /// Converter to read and write the <see cref="Point" /> type.
+    /// <summary>
+    /// Converter to read and write the <see cref="GeoPoint" /> type.
     /// </summary>
     public class PointConverter : JsonConverter
     {
@@ -25,7 +25,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Position).IsAssignableFrom(objectType);
+            return typeof(GeoEntity).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace GeoJSON.Net.Converters
                 z = coordinates[2];
             }
 
-            return new Position(y, x, z);
+            return new GeoEntity(y, x, z);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace GeoJSON.Net.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var coordinates = value as Position;
+            var coordinates = value as GeoEntity;
             if (coordinates != null)
             {
                 writer.WriteStartArray();
