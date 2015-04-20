@@ -17,7 +17,7 @@ namespace GeoJSON.Net.Geometry
     /// , an array of positions (LineString or MultiPoint geometries), 
     /// an array of arrays of positions (Polygons, MultiLineStrings), 
     /// or a multidimensional array of positions (MultiPolygon).
-    /// <see cref="!:http://geojson.org/geojson-spec.html#positions">
+    /// <see cref="!:http://geojson.org/geojson-spec.html#positions" >
     /// </summary>
     public class GeoEntity : IGeoEntity
     {

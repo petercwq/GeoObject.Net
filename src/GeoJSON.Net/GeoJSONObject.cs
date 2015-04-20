@@ -26,7 +26,7 @@ namespace GeoJSON.Net
 
         /// <summary>
         /// Gets or sets the (optional)
-        /// <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">Bounding Boxes</see>.
+        /// <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects" >Bounding Boxes</see>.
         /// </summary>
         /// <value>
         /// The value of <see cref="BoundingBoxes" /> must be a 2*n array where n is the number of dimensions represented in the
@@ -56,7 +56,7 @@ namespace GeoJSON.Net
 
         /// <summary>
         /// Gets or sets the (optional)
-        /// <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects">
+        /// <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects" >
         ///     Coordinate Reference System
         ///     Object.
         /// </see>
@@ -64,15 +64,14 @@ namespace GeoJSON.Net
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
-        [JsonProperty(PropertyName = "crs", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
-            NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty(PropertyName = "crs", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, NullValueHandling = NullValueHandling.Include)]
         [JsonConverter(typeof(CrsConverter))]
         //[DefaultValue(typeof(DefaultCRS), "")]
         public ICRSObject CRS { get; set; }
 
         /// <summary>
         /// Gets the (mandatory) type of the
-        /// <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">GeoJSON Object</see>.
+        /// <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects" >GeoJSON Object</see>.
         /// </summary>
         /// <value>
         /// The type of the object.

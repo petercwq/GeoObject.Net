@@ -14,9 +14,9 @@ using Newtonsoft.Json;
 namespace GeoJSON.Net.Geometry
 {
 	/// <summary>
-    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon">Polygon</see> type.
+    /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#polygon" >Polygon</see> type.
     /// Coordinates of a Polygon are a list of
-    /// <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see>
+    /// <see cref="!:http://geojson.org/geojson-spec.html#linestring" >linear rings</see>
     /// coordinate arrays. The first element in the array represents the exterior ring. Any subsequent elements
     /// represent interior rings (or holes).
     /// </summary>
@@ -40,7 +40,7 @@ namespace GeoJSON.Net.Geometry
         /// Initializes a new instance of the <see cref="GeoPolygon" /> class.
         /// </summary>
         /// <param name="coordinates">
-        /// The <see cref="!:http://geojson.org/geojson-spec.html#linestring">linear rings</see> with the first element
+        /// The <see cref="!:http://geojson.org/geojson-spec.html#linestring" >linear rings</see> with the first element
         /// in the array representing the exterior ring. Any subsequent elements represent interior rings (or holes).
         /// </param>
         public GeoPolygon(List<GeoLineString> coordinates)
