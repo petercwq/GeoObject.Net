@@ -151,7 +151,7 @@ namespace GeoJSON.Net.Geometry
             string[] values;
             values = wkt.Trim('(', ')').Split(' ');
             string z = (values.Length > 2 ? values[2] : null);
-            var geopos = new GeoEntity(values[1], values[0], z);
+            var geopos = new GeoEntity(values[0], values[1], z);
             return new GeoPoint(geopos);
         }
 

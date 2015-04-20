@@ -37,8 +37,8 @@ namespace GeoJSON.Net.Geometry
         /// <value>The x.</value>
         public double X
         {
-            get { return Coordinates[1].GetValueOrDefault(); }
-            private set { Coordinates[1] = value; }
+            get { return Coordinates[0].GetValueOrDefault(); }
+            private set { Coordinates[0] = value; }
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace GeoJSON.Net.Geometry
         /// <value>The y.</value>
         public double Y
         {
-            get { return Coordinates[0].GetValueOrDefault(); }
-            private set { Coordinates[0] = value; }
+            get { return Coordinates[1].GetValueOrDefault(); }
+            private set { Coordinates[1] = value; }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace GeoJSON.Net.Geometry
         /// <param name="y">The y.</param>
         /// <param name="x">The x.</param>
         /// <param name="z">The z in m(eter).</param>
-        public GeoEntity(double y, double x, double? z = null)
+        public GeoEntity(double x, double y, double? z = null)
             : this()
         {
             Y = y;
@@ -105,10 +105,10 @@ namespace GeoJSON.Net.Geometry
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoEntity" /> class.
         /// </summary>
-        /// <param name="y">The y, in degree when use X, in meters when use Easting, e.g. '38.889722'.</param>
         /// <param name="x">The x, in degree when use Y, in meters when use Northing, e.g. '-77.008889'.</param>
+        /// <param name="y">The y, in degree when use X, in meters when use Easting, e.g. '38.889722'.</param>
         /// <param name="z">The z in m(eters).</param>
-        public GeoEntity(string y, string x, string z = null)
+        public GeoEntity(string x, string y, string z = null)
             : this()
         {
             if (y == null)
@@ -232,8 +232,8 @@ namespace GeoJSON.Net.Geometry
         public override string ToString()
         {
             return Z == null
-                ? string.Format(CultureInfo.InvariantCulture, "Y: {0}, X: {1}", Y, X)
-                : string.Format(CultureInfo.InvariantCulture, "Y: {0}, X: {1}, Z: {2}", Y, X, Z);
+                ? string.Format(CultureInfo.InvariantCulture, "X: {0}, Y: {1}", X, Y)
+                : string.Format(CultureInfo.InvariantCulture, "X: {0}, Y: {1}, Z: {2}", X, Y, Z);
         }
     }
 }
