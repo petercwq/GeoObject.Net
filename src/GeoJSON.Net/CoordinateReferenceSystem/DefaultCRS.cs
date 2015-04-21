@@ -5,6 +5,7 @@
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
+using System.Runtime.Serialization;
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
 	/// <summary>
@@ -12,6 +13,7 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     /// using the WGS84 datum, and with x and y units of decimal degrees.
     /// see http://geojson.org/geojson-spec.html#coordinate-reference-system-objects
     /// </summary>
+    [DataContract]
     public class DefaultCRS : NamedCRS
     {
         /// <summary>

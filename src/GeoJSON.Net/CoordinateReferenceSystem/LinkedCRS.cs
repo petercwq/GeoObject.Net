@@ -7,13 +7,15 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.CoordinateReferenceSystem
 {
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#linked-crs">Linked CRS type</see>.
     /// </summary>
-    public class LinkedCRS : CRSBase, ICRSObject
+    [DataContract]
+    public class LinkedCRS : CRSBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LinkedCRS" /> class.

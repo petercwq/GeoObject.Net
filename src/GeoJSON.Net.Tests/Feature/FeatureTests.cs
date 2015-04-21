@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.Feature
@@ -15,7 +15,7 @@ namespace GeoJSON.Net.Tests.Feature
         {
             var json = GetExpectedJson();
 
-            var feature = JsonConvert.DeserializeObject<Net.Feature.Feature>(json);
+            var feature = JsonSerializer.DeserializeFromString<Net.Feature.Feature>(json);
 
             Assert.IsNotNull(feature);
             Assert.IsNotNull(feature.Properties);
@@ -52,7 +52,7 @@ namespace GeoJSON.Net.Tests.Feature
 
             var geometry = new GeoLineString(coordinates[0]);
 
-            var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
+            var actualJson = JsonSerializer.SerializeToString(new Net.Feature.Feature(geometry));
 
             Console.WriteLine(actualJson);
 
@@ -84,7 +84,7 @@ namespace GeoJSON.Net.Tests.Feature
 
             var expectedJson = GetExpectedJson();
 
-            var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
+            var actualJson = JsonSerializer.SerializeToString(new Net.Feature.Feature(geometry));
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -92,10 +92,10 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Can_Serialize_Point_Feature()
         {
-            var geometry = new GeoPoint() { Entity = new GeoEntity(2, 1) };
+            var geometry = new GeoPoint(new GeoEntity(2, 1));
             var expectedJson = GetExpectedJson();
 
-            var actualJson = JsonConvert.SerializeObject(new Net.Feature.Feature(geometry));
+            var actualJson = JsonSerializer.SerializeToString(new Net.Feature.Feature(geometry));
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -116,7 +116,7 @@ namespace GeoJSON.Net.Tests.Feature
             var feature = new Net.Feature.Feature(polygon, properties);
 
             var expectedJson = GetExpectedJson();
-            var actualJson = JsonConvert.SerializeObject(feature);
+            var actualJson = JsonSerializer.SerializeToString(feature);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -161,7 +161,7 @@ namespace GeoJSON.Net.Tests.Feature
             var feature = new Net.Feature.Feature(multiPolygon);
 
             var expectedJson = GetExpectedJson();
-            var actualJson = JsonConvert.SerializeObject(feature);
+            var actualJson = JsonSerializer.SerializeToString(feature);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
@@ -179,7 +179,7 @@ namespace GeoJSON.Net.Tests.Feature
                 StringProperty = "Hello, GeoJSON !"
             };
 
-            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint() { Entity = new GeoEntity(10, 10) }, properties);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint(new GeoEntity(10, 10)), properties);
 
             Assert.IsNotNull(feature.Properties);
             Assert.IsTrue(feature.Properties.Count > 1);
@@ -189,7 +189,7 @@ namespace GeoJSON.Net.Tests.Feature
         [Test]
         public void Ctor_Creates_Properties_Collection_When_Passed_Null_Proper_Object()
         {
-            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint() { Entity = new GeoEntity(10, 10) }, (object)null);
+            Net.Feature.Feature feature = new Net.Feature.Feature(new GeoPoint(new GeoEntity(10, 10)), (object)null);
 
             Assert.IsNotNull(feature.Properties);
             CollectionAssert.IsEmpty(feature.Properties);

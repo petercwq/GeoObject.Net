@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.Geometry
@@ -29,7 +29,7 @@ namespace GeoJSON.Net.Tests.Geometry
                 })
             });
 
-            var multiLineString = JsonConvert.DeserializeObject<GeoMultiLineString>(json);
+            var multiLineString = JsonSerializer.DeserializeFromString<GeoMultiLineString>(json);
 
             Assert.IsNotNull(multiLineString);
             Assert.AreEqual(expectedMultiLineString, multiLineString);
@@ -55,7 +55,7 @@ namespace GeoJSON.Net.Tests.Geometry
             });
 
             var expectedJson = GetExpectedJson();
-            var actualJson = JsonConvert.SerializeObject(expectedMultiLineString);
+            var actualJson = JsonSerializer.SerializeToString(expectedMultiLineString);
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }

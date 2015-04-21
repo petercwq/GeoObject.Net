@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.Feature
@@ -22,7 +22,7 @@ namespace GeoJSON.Net.Tests.Feature
         {
             string json = GetExpectedJson();
 
-            var featureCollection = JsonConvert.DeserializeObject<FeatureCollection>(json);
+            var featureCollection = JsonSerializer.DeserializeFromString<FeatureCollection>(json);
 
             Assert.IsNotNull(featureCollection.Features);
             Assert.AreEqual(featureCollection.Features.Count, 3);
@@ -53,7 +53,7 @@ namespace GeoJSON.Net.Tests.Feature
                 model.Features.Add(feature);
             }
 
-            var actualJson = JsonConvert.SerializeObject(model);
+            var actualJson = JsonSerializer.SerializeToString(model);
 
             Assert.IsNotNull(actualJson);
 

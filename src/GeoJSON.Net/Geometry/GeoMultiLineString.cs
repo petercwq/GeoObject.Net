@@ -41,6 +41,8 @@ namespace GeoJSON.Net.Geometry
 
             set
             {
+                if (LineStrings == null)
+                    LineStrings = new List<GeoLineString>(value.Count);
                 foreach (var list in value)
                 {
                     var linestring = new GeoLineString(list);
@@ -49,14 +51,14 @@ namespace GeoJSON.Net.Geometry
             }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GeoMultiLineString"/> class.
-        /// </summary>
-        internal GeoMultiLineString()
-        {
-            this.LineStrings = new List<GeoLineString>();
-            this.Type = GeoObjectType.MultiLineString;
-        }
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="GeoMultiLineString"/> class.
+        ///// </summary>
+        //internal GeoMultiLineString()
+        //{
+        //    this.LineStrings = new List<GeoLineString>();
+        //    this.Type = GeoObjectType.MultiLineString;
+        //}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoMultiLineString" /> class.

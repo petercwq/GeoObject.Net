@@ -47,9 +47,11 @@ namespace GeoJSON.Net.Geometry
 
             set
             {
+                if (Points == null)
+                    Points = new List<GeoPoint>(value.Count);
                 foreach (var list in value)
                 {
-                    var point = new GeoPoint() { Coordinates = list };
+                    var point = new GeoPoint(list);
                     this.Points.Add(point);
                 }
             }
@@ -65,7 +67,7 @@ namespace GeoJSON.Net.Geometry
         /// Initializes a new instance of the <see cref="GeoMultiPoint" /> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
-        public GeoMultiPoint(List<GeoPoint> coordinates = null)
+        public GeoMultiPoint(List<GeoPoint> coordinates)
         {
             this.Points = coordinates ?? new List<GeoPoint>();
             this.Type = GeoObjectType.MultiPoint;

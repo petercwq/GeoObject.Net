@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.Geometry
@@ -50,7 +50,7 @@ namespace GeoJSON.Net.Tests.Geometry
                 })
             });
 
-            var actualMultiPolygon = JsonConvert.DeserializeObject<GeoMultiPolygon>(json);
+            var actualMultiPolygon = JsonSerializer.DeserializeFromString<GeoMultiPolygon>(json);
 
             Assert.AreEqual(expectMultiPolygon, actualMultiPolygon);
         }
@@ -95,7 +95,7 @@ namespace GeoJSON.Net.Tests.Geometry
             var expectedJson = GetExpectedJson();
 
             // Act
-            var actualJson = JsonConvert.SerializeObject(multiPolygon);
+            var actualJson = JsonSerializer.SerializeToString(multiPolygon);
 
             // Assert
             JsonAssert.AreEqual(expectedJson, actualJson);

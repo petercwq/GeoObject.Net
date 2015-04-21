@@ -5,6 +5,8 @@
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
+using GeoJSON.Net.CoordinateReferenceSystem;
+
 namespace GeoJSON.Net
 {
 	/// <summary>
@@ -30,7 +32,7 @@ namespace GeoJSON.Net
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
-        CoordinateReferenceSystem.ICRSObject CRS { get; }
+        CRSBase CRS { get; }
 
         /// <summary>
         /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.

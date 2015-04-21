@@ -1,7 +1,7 @@
 using GeoJSON.Net.CoordinateReferenceSystem;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
@@ -14,7 +14,7 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
         {
             var collection = new FeatureCollection();
 
-            var json = JsonConvert.SerializeObject(collection);
+            var json = JsonSerializer.SerializeToString(collection);
 
             Assert.IsTrue(!json.Contains("\"crs\""));
         }
@@ -24,7 +24,7 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
-            var point = JsonConvert.DeserializeObject<GeoPoint>(json);
+            var point = JsonSerializer.DeserializeFromString<GeoPoint>(json);
 
             Assert.IsInstanceOf<DefaultCRS>(point.CRS);
         }

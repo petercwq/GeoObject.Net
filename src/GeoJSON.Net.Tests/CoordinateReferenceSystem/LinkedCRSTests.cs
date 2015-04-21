@@ -1,7 +1,7 @@
 using System;
 using GeoJSON.Net.CoordinateReferenceSystem;
 using GeoJSON.Net.Geometry;
-using Newtonsoft.Json;
+using ServiceStack.Text;
 using NUnit.Framework;
 
 namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
@@ -40,12 +40,11 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
         [Test]
         public void Can_Serialize()
         {
-            var collection = new GeoPoint()
+            var collection = new GeoPoint(new GeoEntity(2, 1, 3))
             {
-                Entity = new GeoEntity(2, 1, 3),
                 CRS = new LinkedCRS(Href)
             };
-            var actualJson = JsonConvert.SerializeObject(collection);
+            var actualJson = JsonSerializer.SerializeToString(collection);
 
             JsonAssert.Contains("{\"properties\":{\"href\":\"http://localhost\"},\"type\":\"Link\"}", actualJson);
         }

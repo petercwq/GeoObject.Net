@@ -25,7 +25,7 @@ namespace GeoJSON.Net.Geometry
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(LineStringConverter))]
         [IgnoreDataMember]
-        public List<IGeoEntity> Entities { get; set; }
+        public List<IGeoEntity> Entities { get; private set; }
 
         /// <summary>
         /// Gets the coordinates
@@ -38,12 +38,7 @@ namespace GeoJSON.Net.Geometry
                 List<List<double>> coordinates = new List<List<double>>();
                 foreach (var entity in Entities)
                 {
-                    List<double> xyz = new List<double>();
-                    xyz.Add(entity.X);
-                    xyz.Add(entity.Y);
-                    if (entity.Z.HasValue)
-                        xyz.Add(entity.Z.Value);
-                    coordinates.Add(xyz);
+                    coordinates.Add(entity.GetCoordinates());
                 }
                 return coordinates;
             }
@@ -52,35 +47,12 @@ namespace GeoJSON.Net.Geometry
             {
                 if (Entities == null)
                     Entities = new List<IGeoEntity>(value.Count);
-                foreach (var positions in value)
+                foreach (var coords in value)
                 {
-                    IGeoEntity entity;
-                    if (positions.Count == 2)
-                    {
-                        entity = new GeoEntity(positions[1], positions[0]);
-                    }
-                    else if (positions.Count == 3)
-                    {
-                        entity = new GeoEntity(positions[1], positions[0], positions[2]);
-                    }
-                    else
-                    {
-                        throw new System.InvalidCastException("a geoentity must have at least 2 coordinates");
-                    }
-                    this.Entities.Add(entity);
+                    this.Entities.Add(new GeoEntity(coords));
                 }
             }
         }
-
-        protected bool Equals(GeoLineString other)
-        {
-            return base.Equals(other) && Entities.SequenceEqual(other.Entities);
-        }
-
-        //[JsonConstructor]
-        //protected internal GeoLineString()
-        //{
-        //}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoLineString"/> class.
@@ -119,6 +91,11 @@ namespace GeoJSON.Net.Geometry
         public static bool operator ==(GeoLineString left, GeoLineString right)
         {
             return Equals(left, right);
+        }
+
+        protected bool Equals(GeoLineString other)
+        {
+            return base.Equals(other) && Entities.SequenceEqual(other.Entities);
         }
 
         public override bool Equals(object obj)

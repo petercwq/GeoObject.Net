@@ -45,6 +45,8 @@ namespace GeoJSON.Net.Geometry
 
             set
             {
+                if (Polygons == null)
+                    Polygons = new List<GeoPolygon>(value.Count);
                 foreach (var list in value)
                 {
                     var polygon = new GeoPolygon(list);
@@ -53,16 +55,11 @@ namespace GeoJSON.Net.Geometry
             }
         }
 
-        protected bool Equals(GeoMultiPolygon other)
-        {
-            return base.Equals(other) && Polygons.SequenceEqual(other.Polygons);
-        }
-
-        internal GeoMultiPolygon(List<List<List<List<double>>>> coordinates)
-        {
-            this.Coordinates = coordinates;
-            this.Type = GeoObjectType.MultiPolygon;
-        }
+        //internal GeoMultiPolygon(List<List<List<List<double>>>> coordinates)
+        //{
+        //    this.Coordinates = coordinates;
+        //    this.Type = GeoObjectType.MultiPolygon;
+        //}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoMultiPolygon" /> class.
@@ -87,6 +84,11 @@ namespace GeoJSON.Net.Geometry
         public static bool operator ==(GeoMultiPolygon left, GeoMultiPolygon right)
         {
             return Equals(left, right);
+        }
+
+        protected bool Equals(GeoMultiPolygon other)
+        {
+            return base.Equals(other) && Polygons.SequenceEqual(other.Polygons);
         }
 
         public override bool Equals(object obj)

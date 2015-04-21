@@ -6,6 +6,7 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace GeoJSON.Net.Geometry
@@ -77,6 +78,14 @@ namespace GeoJSON.Net.Geometry
         //    }
         //}
 
+        internal GeoEntity(List<double> coords)
+        {
+            if (coords == null || coords.Count < 2)
+                throw new ArgumentException("a geoentity must have at least 2 coordinates");
+            else
+                coordinates = new double?[3] { coords[0], coords[1], coords.Count > 2 ? (double?)coords[2] : null };
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoEntity" /> class.
         /// </summary>
@@ -85,10 +94,7 @@ namespace GeoJSON.Net.Geometry
         /// <param name="z">The z in m(eter).</param>
         public GeoEntity(double x, double y, double? z = null)
         {
-            coordinates = new double?[3];
-            Y = y;
-            X = x;
-            Z = z;
+            coordinates = new double?[3] { x, y, z };
         }
 
         /// <summary>
@@ -99,8 +105,6 @@ namespace GeoJSON.Net.Geometry
         /// <param name="z">The z in m(eters).</param>
         public GeoEntity(string x, string y, string z = null)
         {
-            coordinates = new double?[3];
-
             if (y == null)
             {
                 throw new ArgumentNullException("y");
@@ -123,6 +127,7 @@ namespace GeoJSON.Net.Geometry
 
             double ty;
             double tx;
+            double tz = double.NaN;
 
             if (!double.TryParse(y, NumberStyles.Float, CultureInfo.InvariantCulture, out ty))
             {
@@ -134,19 +139,15 @@ namespace GeoJSON.Net.Geometry
                 throw new ArgumentOutOfRangeException("x", "X must be a proper float number value.");
             }
 
-            Y = ty;
-            X = tx;
-
             if (z != null)
             {
-                double tz;
                 if (!double.TryParse(z, NumberStyles.Float, CultureInfo.InvariantCulture, out tz))
                 {
                     throw new ArgumentOutOfRangeException("z", "Z must be a proper z (m(eter) as double) value, e.g. '6500'.");
                 }
-
-                Z = tz;
             }
+
+            coordinates = new double?[3] { tx, ty, double.IsNaN(tz) ? null : (double?)tz };
         }
 
         /// <summary>

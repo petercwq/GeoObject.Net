@@ -12,13 +12,13 @@ namespace GeoJSON.Net.Tests
         {
             get
             {
-                var point = new GeoPoint() { Entity = new GeoEntity(2, 1, 3) };
+                var point = new GeoPoint(new GeoEntity(2, 1, 3));
 
                 var multiPoint = new GeoMultiPoint(new List<GeoPoint>
                 {
-                    new GeoPoint() { Entity = new GeoEntity(5.3173828125, 52.379790828551016)},
-                    new GeoPoint() { Entity = new GeoEntity(5.456085205078125, 52.36721467920585)},
-                    new GeoPoint() { Entity = new GeoEntity(5.386047363281249, 52.303440474272755, 4.23)}
+                    new GeoPoint(new GeoEntity(5.3173828125, 52.379790828551016)),
+                    new GeoPoint(new GeoEntity(5.456085205078125, 52.36721467920585)),
+                    new GeoPoint(new GeoEntity(5.386047363281249, 52.303440474272755, 4.23))
                 });
 
                 var lineString = new GeoLineString(new List<IGeoEntity>

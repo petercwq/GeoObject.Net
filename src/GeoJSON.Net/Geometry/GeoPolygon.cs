@@ -29,7 +29,7 @@ namespace GeoJSON.Net.Geometry
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(PolygonConverter))]
         [IgnoreDataMember]
-        public List<GeoLineString> LineStrings { get; set; }
+        public List<GeoLineString> LineStrings { get; private set; }
 
         /// <summary>
         /// Gets the coordinates
@@ -49,6 +49,8 @@ namespace GeoJSON.Net.Geometry
 
             set
             {
+                if (LineStrings == null)
+                    LineStrings = new List<GeoLineString>(value.Count);
                 foreach (var list in value)
                 {
                     var linestring = new GeoLineString(list);

@@ -25,7 +25,7 @@ namespace GeoJSON.Net.Geometry
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(PointConverter))]
         [IgnoreDataMember]
-        public IGeoEntity Entity { get; set; }
+        public IGeoEntity Entity { get; private set; }
 
         /// <summary>
         /// Gets the Coordinate(s).
@@ -38,51 +38,42 @@ namespace GeoJSON.Net.Geometry
         {
             get
             {
-                List<double> coordinates = new List<double>();
-                if (Entity != null)
-                {
-                    coordinates.Add(Entity.X);
-                    coordinates.Add(Entity.Y);
-                    if (Entity.Z.HasValue)
-                        coordinates.Add(Entity.Z.Value);
-                }
-                return coordinates;
+                return Entity.GetCoordinates();
             }
-
             set
             {
-                if (value == null || value.Count < 2)
-                    Entity = null;
-                else
-                    Entity = new GeoEntity(value[0], value[1], value.Count > 2 ? (double?)value[2] : null);
+                Entity = new GeoEntity(value);
             }
         }
 
-        public GeoPoint()
+        //public GeoPoint()
+        //{
+        //    this.Type = GeoObjectType.Point;
+        //}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoLineString"/> class.
+        /// </summary>
+        internal GeoPoint(List<double> coordinates)
         {
+            this.Coordinates = coordinates;
             this.Type = GeoObjectType.Point;
         }
 
-        //internal GeoPoint(List<double> coordinates)
-        //    : this()
-        //{
-        //    this.Coordinates = coordinates;
-        //}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Point"/> class.
+        /// </summary>
+        /// <param name="entity">The Position.</param>
+        public GeoPoint(IGeoEntity entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
 
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="Point"/> class.
-        ///// </summary>
-        ///// <param name="entity">The Position.</param>
-        //public GeoPoint(IGeoEntity entity)
-        //    : this()
-        //{
-        //    if (entity == null)
-        //    {
-        //        throw new ArgumentNullException("entity");
-        //    }
-
-        //    this.Entity = entity;
-        //}
+            this.Entity = entity;
+            this.Type = GeoObjectType.Point;
+        }
 
         protected bool Equals(GeoPoint other)
         {

@@ -16,6 +16,8 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     /// </summary>
     //[JsonObject(MemberSerialization.OptIn)]
     [DataContract]
+    [KnownType(typeof(LinkedCRS))]
+    [KnownType(typeof(NamedCRS))]
     public abstract class CRSBase
     {
         /// <summary>
@@ -30,15 +32,15 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
         /// </summary>
         //[JsonProperty(PropertyName = "type", Required = Required.Always)]
         //[JsonConverter(typeof(StringEnumConverter))]
-        //[DataMember(Name = "type", IsRequired = true)]
-        [IgnoreDataMember]
+        [DataMember(Name = "type", IsRequired = true)]
+        // [IgnoreDataMember]
         public CRSType Type { get; internal set; }
 
-        [DataMember(Name = "type", EmitDefaultValue = true, IsRequired = true)]
-        internal string TypeString
-        {
-            get { return Enum.GetName(typeof(CRSType), this.Type); }
-            set { this.Type = (CRSType)Enum.Parse(typeof(CRSType), value, true); }
-        }
+        //[DataMember(Name = "type", EmitDefaultValue = true, IsRequired = true)]
+        //internal string TypeString
+        //{
+        //    get { return Enum.GetName(typeof(CRSType), this.Type); }
+        //    set { this.Type = (CRSType)Enum.Parse(typeof(CRSType), value, true); }
+        //}
     }
 }

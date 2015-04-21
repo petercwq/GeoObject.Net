@@ -37,17 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Converters\CrsConverter.cs" />
-    <Compile Include="Converters\GeometryConverter.cs" />
-    <Compile Include="Converters\LineStringConverter.cs" />
-    <Compile Include="Converters\MultiPointConverter.cs" />
-    <Compile Include="Converters\MultiPolygonConverter.cs" />
-    <Compile Include="Converters\PointConverter.cs" />
-    <Compile Include="Converters\PolygonConverter.cs" />
     <Compile Include="CoordinateReferenceSystem\CRSBase.cs" />
     <Compile Include="CoordinateReferenceSystem\CRSType.cs" />
     <Compile Include="CoordinateReferenceSystem\DefaultCRS.cs" />
-    <Compile Include="CoordinateReferenceSystem\ICRSObject.cs" />
     <Compile Include="CoordinateReferenceSystem\LinkedCRS.cs" />
     <Compile Include="CoordinateReferenceSystem\NamedCRS.cs" />
     <Compile Include="DoubleComparers.cs" />
@@ -68,11 +60,6 @@
     <Compile Include="Geometry\WktExts.cs" />
     <Compile Include="IGeoObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
