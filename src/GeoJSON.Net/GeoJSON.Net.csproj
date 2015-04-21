@@ -55,11 +55,10 @@
     <Compile Include="Exceptions\ParsingException.cs" />
     <Compile Include="Feature\Feature.cs" />
     <Compile Include="Feature\FeatureCollection.cs" />
-    <Compile Include="GeoJSONObject.cs" />
-    <Compile Include="GeoJSONObjectType.cs" />
+    <Compile Include="GeoObject.cs" />
+    <Compile Include="GeoObjectType.cs" />
     <Compile Include="Geometry\GeoEntity.cs" />
     <Compile Include="Geometry\GeoCollection.cs" />
-    <Compile Include="Geometry\IGeoObject.cs" />
     <Compile Include="Geometry\IGeoEntity.cs" />
     <Compile Include="Geometry\GeoLineString.cs" />
     <Compile Include="Geometry\GeoMultiLineString.cs" />
@@ -68,7 +67,7 @@
     <Compile Include="Geometry\GeoPoint.cs" />
     <Compile Include="Geometry\GeoPolygon.cs" />
     <Compile Include="Geometry\WktExts.cs" />
-    <Compile Include="IGeoJSONObject.cs" />
+    <Compile Include="IGeoObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ namespace GeoJSON.Net.Feature
 	/// <summary>
     /// Defines the FeatureCollection type.
     /// </summary>
-    public class FeatureCollection : GeoJSONObject
+    public class FeatureCollection : GeoObject
     {
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace GeoJSON.Net.Feature
             }
 
             Features = features;
-            Type = GeoJSONObjectType.FeatureCollection;
+            Type = GeoObjectType.FeatureCollection;
         }
     }
 }

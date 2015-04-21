@@ -21,7 +21,7 @@ namespace GeoJSON.Net.Geometry
     /// represent interior rings (or holes).
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#polygon" />
-    public class GeoPolygon : GeoJSONObject, IGeoObject
+    public class GeoPolygon : GeoObject
     {
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace GeoJSON.Net.Geometry
             }
 
             Coordinates = coordinates;
-            Type = GeoJSONObjectType.Polygon;
+            Type = GeoObjectType.Polygon;
         }
 
         public static bool operator !=(GeoPolygon left, GeoPolygon right)

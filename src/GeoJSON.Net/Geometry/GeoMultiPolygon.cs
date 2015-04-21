@@ -16,7 +16,7 @@ namespace GeoJSON.Net.Geometry
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
-    public class GeoMultiPolygon : GeoJSONObject, IGeoObject
+    public class GeoMultiPolygon : GeoObject
     {
         /// <summary>
         /// Gets the list of Polygons enclosed in this MultiPolygon.
@@ -47,7 +47,7 @@ namespace GeoJSON.Net.Geometry
             }
 
             Coordinates = polygons;
-            Type = GeoJSONObjectType.MultiPolygon;
+            Type = GeoObjectType.MultiPolygon;
         }
 
         public static bool operator !=(GeoMultiPolygon left, GeoMultiPolygon right)

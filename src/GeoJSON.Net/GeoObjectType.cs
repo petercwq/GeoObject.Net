@@ -10,7 +10,7 @@ namespace GeoJSON.Net
 	/// <summary>
     /// Defines the GeoJSON Objects types as defined in the <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">geojson.org v1.0 spec</see>.
     /// </summary>
-    public enum GeoJSONObjectType
+    public enum GeoObjectType
     {
         /// <summary>
         /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#point">Point</see> type.

@@ -7,18 +7,16 @@
 
 using System.Linq;
 using System.Runtime.Serialization;
-using GeoJSON.Net.Converters;
 using GeoJSON.Net.CoordinateReferenceSystem;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GeoJSON.Net
 {
     /// <summary>
     /// Base class for all IGeometryObject implementing types
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
-    public abstract class GeoJSONObject : IGeoJSONObject
+    // [JsonObject(MemberSerialization.OptIn)]
+    [DataContract]
+    public abstract class GeoObject : IGeoObject
     {
         internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
 
@@ -35,7 +33,8 @@ namespace GeoJSON.Net
         /// In addition, the coordinate reference system for the bbox is assumed to match the coordinate reference
         /// system of the GeoJSON object of which it is a member.
         /// </value>
-        [JsonProperty(PropertyName = "bbox", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        // [JsonProperty(PropertyName = "bbox", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "bbox", EmitDefaultValue = true, IsRequired = false)]
         public double[] BoundingBoxes
         {
             get;
@@ -64,9 +63,9 @@ namespace GeoJSON.Net
         /// <value>
         /// The Coordinate Reference System Objects.
         /// </value>
-        [JsonProperty(PropertyName = "crs", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, NullValueHandling = NullValueHandling.Include)]
-        [JsonConverter(typeof(CrsConverter))]
-        //[DefaultValue(typeof(DefaultCRS), "")]
+        // [JsonProperty(PropertyName = "crs", Required = Required.Default, DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate, NullValueHandling = NullValueHandling.Include)]
+        // [JsonConverter(typeof(CrsConverter))]
+        [DataMember(Name = "crs", EmitDefaultValue = true, IsRequired = false)]
         public ICRSObject CRS { get; set; }
 
         /// <summary>
@@ -76,23 +75,24 @@ namespace GeoJSON.Net
         /// <value>
         /// The type of the object.
         /// </value>
-        [JsonProperty(PropertyName = "type", Required = Required.Always)]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public GeoJSONObjectType Type { get; internal set; }
+        // [JsonProperty(PropertyName = "type", Required = Required.Always)]
+        // [JsonConverter(typeof(StringEnumConverter))]
+        [DataMember(Name = "type", EmitDefaultValue = false, IsRequired = true)]
+        public GeoObjectType Type { get; internal set; }
 
-        protected GeoJSONObject()
+        protected GeoObject()
         {
             CRS = DefaultCRS.Instance;
         }
 
         /// <summary>
-        /// Determines whether the specified <see cref="GeoJSONObject" />, is equal to this instance.
+        /// Determines whether the specified <see cref="GeoObject" />, is equal to this instance.
         /// </summary>
-        /// <param name="other">The <see cref="GeoJSONObject" /> to compare with this instance.</param>
+        /// <param name="other">The <see cref="GeoObject" /> to compare with this instance.</param>
         /// <returns>
-        ///   <c>true</c> if the specified <see cref="GeoJSONObject" /> is equal to this instance; otherwise, <c>false</c>.
+        ///   <c>true</c> if the specified <see cref="GeoObject" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        protected virtual bool Equals(GeoJSONObject other)
+        protected virtual bool Equals(GeoObject other)
         {
             if (Type != other.Type)
             {
@@ -118,44 +118,44 @@ namespace GeoJSON.Net
             return BoundingBoxes.SequenceEqual(other.BoundingBoxes, DoubleComparer);
         }
 
-        /// <summary>
-        /// Called when [deserialized].
-        /// </summary>
-        /// <param name="streamingContext">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext streamingContext)
-        {
-            if (CRS == null)
-            {
-                CRS = DefaultCRS.Instance;
-            }
-        }
+        ///// <summary>
+        ///// Called when [deserialized].
+        ///// </summary>
+        ///// <param name="streamingContext">The streaming context.</param>
+        //[OnDeserialized]
+        //private void OnDeserialized(StreamingContext streamingContext)
+        //{
+        //    if (CRS == null)
+        //    {
+        //        CRS = DefaultCRS.Instance;
+        //    }
+        //}
 
-        /// <summary>
-        /// Called when [serialized].
-        /// </summary>
-        /// <param name="streamingContext">The streaming context.</param>
-        [OnSerialized]
-        private void OnSerialized(StreamingContext streamingContext)
-        {
-            if (CRS == null)
-            {
-                CRS = DefaultCRS.Instance;
-            }
-        }
+        ///// <summary>
+        ///// Called when [serialized].
+        ///// </summary>
+        ///// <param name="streamingContext">The streaming context.</param>
+        //[OnSerialized]
+        //private void OnSerialized(StreamingContext streamingContext)
+        //{
+        //    if (CRS == null)
+        //    {
+        //        CRS = DefaultCRS.Instance;
+        //    }
+        //}
 
-        /// <summary>
-        /// Called when [serializing].
-        /// </summary>
-        /// <param name="streamingContext">The streaming context.</param>
-        [OnSerializing]
-        private void OnSerializing(StreamingContext streamingContext)
-        {
-            if (CRS is DefaultCRS)
-            {
-                CRS = null;
-            }
-        }
+        ///// <summary>
+        ///// Called when [serializing].
+        ///// </summary>
+        ///// <param name="streamingContext">The streaming context.</param>
+        //[OnSerializing]
+        //private void OnSerializing(StreamingContext streamingContext)
+        //{
+        //    if (CRS is DefaultCRS)
+        //    {
+        //        CRS = null;
+        //    }
+        //}
 
         /// <summary>
         /// Implements the operator !=.
@@ -165,7 +165,7 @@ namespace GeoJSON.Net
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator !=(GeoJSONObject left, GeoJSONObject right)
+        public static bool operator !=(GeoObject left, GeoObject right)
         {
             return !Equals(left, right);
         }
@@ -178,7 +178,7 @@ namespace GeoJSON.Net
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator ==(GeoJSONObject left, GeoJSONObject right)
+        public static bool operator ==(GeoObject left, GeoObject right)
         {
             return Equals(left, right);
         }
@@ -207,7 +207,7 @@ namespace GeoJSON.Net
                 return false;
             }
 
-            return Equals((GeoJSONObject)obj);
+            return Equals((GeoObject)obj);
         }
 
         /// <summary>

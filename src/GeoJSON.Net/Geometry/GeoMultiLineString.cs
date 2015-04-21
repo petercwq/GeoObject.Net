@@ -15,7 +15,7 @@ namespace GeoJSON.Net.Geometry
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
     /// </summary>
-    public class GeoMultiLineString : GeoJSONObject, IGeoObject
+    public class GeoMultiLineString : GeoObject
     {
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace GeoJSON.Net.Geometry
         public GeoMultiLineString(List<GeoLineString> coordinates)
         {
             Coordinates = coordinates ?? new List<GeoLineString>();
-            Type = GeoJSONObjectType.MultiLineString;
+            Type = GeoObjectType.MultiLineString;
         }
 
         public static bool operator !=(GeoMultiLineString left, GeoMultiLineString right)

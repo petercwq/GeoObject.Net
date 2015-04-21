@@ -16,8 +16,7 @@ namespace GeoJSON.Net.Geometry
     /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
-    [JsonObject(MemberSerialization.OptIn)]
-    public class GeoLineString : GeoJSONObject, IGeoObject
+    public class GeoLineString : GeoObject
     {
         /// <summary>
         /// Gets the Positions.
@@ -58,7 +57,7 @@ namespace GeoJSON.Net.Geometry
             }
 
             Coordinates = coordsList;
-            Type = GeoJSONObjectType.LineString;
+            Type = GeoObjectType.LineString;
         }
 
         public static bool operator !=(GeoLineString left, GeoLineString right)

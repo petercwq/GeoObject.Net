@@ -15,7 +15,7 @@ namespace GeoJSON.Net.Geometry
     /// In geography, a point refers to a Position on a map, expressed in y and x.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#point" />
-    public class GeoPoint : GeoJSONObject, IGeoObject
+    public class GeoPoint : GeoObject
     {
         /// <summary>
         /// Gets or sets the Coordinate(s).
@@ -45,7 +45,7 @@ namespace GeoJSON.Net.Geometry
             }
 
             Coordinates = coordinates;
-            Type = GeoJSONObjectType.Point;
+            Type = GeoObjectType.Point;
         }
 
         public static bool operator !=(GeoPoint left, GeoPoint right)

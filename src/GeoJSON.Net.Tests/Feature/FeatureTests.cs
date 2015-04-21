@@ -26,7 +26,7 @@ namespace GeoJSON.Net.Tests.Feature
 
             Assert.AreEqual(feature.Id, "test-id");
 
-            Assert.AreEqual(feature.Geometry.Type, GeoJSONObjectType.Point);
+            Assert.AreEqual(feature.Geometry.Type, GeoObjectType.Point);
         }
 
         [Test]

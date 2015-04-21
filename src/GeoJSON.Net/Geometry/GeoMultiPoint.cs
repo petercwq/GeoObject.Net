@@ -16,7 +16,7 @@ namespace GeoJSON.Net.Geometry
     /// Contains an array of <see cref="GeoPoint" />s.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#multipoint" />
-    public class GeoMultiPoint : GeoJSONObject, IGeoObject
+    public class GeoMultiPoint : GeoObject
     {
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace GeoJSON.Net.Geometry
         public GeoMultiPoint(List<GeoPoint> coordinates = null)
         {
             this.Coordinates = coordinates ?? new List<GeoPoint>();
-            this.Type = GeoJSONObjectType.MultiPoint;
+            this.Type = GeoObjectType.MultiPoint;
         }
 
         public static bool operator !=(GeoMultiPoint left, GeoMultiPoint right)

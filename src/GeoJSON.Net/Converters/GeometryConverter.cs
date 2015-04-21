@@ -41,7 +41,7 @@ namespace GeoJSON.Net.Converters
                 throw new JsonReaderException("json must contain a \"type\" property");
             }
 
-            GeoJSONObjectType geoJsonType;
+            GeoObjectType geoJsonType;
 
             if (!Enum.TryParse(token.Value<string>(), true, out geoJsonType))
             {
@@ -50,22 +50,22 @@ namespace GeoJSON.Net.Converters
 
             switch (geoJsonType)
             {
-                case GeoJSONObjectType.Point:
+                case GeoObjectType.Point:
                     return value.ToObject<GeoPoint>();
-                case GeoJSONObjectType.MultiPoint:
+                case GeoObjectType.MultiPoint:
                     return value.ToObject<GeoMultiPoint>();
-                case GeoJSONObjectType.LineString:
+                case GeoObjectType.LineString:
                     return value.ToObject<GeoLineString>();
-                case GeoJSONObjectType.MultiLineString:
+                case GeoObjectType.MultiLineString:
                     return value.ToObject<GeoMultiLineString>();
-                case GeoJSONObjectType.Polygon:
+                case GeoObjectType.Polygon:
                     return value.ToObject<GeoPolygon>();
-                case GeoJSONObjectType.MultiPolygon:
+                case GeoObjectType.MultiPolygon:
                     return value.ToObject<GeoMultiPolygon>();
-                case GeoJSONObjectType.GeometryCollection:
+                case GeoObjectType.GeometryCollection:
                     return value.ToObject<GeoCollection>();
-                case GeoJSONObjectType.Feature:
-                case GeoJSONObjectType.FeatureCollection:
+                case GeoObjectType.Feature:
+                case GeoObjectType.FeatureCollection:
                 default:
                     throw new NotSupportedException("Feature and FeatureCollection types are Feature objects and not Geometry objects");
             }

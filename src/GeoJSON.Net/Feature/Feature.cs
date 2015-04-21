@@ -17,7 +17,7 @@ namespace GeoJSON.Net.Feature
 	/// <summary>
     /// A GeoJSON <see cref="!:http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
     /// </summary>
-    public class Feature : GeoJSONObject
+    public class Feature : GeoObject
     {
         /// <summary>
         /// Gets or sets the geometry.
@@ -56,7 +56,7 @@ namespace GeoJSON.Net.Feature
             Properties = properties ?? new Dictionary<string, object>();
             Id = id;
 
-            Type = GeoJSONObjectType.Feature;
+            Type = GeoObjectType.Feature;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace GeoJSON.Net.Feature
                     .ToDictionary(prop => prop.Name, prop => prop.GetValue(properties, null));
             }
 
-            Type = GeoJSONObjectType.Feature;
+            Type = GeoObjectType.Feature;
         }
     }
 }

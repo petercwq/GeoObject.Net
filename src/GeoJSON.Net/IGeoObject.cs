@@ -10,9 +10,8 @@ namespace GeoJSON.Net
 	/// <summary>
     /// Base Interface for GeoJSONObject types.
     /// </summary>
-    public interface IGeoJSONObject
+    public interface IGeoObject
     {
-
         /// <summary>
         /// Gets or sets the (optional) <see cref="!:http://geojson.org/geojson-spec.html#coordinate-reference-system-objects" >Bounding Boxes</see>.
         /// </summary>
@@ -34,11 +33,13 @@ namespace GeoJSON.Net
         CoordinateReferenceSystem.ICRSObject CRS { get; }
 
         /// <summary>
-        /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects" >GeoJSON Object</see>.
+        /// Gets the (mandatory) type of the <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Object</see>.
+        /// However, for <see cref="!:http://geojson.org/geojson-spec.html#geometry-objects">GeoJSON Objects</see> only
+        /// the 'Point', 'MultiPoint', 'LineString', 'MultiLineString', 'Polygon', 'MultiPolygon', or 'GeometryCollection' types are allowed.
         /// </summary>
         /// <value>
         /// The type of the object.
         /// </value>
-        GeoJSONObjectType Type { get; }
+        GeoObjectType Type { get; }
     }
 }

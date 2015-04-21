@@ -26,9 +26,9 @@ namespace GeoJSON.Net.Tests.Feature
 
             Assert.IsNotNull(featureCollection.Features);
             Assert.AreEqual(featureCollection.Features.Count, 3);
-            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoJSONObjectType.Point), 1);
-            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoJSONObjectType.MultiPolygon), 1);
-            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoJSONObjectType.Polygon), 1);
+            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoObjectType.Point), 1);
+            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoObjectType.MultiPolygon), 1);
+            Assert.AreEqual(featureCollection.Features.Count(x => x.Geometry.Type == GeoObjectType.Polygon), 1);
         }
 
         [Test]
