@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
-using ServiceStack.Text;
 using NUnit.Framework;
+using ServiceStack.Text;
 
 namespace GeoJSON.Net.Tests.Feature
 {

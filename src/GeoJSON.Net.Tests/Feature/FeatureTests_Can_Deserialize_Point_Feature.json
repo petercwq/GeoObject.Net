@@ -1,10 +1,11 @@
 ﻿{
-  "type": "Feature",
-  "id" : "test-id",
-  "geometry": {
-    "type": "Point",
-    "coordinates": [125.6, 10.1]
-  },
+    "type": "Feature",
+    "id": "test-id",
+    "geometry": {
+        "__type": "GeoJSON.Net.Geometry.GeoPoint, GeoJSON.Net",
+        "type": "Point",
+        "coordinates": [ 125.6, 10.1 ]
+    },
   "properties": {
     "name": "Dinagat Islands"
   }

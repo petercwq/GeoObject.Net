@@ -1,6 +1,7 @@
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+using ServiceStack.Text;
 
 namespace GeoJSON.Net.Tests
 {
@@ -20,6 +21,7 @@ namespace GeoJSON.Net.Tests
         /// <param name="actualJson">The actual json.</param>
         public static void AreEqual(string expectJson, string actualJson)
         {
+            //Assert.AreEqual(JsonObject.Parse(expectJson), JsonObject.Parse(actualJson));
             Assert.AreEqual(
                 JObject.Parse(expectJson).SortProperties().ToString(),
                 JObject.Parse(actualJson).SortProperties().ToString());

@@ -17,6 +17,13 @@ namespace GeoJSON.Net.Feature
     /// A GeoJSON <see cref="!:http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(GeoPoint))]
+    [KnownType(typeof(GeoLineString))]
+    [KnownType(typeof(GeoPolygon))]
+    [KnownType(typeof(GeoMultiPoint))]
+    [KnownType(typeof(GeoMultiLineString))]
+    [KnownType(typeof(GeoMultiPolygon))]
+    [KnownType(typeof(GeoCollection))]
     public class Feature : GeoObject
     {
         /// <summary>

@@ -26,7 +26,8 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
 
             var point = JsonSerializer.DeserializeFromString<GeoPoint>(json);
 
-            Assert.IsInstanceOf<DefaultCRS>(point.CRS);
+            Assert.IsNull(point.CRS);
+            // Assert.IsInstanceOf<DefaultCRS>(point.CRS);
         }
     }
 }

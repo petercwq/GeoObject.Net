@@ -16,31 +16,31 @@ namespace GeoJSON.Net.Tests
 
                 var multiPoint = new GeoMultiPoint(new List<GeoPoint>
                 {
-                    new GeoPoint(new GeoEntity(5.3173828125, 52.379790828551016)),
-                    new GeoPoint(new GeoEntity(5.456085205078125, 52.36721467920585)),
-                    new GeoPoint(new GeoEntity(5.386047363281249, 52.303440474272755, 4.23))
+                    new GeoPoint(new GeoEntity(5.3173828125, 52.37979082855)),
+                    new GeoPoint(new GeoEntity(5.45608520507, 52.3672146792)),
+                    new GeoPoint(new GeoEntity(5.38604736328, 52.30344047427, 4.23))
                 });
 
                 var lineString = new GeoLineString(new List<IGeoEntity>
                 {
-                    new GeoEntity(5.3173828125, 52.379790828551016),
-                    new GeoEntity(5.456085205078125, 52.36721467920585),
-                    new GeoEntity(5.386047363281249, 52.303440474272755, 4.23)
+                    new GeoEntity(5.3173828125, 52.37979082855),
+                    new GeoEntity(5.45608520507, 52.3672146792),
+                    new GeoEntity(5.38604736328, 52.30344047427, 4.23)
                 });
 
                 var multiLineString = new GeoMultiLineString(new List<GeoLineString>
                 {
                     new GeoLineString(new List<IGeoEntity>
                     {
-                        new GeoEntity(5.3173828125, 52.379790828551016),
-                        new GeoEntity(5.456085205078125, 52.36721467920585),
-                        new GeoEntity(5.386047363281249, 52.303440474272755, 4.23)
+                        new GeoEntity(5.3173828125, 52.37979082855),
+                        new GeoEntity(5.45608520507, 52.3672146792),
+                        new GeoEntity(5.38604736328, 52.30344047427, 4.23)
                     }),
                     new GeoLineString(new List<IGeoEntity>
                     {
-                        new GeoEntity(5.3273828125, 52.379790828551016),
-                        new GeoEntity(5.486085205078125, 52.36721467920585),
-                        new GeoEntity(5.426047363281249, 52.303440474272755, 4.23)
+                        new GeoEntity(5.3273828125, 52.37979082855),
+                        new GeoEntity(5.48608520507, 52.3672146792),
+                        new GeoEntity(5.42604736328, 52.30344047427, 4.23)
                     })
                 });
 
@@ -48,10 +48,10 @@ namespace GeoJSON.Net.Tests
                 {
                     new GeoLineString(new List<GeoEntity>
                     {
-                        new GeoEntity(5.3173828125, 52.379790828551016),
-                        new GeoEntity(5.456085205078125, 52.36721467920585),
-                        new GeoEntity(5.386047363281249, 52.303440474272755, 4.23),
-                        new GeoEntity(5.3173828125, 52.379790828551016)
+                        new GeoEntity(5.3173828125, 52.37979082855),
+                        new GeoEntity(5.45608520507, 52.3672146792),
+                        new GeoEntity(5.38604736328, 52.30344047427, 4.23),
+                        new GeoEntity(5.3173828125, 52.37979082855)
                     })
                 });
 
@@ -61,33 +61,33 @@ namespace GeoJSON.Net.Tests
                     {
                         new GeoLineString(new List<IGeoEntity>
                         {
-                            new GeoEntity(-2.6797102391514338, 52.959676831105995),
-                            new GeoEntity(-2.6769029474483279, 52.9608756693609),
-                            new GeoEntity(-2.6079763270327119, 52.908449372833715),
-                            new GeoEntity(-2.5815104708998668, 52.891287242948195),
-                            new GeoEntity(-2.5851645010668989, 52.875476700983896),
-                            new GeoEntity(-2.6050779098387191, 52.882954723868622),
-                            new GeoEntity(-2.6373482332006359, 52.875255907042678),
-                            new GeoEntity(-2.6932445076063951, 52.878791122091066),
-                            new GeoEntity(-2.6931334629377890, 52.89564268523565),
-                            new GeoEntity(-2.6548779332193022, 52.930592009390175),
-                            new GeoEntity(-2.6797102391514338, 52.959676831105995)
+                            new GeoEntity(-2.679710239151, 52.95967683110),
+                            new GeoEntity(-2.676902947448, 52.960875669),
+                            new GeoEntity(-2.607976327032, 52.90844937283),
+                            new GeoEntity(-2.581510470899, 52.89128724294),
+                            new GeoEntity(-2.585164501066, 52.87547670098),
+                            new GeoEntity(-2.605077909838, 52.88295472386),
+                            new GeoEntity(-2.637348233200, 52.87525590704),
+                            new GeoEntity(-2.693244507606, 52.87879112209),
+                            new GeoEntity(-2.693133462937, 52.8956426852),
+                            new GeoEntity(-2.654877933219, 52.93059200939),
+                            new GeoEntity(-2.679710239151, 52.95967683110)
                         })
                     }),
                     new GeoPolygon(new List<GeoLineString>
                     {
                         new GeoLineString(new List<IGeoEntity>
                         {
-                            new GeoEntity(-2.69628632041613, 52.89610842810761),
-                            new GeoEntity(-2.75901233808515, 52.8894641454077),
-                            new GeoEntity(-2.7663172788742449, 52.89938894657412),
-                            new GeoEntity(-2.804554822840895, 52.90253773227807),
-                            new GeoEntity(-2.83848602260174, 52.929801009654575),
-                            new GeoEntity(-2.838979264607087, 52.94013913205788),
-                            new GeoEntity(-2.7978187468478741, 52.937353122653533),
-                            new GeoEntity(-2.772273870352612, 52.920394929466184),
-                            new GeoEntity(-2.6996509024137052, 52.926572918779222),
-                            new GeoEntity(-2.69628632041613, 52.89610842810761)
+                            new GeoEntity(-2.6962863204, 52.8961084281),
+                            new GeoEntity(-2.7590123380, 52.889464145),
+                            new GeoEntity(-2.766317278874, 52.8993889465),
+                            new GeoEntity(-2.80455482284, 52.9025377322),
+                            new GeoEntity(-2.8384860226, 52.92980100965),
+                            new GeoEntity(-2.83897926460, 52.9401391320),
+                            new GeoEntity(-2.797818746847, 52.93735312265),
+                            new GeoEntity(-2.77227387035, 52.92039492946),
+                            new GeoEntity(-2.699650902413, 52.92657291877),
+                            new GeoEntity(-2.6962863204, 52.8961084281)
                         })
                     })
                 });

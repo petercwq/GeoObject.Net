@@ -42,15 +42,15 @@ namespace GeoJSON.Net.Tests.Geometry
             {
                 new GeoLineString(new List<IGeoEntity>
                 {
-                    new GeoEntity(5.3173828125, 52.379790828551016),
-                    new GeoEntity(5.456085205078125, 52.36721467920585),
-                    new GeoEntity(5.386047363281249, 52.303440474272755, 4.23)
+                    new GeoEntity(5.3173828125, 52.379790828551),
+                    new GeoEntity(5.456085205078, 52.367214679205),
+                    new GeoEntity(5.386047363281, 52.3034404742727, 4.23)
                 }),
                 new GeoLineString(new List<IGeoEntity>
                 {
-                    new GeoEntity(5.3273828125, 52.379790828551016),
-                    new GeoEntity(5.486085205078125, 52.36721467920585),
-                    new GeoEntity(5.426047363281249, 52.303440474272755, 4.23)
+                    new GeoEntity(5.3273828125, 52.379790828551),
+                    new GeoEntity(5.486085205078, 52.367214679205),
+                    new GeoEntity(5.426047363281, 52.3034404742727, 4.23)
                 })
             });
 

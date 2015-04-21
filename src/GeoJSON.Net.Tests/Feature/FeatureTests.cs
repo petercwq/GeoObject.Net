@@ -2,14 +2,44 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GeoJSON.Net.Geometry;
-using ServiceStack.Text;
 using NUnit.Framework;
+using ServiceStack.Text;
 
 namespace GeoJSON.Net.Tests.Feature
 {
     [TestFixture]
     public class FeatureTests : TestBase
     {
+        public FeatureTests()
+        {
+            JsConfig<IGeoObject>.RawDeserializeFn = json =>
+            {
+                var geometry = JsonObject.Parse(json);
+                var geometryType = geometry.Get<string>("type");
+                switch (geometryType)
+                {
+                    case null:
+                        return null;
+                    case "Point":
+                        return JsonSerializer.DeserializeFromString<GeoPoint>(json);
+                    case "LineString":
+                        return JsonSerializer.DeserializeFromString<GeoLineString>(json);
+                    case "Polygon":
+                        return JsonSerializer.DeserializeFromString<GeoPolygon>(json);
+                    case "MultiPoint":
+                        return JsonSerializer.DeserializeFromString<GeoMultiPoint>(json);
+                    case "MultiLineString":
+                        return JsonSerializer.DeserializeFromString<GeoMultiLineString>(json);
+                    case "MultiPolygon":
+                        return JsonSerializer.DeserializeFromString<GeoMultiPolygon>(json);
+                    case "GeometryCollection":
+                        return JsonSerializer.DeserializeFromString<GeoCollection>(json);
+                    default:
+                        throw new InvalidCastException(string.Format("Not a valid GeoSon geometry type: {0}", geometryType));
+                }
+            };
+        }
+
         [Test]
         public void Can_Deserialize_Point_Feature()
         {
@@ -36,25 +66,23 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 new List<IGeoEntity>
                 {
-                    new GeoEntity(4.889259338378906, 52.370725881211314),
-                    new GeoEntity(4.895267486572266, 52.3711451105601),
-                    new GeoEntity(4.892091751098633, 52.36931095278263),
-                    new GeoEntity(4.889259338378906, 52.370725881211314)
+                    new GeoEntity(4.88925933837, 52.37072588121),
+                    new GeoEntity(4.89526748657, 52.371145110),
+                    new GeoEntity(4.89209175109, 52.3693109527),
+                    new GeoEntity(4.88925933837, 52.37072588121)
                 },
                 new List<IGeoEntity>
                 {
-                    new GeoEntity(4.989259338378906, 52.370725881211314),
-                    new GeoEntity(4.995267486572266, 52.3711451105601),
-                    new GeoEntity(4.992091751098633, 52.36931095278263),
-                    new GeoEntity(4.989259338378906, 52.370725881211314)
+                    new GeoEntity(4.98925933837, 52.37072588121),
+                    new GeoEntity(4.99526748657, 52.371145110),
+                    new GeoEntity(4.99209175109, 52.3693109527),
+                    new GeoEntity(4.98925933837, 52.37072588121)
                 }
             };
 
             var geometry = new GeoLineString(coordinates[0]);
 
             var actualJson = JsonSerializer.SerializeToString(new Net.Feature.Feature(geometry));
-
-            Console.WriteLine(actualJson);
 
             var expectedJson = GetExpectedJson();
 
@@ -68,17 +96,17 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 new GeoLineString(new List<IGeoEntity>
                 {
-                    new GeoEntity(4.889259338378906, 52.370725881211314),
-                    new GeoEntity(4.895267486572266, 52.3711451105601),
-                    new GeoEntity(4.892091751098633, 52.36931095278263),
-                    new GeoEntity(4.889259338378906, 52.370725881211314)
+                    new GeoEntity(4.88925933837, 52.3707258812),
+                    new GeoEntity(4.89526748657, 52.3711451105),
+                    new GeoEntity(4.89209175109, 52.3693109527),
+                    new GeoEntity(4.88925933837, 52.3707258812)
                 }),
                 new GeoLineString(new List<IGeoEntity>
                 {
-                    new GeoEntity(4.989259338378906, 52.370725881211314),
-                    new GeoEntity(4.995267486572266, 52.3711451105601),
-                    new GeoEntity(4.992091751098633, 52.36931095278263),
-                    new GeoEntity(4.989259338378906, 52.370725881211314)
+                    new GeoEntity(4.98925933837, 52.3707258812),
+                    new GeoEntity(4.99526748657, 52.3711451105),
+                    new GeoEntity(4.99209175109, 52.3693109527),
+                    new GeoEntity(4.98925933837, 52.3707258812)
                 })
             });
 
@@ -105,10 +133,10 @@ namespace GeoJSON.Net.Tests.Feature
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(4.889259338378906, 52.370725881211314),
-                new GeoEntity(4.895267486572266, 52.3711451105601),
-                new GeoEntity(4.892091751098633, 52.36931095278263),
-                new GeoEntity(4.889259338378906, 52.370725881211314)
+                new GeoEntity(4.889259338378, 52.37072588121),
+                new GeoEntity(4.895267486572, 52.37114511056),
+                new GeoEntity(4.892091751098, 52.36931095278),
+                new GeoEntity(4.889259338378, 52.37072588121)
             };
 
             var polygon = new GeoPolygon(new List<GeoLineString> { new GeoLineString(coordinates) });

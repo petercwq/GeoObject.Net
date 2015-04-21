@@ -46,7 +46,7 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
             };
             var actualJson = JsonSerializer.SerializeToString(collection);
 
-            JsonAssert.Contains("{\"properties\":{\"href\":\"http://localhost\"},\"type\":\"Link\"}", actualJson);
+            JsonAssert.Contains("\"properties\":{\"href\":\"http://localhost\"},\"type\":\"Link\"", actualJson);
         }
 
         [Test]

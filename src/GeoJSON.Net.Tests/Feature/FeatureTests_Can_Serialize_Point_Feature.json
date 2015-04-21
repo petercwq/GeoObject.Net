@@ -1,6 +1,7 @@
 ﻿{
     "geometry": {
-        "coordinates": [2.0, 1.0],
+        "__type": "GeoJSON.Net.Geometry.GeoPoint, GeoJSON.Net",
+        "coordinates": [ 2, 1 ],
         "type": "Point"
     },
     "properties": {},

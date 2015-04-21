@@ -45,10 +45,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(4.889259338378906, 52.370725881211314),
-                new GeoEntity(4.895267486572266, 52.3711451105601),
-                new GeoEntity(4.892091751098633, 52.36931095278263),
-                new GeoEntity(4.889259338378906, 52.370725881211314)
+                new GeoEntity(4.8892593383789, 52.370725881211),
+                new GeoEntity(4.89526748657226, 52.371145110562),
+                new GeoEntity(4.89209175109863, 52.369310952782),
+                new GeoEntity(4.8892593383789, 52.370725881211)
             };
 
             var lineString = new GeoLineString(coordinates);
