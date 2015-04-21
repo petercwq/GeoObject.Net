@@ -7,29 +7,57 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Converters;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// Contains an array of <see cref="GeoPoint" />s.
     /// </summary>
     /// <seealso cref="!:http://geojson.org/geojson-spec.html#multipoint" />
+    [DataContract]
     public class GeoMultiPoint : GeoObject
     {
+        /// <summary>
+        /// Gets the Coordinates.
+        /// </summary>
+        /// <value>The Coordinates.</value>
+        //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        //[JsonConverter(typeof(MultiPointConverter))]
+        public List<GeoPoint> Points { get; private set; }
 
         /// <summary>
         /// Gets the Coordinates.
         /// </summary>
         /// <value>The Coordinates.</value>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(MultiPointConverter))]
-        public List<GeoPoint> Coordinates { get; private set; }
-
-        protected bool Equals(GeoMultiPoint other)
+        //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        [DataMember(Name = "coordinates", IsRequired = true)]
+        public List<List<double>> Coordinates
         {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+            get
+            {
+                List<List<double>> coordinates = new List<List<double>>();
+                foreach (var ipos in Points)
+                {
+                    coordinates.Add(ipos.Coordinates);
+                }
+                return coordinates;
+            }
+
+            set
+            {
+                foreach (var list in value)
+                {
+                    var point = new GeoPoint() { Coordinates = list };
+                    this.Points.Add(point);
+                }
+            }
+        }
+
+        internal GeoMultiPoint()
+        {
+            this.Points = new List<GeoPoint>();
+            this.Type = GeoObjectType.MultiPoint;
         }
 
         /// <summary>
@@ -38,8 +66,13 @@ namespace GeoJSON.Net.Geometry
         /// <param name="coordinates">The coordinates.</param>
         public GeoMultiPoint(List<GeoPoint> coordinates = null)
         {
-            this.Coordinates = coordinates ?? new List<GeoPoint>();
+            this.Points = coordinates ?? new List<GeoPoint>();
             this.Type = GeoObjectType.MultiPoint;
+        }
+
+        protected bool Equals(GeoMultiPoint other)
+        {
+            return base.Equals(other) && Points.SequenceEqual(other.Points);
         }
 
         public static bool operator !=(GeoMultiPoint left, GeoMultiPoint right)
@@ -71,7 +104,7 @@ namespace GeoJSON.Net.Geometry
 
         public override int GetHashCode()
         {
-            return Coordinates.GetHashCode();
+            return Points.GetHashCode();
         }
     }
 }

@@ -7,28 +7,55 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Converters;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multilinestring">MultiLineString</see> type.
     /// </summary>
+    [DataContract]
     public class GeoMultiLineString : GeoObject
     {
-
         /// <summary>
         /// Gets the Coordinates.
         /// </summary>
         /// <value>The Coordinates.</value>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(PolygonConverter))]
-        public List<GeoLineString> Coordinates { get; private set; }
+        //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        //[JsonConverter(typeof(PolygonConverter))]
+        public List<GeoLineString> LineStrings { get; private set; }
 
-        protected bool Equals(GeoMultiLineString other)
+        [DataMember(Name = "coordinates", IsRequired = true)]
+        public List<List<List<double>>> Coordinates
         {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+
+            get
+            {
+                List<List<List<double>>> coordinates = new List<List<List<double>>>();
+                foreach (var linestring in LineStrings)
+                {
+                    coordinates.Add(linestring.Coordinates);
+                }
+                return coordinates;
+            }
+
+            set
+            {
+                foreach (var list in value)
+                {
+                    var linestring = new GeoLineString() { Coordinates = list };
+                    this.LineStrings.Add(linestring);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoMultiLineString"/> class.
+        /// </summary>
+        internal GeoMultiLineString()
+        {
+            this.LineStrings = new List<GeoLineString>();
+            this.Type = GeoObjectType.MultiLineString;
         }
 
         /// <summary>
@@ -37,8 +64,13 @@ namespace GeoJSON.Net.Geometry
         /// <param name="coordinates">The coordinates.</param>
         public GeoMultiLineString(List<GeoLineString> coordinates)
         {
-            Coordinates = coordinates ?? new List<GeoLineString>();
+            LineStrings = coordinates ?? new List<GeoLineString>();
             Type = GeoObjectType.MultiLineString;
+        }
+
+        protected bool Equals(GeoMultiLineString other)
+        {
+            return base.Equals(other) && LineStrings.SequenceEqual(other.LineStrings);
         }
 
         public static bool operator !=(GeoMultiLineString left, GeoMultiLineString right)
@@ -73,7 +105,7 @@ namespace GeoJSON.Net.Geometry
 
         public override int GetHashCode()
         {
-            return Coordinates.GetHashCode();
+            return LineStrings.GetHashCode();
         }
     }
 }

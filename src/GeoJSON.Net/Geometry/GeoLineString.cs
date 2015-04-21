@@ -8,56 +8,103 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Converters;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.Geometry
 {
     /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#linestring">LineString</see> type.
     /// </summary>
+    [DataContract]
     public class GeoLineString : GeoObject
     {
         /// <summary>
         /// Gets the Positions.
         /// </summary>
         /// <value>The Positions.</value>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(LineStringConverter))]
-        public List<IGeoEntity> Coordinates { get; set; }
+        //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        //[JsonConverter(typeof(LineStringConverter))]
+        public List<IGeoEntity> Entities { get; set; }
+
+        /// <summary>
+        /// Gets the coordinates
+        /// </summary>
+        [DataMember(Name = "coordinates", IsRequired = true)]
+        public List<List<double>> Coordinates
+        {
+            get
+            {
+                List<List<double>> coordinates = new List<List<double>>();
+                foreach (var entity in Entities)
+                {
+                    List<double> xyz = new List<double>();
+                    xyz.Add(entity.X);
+                    xyz.Add(entity.Y);
+                    if (entity.Z.HasValue)
+                        xyz.Add(entity.Z.Value);
+                }
+                return coordinates;
+            }
+
+            set
+            {
+                foreach (var positions in value)
+                {
+                    IGeoEntity entity;
+                    if (positions.Count == 2)
+                    {
+                        entity = new GeoEntity(positions[1], positions[0]);
+                    }
+                    else if (positions.Count == 3)
+                    {
+                        entity = new GeoEntity(positions[1], positions[0], positions[2]);
+                    }
+                    else
+                    {
+                        throw new System.InvalidCastException("a geoentity must have at least 2 coordinates");
+                    }
+                    this.Entities.Add(entity);
+                }
+            }
+        }
 
         protected bool Equals(GeoLineString other)
         {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+            return base.Equals(other) && Entities.SequenceEqual(other.Entities);
         }
 
-        [JsonConstructor]
-        protected internal GeoLineString()
+        //[JsonConstructor]
+        //protected internal GeoLineString()
+        //{
+        //}
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GeoLineString"/> class.
+        /// </summary>
+        internal GeoLineString()
         {
+            this.Entities = new List<IGeoEntity>();
+            this.Type = GeoObjectType.LineString;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GeoLineString" /> class.
+        /// Initializes a new instance of the <see cref="LineString"/> class.
         /// </summary>
         /// <param name="coordinates">The coordinates.</param>
-        public GeoLineString(IEnumerable<IGeoEntity> coordinates)
+        public GeoLineString(IEnumerable<IGeoEntity> entities)
         {
-            if (coordinates == null)
+            if (entities == null)
             {
-                throw new ArgumentNullException("coordinates");
+                throw new ArgumentNullException("entities");
             }
 
-            var coordsList = coordinates.ToList();
-
-            if (coordsList.Count < 2)
+            if (entities.Count() < 2)
             {
-                throw new ArgumentOutOfRangeException(
-                    "coordinates",
-                    "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
+                throw new ArgumentOutOfRangeException("entities", "According to the GeoJSON v1.0 spec a LineString must have at least two or more positions.");
             }
 
-            Coordinates = coordsList;
-            Type = GeoObjectType.LineString;
+            this.Entities = new List<IGeoEntity>(entities);
+            this.Type = GeoObjectType.LineString;
         }
 
         public static bool operator !=(GeoLineString left, GeoLineString right)
@@ -92,7 +139,7 @@ namespace GeoJSON.Net.Geometry
 
         public override int GetHashCode()
         {
-            return Coordinates.GetHashCode();
+            return Entities.GetHashCode();
         }
 
         /// <summary>
@@ -103,18 +150,7 @@ namespace GeoJSON.Net.Geometry
         /// </returns>
         public bool IsClosed()
         {
-            var firstCoordinate = Coordinates[0] as IGeoEntity;
-
-            if (firstCoordinate != null)
-            {
-                var lastCoordinate = Coordinates[Coordinates.Count - 1] as IGeoEntity;
-
-                return firstCoordinate.Y == lastCoordinate.Y
-                       && firstCoordinate.X == lastCoordinate.X
-                       && firstCoordinate.Z == lastCoordinate.Z;
-            }
-
-            return Coordinates[0].Equals(Coordinates[Coordinates.Count - 1]);
+            return this.Entities[0].Equals(this.Entities.Last());
         }
 
         /// <summary>
@@ -126,7 +162,7 @@ namespace GeoJSON.Net.Geometry
         /// </returns>
         public bool IsLinearRing()
         {
-            return Coordinates.Count >= 4 && IsClosed();
+            return Entities.Count >= 4 && IsClosed();
         }
     }
 }

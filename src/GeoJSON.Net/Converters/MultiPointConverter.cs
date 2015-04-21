@@ -65,7 +65,7 @@ namespace GeoJSON.Net.Converters
 
                 foreach (var point in points)
                 {
-                    converter.WriteJson(writer, point.Coordinates, serializer);
+                    converter.WriteJson(writer, point.Entity, serializer);
                 }
 
                 writer.WriteEndArray();

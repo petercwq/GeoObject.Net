@@ -67,13 +67,13 @@ namespace GeoJSON.Net.Converters
             var coordinateElements = value as List<GeoLineString>;
             if (coordinateElements != null && coordinateElements.Count > 0)
             {
-                if (coordinateElements[0].Coordinates[0] is GeoEntity)
+                if (coordinateElements[0].Entities[0] is GeoEntity)
                 {
                     writer.WriteStartArray();
 
                     foreach (var subPolygon in coordinateElements)
                     {
-                        LineStringConverter.WriteJson(writer, subPolygon.Coordinates, serializer);
+                        LineStringConverter.WriteJson(writer, subPolygon.Entities, serializer);
                     }
 
                     writer.WriteEndArray();

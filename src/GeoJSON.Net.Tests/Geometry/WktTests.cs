@@ -22,7 +22,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_Point.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.Point);
-            var coords = (geo as GeoPoint).Coordinates;
+            var coords = (geo as GeoPoint).Entity;
             Assert.AreEqual(coords.X, 30);
             Assert.AreEqual(coords.Y, 10);
             Assert.IsFalse(coords.Z.HasValue);
@@ -33,7 +33,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_LineString.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.LineString);
-            Assert.AreEqual((geo as GeoLineString).Coordinates.Count, 3);
+            Assert.AreEqual((geo as GeoLineString).Entities.Count, 3);
         }
 
         [Test]
@@ -41,11 +41,11 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_Polygon1.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.Polygon);
-            Assert.AreEqual((geo as GeoPolygon).Coordinates.Count, 1);
+            Assert.AreEqual((geo as GeoPolygon).LineStrings.Count, 1);
 
             geo = Wkt_Polygon2.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.Polygon);
-            Assert.AreEqual((geo as GeoPolygon).Coordinates.Count, 2);
+            Assert.AreEqual((geo as GeoPolygon).LineStrings.Count, 2);
         }
 
         [Test]
@@ -53,11 +53,11 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_MultiPoint1.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPoint);
-            Assert.AreEqual((geo as GeoMultiPoint).Coordinates.Count, 4);
+            Assert.AreEqual((geo as GeoMultiPoint).Points.Count, 4);
 
             geo = Wkt_MultiPoint2.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPoint);
-            Assert.AreEqual((geo as GeoMultiPoint).Coordinates.Count, 4);
+            Assert.AreEqual((geo as GeoMultiPoint).Points.Count, 4);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_MultiLineString.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiLineString);
-            Assert.AreEqual((geo as GeoMultiLineString).Coordinates.Count, 2);
+            Assert.AreEqual((geo as GeoMultiLineString).LineStrings.Count, 2);
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace GeoJSON.Net.Tests.Geometry
             geo = Wkt_MultiPolygon2.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPolygon);
             Assert.AreEqual((geo as GeoMultiPolygon).Coordinates.Count, 2);
-            Assert.AreEqual((geo as GeoMultiPolygon).Coordinates[1].Coordinates.Count, 2);
+            Assert.AreEqual((geo as GeoMultiPolygon).Coordinates[1].LineStrings.Count, 2);
         }
 
         [Test]

@@ -21,15 +21,15 @@ namespace GeoJSON.Net.Geometry
     /// </summary>
     public class GeoEntity : IGeoEntity
     {
+        private static readonly NullableDoubleTenDecimalPlaceComparer DoubleComparer = new NullableDoubleTenDecimalPlaceComparer();
+
         /// <summary>
         /// Gets or sets the coordinates, is a 2-size array
         /// </summary>
         /// <value>
         /// The coordinates.
         /// </value>
-        private double?[] Coordinates { get; set; }
-
-        private static readonly NullableDoubleTenDecimalPlaceComparer DoubleComparer = new NullableDoubleTenDecimalPlaceComparer();
+        private double?[] coordinates { get; set; }
 
         /// <summary>
         /// Gets the x.
@@ -37,8 +37,8 @@ namespace GeoJSON.Net.Geometry
         /// <value>The x.</value>
         public double X
         {
-            get { return Coordinates[0].GetValueOrDefault(); }
-            private set { Coordinates[0] = value; }
+            get { return coordinates[0].GetValueOrDefault(); }
+            private set { coordinates[0] = value; }
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace GeoJSON.Net.Geometry
         /// <value>The y.</value>
         public double Y
         {
-            get { return Coordinates[1].GetValueOrDefault(); }
-            private set { Coordinates[1] = value; }
+            get { return coordinates[1].GetValueOrDefault(); }
+            private set { coordinates[1] = value; }
         }
 
         /// <summary>
@@ -56,16 +56,34 @@ namespace GeoJSON.Net.Geometry
         /// </summary>
         public double? Z
         {
-            get { return Coordinates[2]; }
-            private set { Coordinates[2] = value; }
+            get { return coordinates[2]; }
+            private set { coordinates[2] = value; }
         }
+
+        ///// <summary>
+        ///// Gets or sets the coordinates, is a 2-size array
+        ///// </summary>
+        ///// <value>
+        ///// The coordinates.
+        ///// </value>
+        //internal double?[] Coordinates
+        //{
+        //    get
+        //    {
+        //        return coordinates;
+        //    }
+        //    set
+        //    {
+        //        coordinates = value;
+        //    }
+        //}
 
         /// <summary>
         /// Prevents a default instance of the <see cref="GeoEntity" /> class from being created.
         /// </summary>
         private GeoEntity()
         {
-            Coordinates = new double?[3];
+            coordinates = new double?[3];
         }
 
         /// <summary>
@@ -77,7 +95,7 @@ namespace GeoJSON.Net.Geometry
         /// </returns>
         protected bool Equals(GeoEntity other)
         {
-            return Coordinates.SequenceEqual(other.Coordinates, DoubleComparer);
+            return coordinates.SequenceEqual(other.coordinates, DoubleComparer);
         }
 
         public bool Equals(IGeoEntity pos)
@@ -220,7 +238,7 @@ namespace GeoJSON.Net.Geometry
         /// </returns>
         public override int GetHashCode()
         {
-            return Coordinates != null ? Coordinates.GetHashCode() : 0;
+            return coordinates != null ? coordinates.GetHashCode() : 0;
         }
 
         /// <summary>

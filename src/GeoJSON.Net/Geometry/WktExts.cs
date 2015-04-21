@@ -76,27 +76,27 @@ namespace GeoJSON.Net.Geometry
 
         static string GeometryToWkt(GeoPoint point)
         {
-            return GeometryToWkt(point.Coordinates);
+            return GeometryToWkt(point.Entity);
         }
 
         static string GeometryToWkt(GeoLineString lineString)
         {
-            return string.Join(",", lineString.Coordinates.Select(GeometryToWkt));
+            return string.Join(",", lineString.Entities.Select(GeometryToWkt));
         }
 
         static string GeometryToWkt(GeoPolygon polygon)
         {
-            return string.Format("({0})", string.Join("),(", polygon.Coordinates.Select(GeometryToWkt)));
+            return string.Format("({0})", string.Join("),(", polygon.LineStrings.Select(GeometryToWkt)));
         }
 
         static string GeometryToWkt(GeoMultiPoint multiPoint)
         {
-            return string.Format("({0})", string.Join(",", multiPoint.Coordinates.Select(GeometryToWkt)));
+            return string.Format("({0})", string.Join(",", multiPoint.Points.Select(GeometryToWkt)));
         }
 
         static string GeometryToWkt(GeoMultiLineString multiLine)
         {
-            return string.Format("({0})", string.Join("),(", multiLine.Coordinates.Select(GeometryToWkt)));
+            return string.Format("({0})", string.Join("),(", multiLine.LineStrings.Select(GeometryToWkt)));
         }
 
         static string GeometryToWkt(GeoMultiPolygon multiPolygon)

@@ -77,10 +77,10 @@ namespace GeoJSON.Net.Converters
                     // start of polygon
                     writer.WriteStartArray();
 
-                    for (int j = 0; j < polygon.Coordinates.Count; j++)
+                    for (int j = 0; j < polygon.LineStrings.Count; j++)
                     {
-                        var lineString = polygon.Coordinates[j];
-                        var coordinateElements = lineString.Coordinates.OfType<GeoEntity>();
+                        var lineString = polygon.LineStrings[j];
+                        var coordinateElements = lineString.Entities.OfType<GeoEntity>();
                         if (coordinateElements.Any())
                         {
                             // start linear rings of polygon

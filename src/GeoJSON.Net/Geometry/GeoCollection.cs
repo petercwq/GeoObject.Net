@@ -8,22 +8,22 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Converters;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#geometry-collection">GeometryCollection</see> type.
     /// </summary>
+    [DataContract]
     public class GeoCollection : GeoObject
     {
-
         /// <summary>
         /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
-        [JsonProperty(PropertyName = "geometries", Required = Required.Always)]
-        [JsonConverter(typeof(GeometryConverter))]
+        //[JsonProperty(PropertyName = "geometries", Required = Required.Always)]
+        //[JsonConverter(typeof(GeometryConverter))]
+        [DataMember(Name = "geometries", IsRequired = true)]
         public List<IGeoObject> Geometries { get; private set; }
 
         /// <summary>
