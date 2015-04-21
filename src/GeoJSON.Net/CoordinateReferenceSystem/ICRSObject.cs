@@ -12,7 +12,6 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     /// </summary>
     public interface ICRSObject
     {
-
         /// <summary>
         /// Gets the CRS type.
         /// </summary>

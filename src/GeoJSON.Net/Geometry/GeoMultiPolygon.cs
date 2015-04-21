@@ -8,31 +8,60 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Converters;
-using Newtonsoft.Json;
+using System.Runtime.Serialization;
 
 namespace GeoJSON.Net.Geometry
 {
-	/// <summary>
+    /// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#multipolygon">MultiPolygon</see> type.
     /// </summary>
+    [DataContract]
     public class GeoMultiPolygon : GeoObject
     {
         /// <summary>
         /// Gets the list of Polygons enclosed in this MultiPolygon.
         /// </summary>
-        [JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
-        [JsonConverter(typeof(MultiPolygonConverter))]
-        public List<GeoPolygon> Coordinates { get; private set; }
+        //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
+        //[JsonConverter(typeof(MultiPolygonConverter))]
+        [IgnoreDataMember]
+        public List<GeoPolygon> Polygons { get; private set; }
+
+        /// <summary>
+        /// Gets the coordinates
+        /// </summary>
+        [DataMember(Name = "coordinates", IsRequired = true)]
+        public List<List<List<List<double>>>> Coordinates
+        {
+
+            get
+            {
+                List<List<List<List<double>>>> coordinates = new List<List<List<List<double>>>>();
+                foreach (var polygon in Polygons)
+                {
+                    coordinates.Add(polygon.Coordinates);
+                }
+                return coordinates;
+            }
+
+            set
+            {
+                foreach (var list in value)
+                {
+                    var polygon = new GeoPolygon(list);
+                    this.Polygons.Add(polygon);
+                }
+            }
+        }
 
         protected bool Equals(GeoMultiPolygon other)
         {
-            return base.Equals(other) && Coordinates.SequenceEqual(other.Coordinates);
+            return base.Equals(other) && Polygons.SequenceEqual(other.Polygons);
         }
 
-        public GeoMultiPolygon()
-            : this(new List<GeoPolygon>())
+        internal GeoMultiPolygon(List<List<List<List<double>>>> coordinates)
         {
+            this.Coordinates = coordinates;
+            this.Type = GeoObjectType.MultiPolygon;
         }
 
         /// <summary>
@@ -46,7 +75,7 @@ namespace GeoJSON.Net.Geometry
                 throw new ArgumentNullException("polygons");
             }
 
-            Coordinates = polygons;
+            Polygons = polygons;
             Type = GeoObjectType.MultiPolygon;
         }
 
@@ -82,7 +111,7 @@ namespace GeoJSON.Net.Geometry
 
         public override int GetHashCode()
         {
-            return Coordinates.GetHashCode();
+            return Polygons.GetHashCode();
         }
     }
 }

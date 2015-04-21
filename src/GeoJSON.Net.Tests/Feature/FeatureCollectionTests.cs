@@ -39,8 +39,8 @@ namespace GeoJSON.Net.Tests.Feature
             {
                 var geom = new GeoLineString(new[]
                 {
-                    new GeoEntity(51.010, -1.034), 
-                    new GeoEntity(51.010, -0.034)
+                    new GeoEntity(-1.034, 51.010), 
+                    new GeoEntity(-0.034, 51.010)
                 });
 
                 var props = new Dictionary<string, object>

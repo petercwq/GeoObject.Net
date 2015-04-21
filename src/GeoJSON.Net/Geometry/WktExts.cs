@@ -101,7 +101,7 @@ namespace GeoJSON.Net.Geometry
 
         static string GeometryToWkt(GeoMultiPolygon multiPolygon)
         {
-            return string.Format("({0})", string.Join("),(", multiPolygon.Coordinates.Select(GeometryToWkt)));
+            return string.Format("({0})", string.Join("),(", multiPolygon.Polygons.Select(GeometryToWkt)));
         }
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace GeoJSON.Net.Geometry
             values = wkt.Trim('(', ')').Split(' ');
             string z = (values.Length > 2 ? values[2] : null);
             var geopos = new GeoEntity(values[0], values[1], z);
-            return new GeoPoint(geopos);
+            return new GeoPoint() { Entity = geopos };
         }
 
 

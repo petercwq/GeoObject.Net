@@ -10,7 +10,7 @@ namespace GeoJSON.Net.Tests.Geometry
         [Test]
         public void Can_Serialize_With_Lat_Lon()
         {
-            var point = new GeoPoint(new GeoEntity(53.2455662, 90.65464646));
+            var point = new GeoPoint() { Entity = new GeoEntity(90.65464646, 53.2455662) };
 
             var expectedJson = "{\"coordinates\":[90.65464646,53.2455662],\"type\":\"Point\"}";
 
@@ -18,11 +18,14 @@ namespace GeoJSON.Net.Tests.Geometry
 
             JsonAssert.AreEqual(expectedJson, actualJson);
         }
-        
+
         [Test]
         public void Can_Serialize_With_Lat_Lon_Alt()
         {
-            var point = new GeoPoint(new GeoEntity(53.2455662, 90.65464646, 200.4567));
+            var point = new GeoPoint()
+            {
+                Entity = new GeoEntity(90.65464646, 53.2455662, 200.4567)
+            };
 
             var expectedJson = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
@@ -36,7 +39,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662,200.4567],\"type\":\"Point\"}";
 
-            var expectedPoint = new GeoPoint(new GeoEntity(53.2455662, 90.65464646, 200.4567));
+            var expectedPoint = new GeoPoint() { Entity = new GeoEntity(90.65464646, 53.2455662, 200.4567) };
 
             var actualPoint = JsonConvert.DeserializeObject<GeoPoint>(json);
 
@@ -48,7 +51,7 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var json = "{\"coordinates\":[90.65464646,53.2455662],\"type\":\"Point\"}";
 
-            var expectedPoint = new GeoPoint(new GeoEntity(53.2455662, 90.65464646));
+            var expectedPoint = new GeoPoint() { Entity = new GeoEntity(90.65464646, 53.2455662) };
 
             var actualPoint = JsonConvert.DeserializeObject<GeoPoint>(json);
 

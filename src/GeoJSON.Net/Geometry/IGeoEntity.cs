@@ -5,10 +5,12 @@
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
+using System;
+
 namespace GeoJSON.Net.Geometry
 {
     //[JsonArray]
-    public interface IGeoEntity
+    public interface IGeoEntity : IEquatable<IGeoEntity>
     {
         /// <summary>
         /// Gets the x.
@@ -26,7 +28,5 @@ namespace GeoJSON.Net.Geometry
         /// Gets the z.
         /// </summary>
         double? Z { get; }
-
-        bool Equals(IGeoEntity position);
     }
 }

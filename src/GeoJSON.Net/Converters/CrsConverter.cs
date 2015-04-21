@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 
 namespace GeoJSON.Net.Converters
 {
-	/// <summary>
+    /// <summary>
     /// Converts <see cref="ICRSObject" /> types to and from JSON.
     /// </summary>
     public class CrsConverter : JsonConverter
@@ -49,7 +49,7 @@ namespace GeoJSON.Net.Converters
         {
             if (reader.TokenType == JsonToken.Null)
             {
-                return new UnspecifiedCRS();
+                return null;
             }
             if (reader.TokenType != JsonToken.StartObject)
             {
@@ -109,9 +109,6 @@ namespace GeoJSON.Net.Converters
                     break;
                 case CRSType.Link:
                     serializer.Serialize(writer, value);
-                    break;
-                case CRSType.Unspecified:
-                    writer.WriteNull();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

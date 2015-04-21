@@ -13,10 +13,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(52.370725881211314, 4.889259338378906),
-                new GeoEntity(52.3711451105601, 4.895267486572266),
-                new GeoEntity(52.36931095278263, 4.892091751098633),
-                new GeoEntity(52.370725881211314, 4.889259338378906)
+                new GeoEntity(4.889259338378906, 52.370725881211314),
+                new GeoEntity(4.895267486572266, 52.3711451105601),
+                new GeoEntity(4.892091751098633, 52.36931095278263),
+                new GeoEntity(4.889259338378906, 52.370725881211314)
             };
 
             var lineString = new GeoLineString(coordinates);
@@ -29,10 +29,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(52.370725881211314, 4.889259338378906),
-                new GeoEntity(52.3711451105601, 4.895267486572266),
-                new GeoEntity(52.36931095278263, 4.892091751098633),
-                new GeoEntity(52.370725881211592, 4.889259338378955)
+                new GeoEntity(4.889259338378906, 52.370725881211314),
+                new GeoEntity(4.895267486572266, 52.3711451105601),
+                new GeoEntity(4.892091751098633, 52.36931095278263),
+                new GeoEntity(4.889259338378955, 52.370725881211592)
             };
 
             var lineString = new GeoLineString(coordinates);
@@ -45,10 +45,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(52.370725881211314, 4.889259338378906),
-                new GeoEntity(52.3711451105601, 4.895267486572266),
-                new GeoEntity(52.36931095278263, 4.892091751098633),
-                new GeoEntity(52.370725881211314, 4.889259338378906)
+                new GeoEntity(4.889259338378906, 52.370725881211314),
+                new GeoEntity(4.895267486572266, 52.3711451105601),
+                new GeoEntity(4.892091751098633, 52.36931095278263),
+                new GeoEntity(4.889259338378906, 52.370725881211314)
             };
 
             var lineString = new GeoLineString(coordinates);
@@ -63,10 +63,10 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var coordinates = new List<GeoEntity>
             {
-                new GeoEntity(52.370725881211314, 4.889259338378906),
-                new GeoEntity(52.3711451105601, 4.895267486572266),
-                new GeoEntity(52.36931095278263, 4.892091751098633),
-                new GeoEntity(52.370725881211314, 4.889259338378906)
+                new GeoEntity(4.889259338378906, 52.370725881211314),
+                new GeoEntity(4.895267486572266, 52.3711451105601),
+                new GeoEntity(4.892091751098633, 52.36931095278263),
+                new GeoEntity(4.889259338378906, 52.370725881211314)
             };
 
             var expectedLineString = new GeoLineString(coordinates);

@@ -40,7 +40,11 @@ namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
         [Test]
         public void Can_Serialize()
         {
-            var collection = new GeoPoint(new GeoEntity(1, 2, 3)) { CRS = new LinkedCRS(Href) };
+            var collection = new GeoPoint()
+            {
+                Entity = new GeoEntity(2, 1, 3),
+                CRS = new LinkedCRS(Href)
+            };
             var actualJson = JsonConvert.SerializeObject(collection);
 
             JsonAssert.Contains("{\"properties\":{\"href\":\"http://localhost\"},\"type\":\"Link\"}", actualJson);

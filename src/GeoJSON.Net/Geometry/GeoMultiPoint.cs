@@ -24,6 +24,7 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Coordinates.</value>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(MultiPointConverter))]
+        [IgnoreDataMember]
         public List<GeoPoint> Points { get; private set; }
 
         /// <summary>
@@ -54,9 +55,9 @@ namespace GeoJSON.Net.Geometry
             }
         }
 
-        internal GeoMultiPoint()
+        internal GeoMultiPoint(List<List<double>> coordinates)
         {
-            this.Points = new List<GeoPoint>();
+            this.Coordinates = coordinates;
             this.Type = GeoObjectType.MultiPoint;
         }
 

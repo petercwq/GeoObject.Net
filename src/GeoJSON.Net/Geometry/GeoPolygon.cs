@@ -28,8 +28,8 @@ namespace GeoJSON.Net.Geometry
         /// </summary>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(PolygonConverter))]
+        [IgnoreDataMember]
         public List<GeoLineString> LineStrings { get; set; }
-
 
         /// <summary>
         /// Gets the coordinates
@@ -51,8 +51,7 @@ namespace GeoJSON.Net.Geometry
             {
                 foreach (var list in value)
                 {
-                    var linestring = new GeoLineString();
-                    linestring.Coordinates = list;
+                    var linestring = new GeoLineString(list);
                     this.LineStrings.Add(linestring);
                 }
             }
@@ -61,9 +60,9 @@ namespace GeoJSON.Net.Geometry
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoPolygon"/> class.
         /// </summary>
-        internal GeoPolygon()
+        internal GeoPolygon(List<List<List<double>>> coordinates)
         {
-            this.LineStrings = new List<GeoLineString>();
+            this.Coordinates = coordinates;
             this.Type = GeoObjectType.Polygon;
         }
 

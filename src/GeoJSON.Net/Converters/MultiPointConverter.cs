@@ -14,7 +14,7 @@ using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Converters
 {
-	/// <summary>
+    /// <summary>
     /// 
     /// </summary>
     public class MultiPointConverter : JsonConverter
@@ -42,7 +42,7 @@ namespace GeoJSON.Net.Converters
                         z = coordinate[2];
                     }
 
-                    positions.Add(new GeoPoint(new GeoEntity(y, x, z)));
+                    positions.Add(new GeoPoint() { Entity = new GeoEntity(x, y, z) });
                 }
 
                 return positions;

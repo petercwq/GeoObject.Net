@@ -14,11 +14,6 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     public enum CRSType
     {
         /// <summary>
-        /// Defines a CRS type where the CRS cannot be assumed
-        /// </summary>
-        Unspecified,
-
-        /// <summary>
         /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#named-crs">Named</see> CRS type.
         /// </summary>
         Name,

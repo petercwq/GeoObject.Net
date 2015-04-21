@@ -23,12 +23,12 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Coordinates.</value>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(PolygonConverter))]
+        [IgnoreDataMember]
         public List<GeoLineString> LineStrings { get; private set; }
 
         [DataMember(Name = "coordinates", IsRequired = true)]
         public List<List<List<double>>> Coordinates
         {
-
             get
             {
                 List<List<List<double>>> coordinates = new List<List<List<double>>>();
@@ -43,7 +43,7 @@ namespace GeoJSON.Net.Geometry
             {
                 foreach (var list in value)
                 {
-                    var linestring = new GeoLineString() { Coordinates = list };
+                    var linestring = new GeoLineString(list);
                     this.LineStrings.Add(linestring);
                 }
             }

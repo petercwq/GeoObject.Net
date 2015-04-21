@@ -39,14 +39,6 @@ namespace GeoJSON.Net.Geometry
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoCollection" /> class.
         /// </summary>
-        public GeoCollection()
-            : this(new List<IGeoObject>())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GeoCollection" /> class.
-        /// </summary>
         /// <param name="geometries">The geometries contained in this GeometryCollection.</param>
         public GeoCollection(List<IGeoObject> geometries)
         {

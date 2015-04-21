@@ -24,6 +24,7 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Positions.</value>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(LineStringConverter))]
+        [IgnoreDataMember]
         public List<IGeoEntity> Entities { get; set; }
 
         /// <summary>
@@ -42,12 +43,15 @@ namespace GeoJSON.Net.Geometry
                     xyz.Add(entity.Y);
                     if (entity.Z.HasValue)
                         xyz.Add(entity.Z.Value);
+                    coordinates.Add(xyz);
                 }
                 return coordinates;
             }
 
             set
             {
+                if (Entities == null)
+                    Entities = new List<IGeoEntity>(value.Count);
                 foreach (var positions in value)
                 {
                     IGeoEntity entity;
@@ -81,9 +85,9 @@ namespace GeoJSON.Net.Geometry
         /// <summary>
         /// Initializes a new instance of the <see cref="GeoLineString"/> class.
         /// </summary>
-        internal GeoLineString()
+        internal GeoLineString(List<List<double>> coordinates)
         {
-            this.Entities = new List<IGeoEntity>();
+            this.Coordinates = coordinates;
             this.Type = GeoObjectType.LineString;
         }
 

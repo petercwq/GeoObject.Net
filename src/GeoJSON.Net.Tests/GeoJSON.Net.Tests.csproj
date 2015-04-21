@@ -51,7 +51,6 @@
     <Compile Include="CoordinateReferenceSystem\DefaultCrsTests.cs" />
     <Compile Include="CoordinateReferenceSystem\LinkedCRSTests.cs" />
     <Compile Include="CoordinateReferenceSystem\NamedCrsTests.cs" />
-    <Compile Include="CoordinateReferenceSystem\UnspecifiedCRSTests.cs" />
     <Compile Include="Feature\FeatureCollectionTests.cs" />
     <Compile Include="Feature\FeatureTests.cs" />
     <Compile Include="Geometry\GeometryTests.cs" />

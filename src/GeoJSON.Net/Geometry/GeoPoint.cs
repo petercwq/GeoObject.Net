@@ -24,6 +24,7 @@ namespace GeoJSON.Net.Geometry
         /// <value>The Coordinates.</value>
         //[JsonProperty(PropertyName = "coordinates", Required = Required.Always)]
         //[JsonConverter(typeof(PointConverter))]
+        [IgnoreDataMember]
         public IGeoEntity Entity { get; set; }
 
         /// <summary>
@@ -57,26 +58,31 @@ namespace GeoJSON.Net.Geometry
             }
         }
 
-        internal GeoPoint()
+        public GeoPoint()
         {
-            this.Entity = null;
             this.Type = GeoObjectType.Point;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Point"/> class.
-        /// </summary>
-        /// <param name="entity">The Position.</param>
-        public GeoPoint(IGeoEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
+        //internal GeoPoint(List<double> coordinates)
+        //    : this()
+        //{
+        //    this.Coordinates = coordinates;
+        //}
 
-            this.Entity = entity;
-            this.Type = GeoObjectType.Point;
-        }
+        ///// <summary>
+        ///// Initializes a new instance of the <see cref="Point"/> class.
+        ///// </summary>
+        ///// <param name="entity">The Position.</param>
+        //public GeoPoint(IGeoEntity entity)
+        //    : this()
+        //{
+        //    if (entity == null)
+        //    {
+        //        throw new ArgumentNullException("entity");
+        //    }
+
+        //    this.Entity = entity;
+        //}
 
         protected bool Equals(GeoPoint other)
         {

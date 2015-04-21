@@ -73,12 +73,12 @@ namespace GeoJSON.Net.Tests.Geometry
         {
             var geo = Wkt_MultiPolygon1.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPolygon);
-            Assert.AreEqual((geo as GeoMultiPolygon).Coordinates.Count, 2);
+            Assert.AreEqual((geo as GeoMultiPolygon).Polygons.Count, 2);
 
             geo = Wkt_MultiPolygon2.ToGeometry();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPolygon);
-            Assert.AreEqual((geo as GeoMultiPolygon).Coordinates.Count, 2);
-            Assert.AreEqual((geo as GeoMultiPolygon).Coordinates[1].LineStrings.Count, 2);
+            Assert.AreEqual((geo as GeoMultiPolygon).Polygons.Count, 2);
+            Assert.AreEqual((geo as GeoMultiPolygon).Polygons[1].LineStrings.Count, 2);
         }
 
         [Test]

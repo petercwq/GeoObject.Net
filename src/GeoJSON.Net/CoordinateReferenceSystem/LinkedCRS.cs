@@ -15,7 +15,6 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     /// </summary>
     public class LinkedCRS : CRSBase, ICRSObject
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LinkedCRS" /> class.
         /// </summary>

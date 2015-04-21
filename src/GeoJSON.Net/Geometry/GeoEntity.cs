@@ -7,7 +7,6 @@
 
 using System;
 using System.Globalization;
-using System.Linq;
 
 namespace GeoJSON.Net.Geometry
 {
@@ -21,7 +20,7 @@ namespace GeoJSON.Net.Geometry
     /// </summary>
     public class GeoEntity : IGeoEntity
     {
-        private static readonly NullableDoubleTenDecimalPlaceComparer DoubleComparer = new NullableDoubleTenDecimalPlaceComparer();
+        //private static readonly NullableDoubleTenDecimalPlaceComparer DoubleComparer = new NullableDoubleTenDecimalPlaceComparer();
 
         /// <summary>
         /// Gets or sets the coordinates, is a 2-size array
@@ -29,7 +28,7 @@ namespace GeoJSON.Net.Geometry
         /// <value>
         /// The coordinates.
         /// </value>
-        private double?[] coordinates { get; set; }
+        private double?[] coordinates;
 
         /// <summary>
         /// Gets the x.
@@ -79,42 +78,14 @@ namespace GeoJSON.Net.Geometry
         //}
 
         /// <summary>
-        /// Prevents a default instance of the <see cref="GeoEntity" /> class from being created.
-        /// </summary>
-        private GeoEntity()
-        {
-            coordinates = new double?[3];
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="GeoEntity" />, is equal to this instance.
-        /// </summary>
-        /// <param name="other">The <see cref="GeoEntity" /> to compare with this instance.</param>
-        /// <returns>
-        ///   <c>true</c> if the specified <see cref="GeoEntity" /> is equal to this instance; otherwise, <c>false</c>.
-        /// </returns>
-        protected bool Equals(GeoEntity other)
-        {
-            return coordinates.SequenceEqual(other.coordinates, DoubleComparer);
-        }
-
-        public bool Equals(IGeoEntity pos)
-        {
-            if (pos == null || !(pos is GeoEntity))
-                return false;
-            else
-                return Equals(pos as GeoEntity);
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GeoEntity" /> class.
         /// </summary>
         /// <param name="y">The y.</param>
         /// <param name="x">The x.</param>
         /// <param name="z">The z in m(eter).</param>
         public GeoEntity(double x, double y, double? z = null)
-            : this()
         {
+            coordinates = new double?[3];
             Y = y;
             X = x;
             Z = z;
@@ -127,8 +98,9 @@ namespace GeoJSON.Net.Geometry
         /// <param name="y">The y, in degree when use X, in meters when use Easting, e.g. '38.889722'.</param>
         /// <param name="z">The z in m(eters).</param>
         public GeoEntity(string x, string y, string z = null)
-            : this()
         {
+            coordinates = new double?[3];
+
             if (y == null)
             {
                 throw new ArgumentNullException("y");
@@ -201,6 +173,23 @@ namespace GeoJSON.Net.Geometry
         public static bool operator ==(GeoEntity left, GeoEntity right)
         {
             return Equals(left, right);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="GeoEntity" />, is equal to this instance.
+        /// </summary>
+        /// <param name="other">The <see cref="GeoEntity" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="GeoEntity" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public bool Equals(IGeoEntity other)
+        {
+            if (other is GeoEntity
+                && double.Equals(other.X, this.X)
+                && double.Equals(other.Y, this.Y)
+                && ((other.Z == null && this.Z == null) || double.Equals(other.Z, this.Z)))
+                return true;
+            return false;
         }
 
         /// <summary>

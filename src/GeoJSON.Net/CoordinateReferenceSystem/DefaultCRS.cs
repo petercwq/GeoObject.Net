@@ -14,7 +14,6 @@ namespace GeoJSON.Net.CoordinateReferenceSystem
     /// </summary>
     public class DefaultCRS : NamedCRS
     {
-
         /// <summary>
         /// The CRS
         /// </summary>

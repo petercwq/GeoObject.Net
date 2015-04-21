@@ -7,29 +7,29 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
 namespace GeoJSON.Net.Feature
 {
-	/// <summary>
+    /// <summary>
     /// Defines the FeatureCollection type.
     /// </summary>
+    [DataContract]
     public class FeatureCollection : GeoObject
     {
-
         /// <summary>
         /// Gets the features.
         /// </summary>
         /// <value>The features.</value>
-        [JsonProperty(PropertyName = "features", Required = Required.Always)]
+        //[JsonProperty(PropertyName = "features", Required = Required.Always)]
+        [DataMember(Name = "features", IsRequired = true, EmitDefaultValue = true)]
         public List<Feature> Features { get; private set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FeatureCollection" /> class.
-        /// </summary>
         public FeatureCollection()
-            : this(new List<Feature>())
         {
+            Type = GeoObjectType.FeatureCollection;
+            Features = new List<Feature>();
         }
 
         /// <summary>

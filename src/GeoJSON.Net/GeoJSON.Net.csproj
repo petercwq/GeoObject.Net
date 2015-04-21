@@ -50,7 +50,6 @@
     <Compile Include="CoordinateReferenceSystem\ICRSObject.cs" />
     <Compile Include="CoordinateReferenceSystem\LinkedCRS.cs" />
     <Compile Include="CoordinateReferenceSystem\NamedCRS.cs" />
-    <Compile Include="CoordinateReferenceSystem\UnspecifiedCRS.cs" />
     <Compile Include="DoubleComparers.cs" />
     <Compile Include="Exceptions\ParsingException.cs" />
     <Compile Include="Feature\Feature.cs" />
