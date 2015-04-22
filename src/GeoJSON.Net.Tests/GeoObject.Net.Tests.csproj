@@ -8,8 +8,8 @@
     <ProjectGuid>{6C93B314-9208-4684-B873-172F7EC81689}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeoJSON.Net.Tests</RootNamespace>
-    <AssemblyName>GeoJSON.Net.Tests</AssemblyName>
+    <RootNamespace>GeoObject.Net.Tests</RootNamespace>
+    <AssemblyName>GeoObject.Net.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -136,9 +136,9 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeoJSON.Net\GeoJSON.Net.csproj">
+    <ProjectReference Include="..\GeoJSON.Net\GeoObject.Net.csproj">
       <Project>{7c0d45ed-681e-4dec-9910-bae1211e4889}</Project>
-      <Name>GeoJSON.Net</Name>
+      <Name>GeoObject.Net</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
