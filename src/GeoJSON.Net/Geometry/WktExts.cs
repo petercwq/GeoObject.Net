@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace GeoJSON.Net.Geometry
+namespace GeoObject.Net.Geometry
 {
     public static class WktExts
     {

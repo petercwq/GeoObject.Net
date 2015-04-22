@@ -8,10 +8,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using Newtonsoft.Json;
 
-namespace GeoJSON.Net.Converters
+namespace GeoObject.Net.Converters
 {
     /// <summary>
     /// 

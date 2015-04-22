@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace GeoJSON.Net.CoordinateReferenceSystem
+namespace GeoObject.Net.CoordinateReferenceSystem
 {
 	/// <summary>
     /// Defines the <see cref="!:http://geojson.org/geojson-spec.html#named-crs">Named CRS type</see>.

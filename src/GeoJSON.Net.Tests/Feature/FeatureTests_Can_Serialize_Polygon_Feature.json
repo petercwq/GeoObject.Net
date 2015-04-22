@@ -1,6 +1,6 @@
 ﻿{
     "geometry": {
-        "__type": "GeoJSON.Net.Geometry.GeoPolygon, GeoJSON.Net",
+        "__type": "GeoObject.Net.Geometry.GeoPolygon, GeoObject.Net",
         "coordinates": [
             [
                 [ 4.889259338378, 52.37072588121 ],

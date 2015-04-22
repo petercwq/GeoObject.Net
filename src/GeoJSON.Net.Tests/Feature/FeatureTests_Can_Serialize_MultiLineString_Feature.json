@@ -1,7 +1,7 @@
 ﻿{
     "type": "Feature",
     "geometry": {
-        "__type": "GeoJSON.Net.Geometry.GeoMultiLineString, GeoJSON.Net",
+        "__type": "GeoObject.Net.Geometry.GeoMultiLineString, GeoObject.Net",
         "coordinates": [
             [
                 [ 4.88925933837, 52.3707258812 ],

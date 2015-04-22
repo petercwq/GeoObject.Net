@@ -7,7 +7,7 @@
 
 using System.Runtime.Serialization;
 
-namespace GeoJSON.Net.CoordinateReferenceSystem
+namespace GeoObject.Net.CoordinateReferenceSystem
 {
     /// <summary>
     /// Defines the GeoJSON Coordinate Reference System Objects (CRS) types as defined in the

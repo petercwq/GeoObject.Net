@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace GeoJSON.Net.Feature
+namespace GeoObject.Net.Feature
 {
     /// <summary>
     /// Defines the FeatureCollection type.

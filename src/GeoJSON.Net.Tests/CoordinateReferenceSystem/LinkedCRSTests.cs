@@ -1,10 +1,10 @@
 using System;
-using GeoJSON.Net.CoordinateReferenceSystem;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.CoordinateReferenceSystem;
+using GeoObject.Net.Geometry;
 using ServiceStack.Text;
 using NUnit.Framework;
 
-namespace GeoJSON.Net.Tests.CoordinateReferenceSystem
+namespace GeoObject.Net.Tests.CoordinateReferenceSystem
 {
     [TestFixture]
     public class LinkedCRSTests : TestBase

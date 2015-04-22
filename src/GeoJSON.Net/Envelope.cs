@@ -6,10 +6,10 @@ using System;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using BitConverter = System.BitConverter;
 
-namespace GeoJSON.Net
+namespace GeoObject.Net
 {
     /// <summary>
     /// Interface describing objects that can expand themselves by objects of type <typeparamref name="T"/>.

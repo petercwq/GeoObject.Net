@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using ServiceStack.Text;
 using NUnit.Framework;
 
-namespace GeoJSON.Net.Tests.Geometry
+namespace GeoObject.Net.Tests.Geometry
 {
     [TestFixture]
     public class MultiPolygonTests : TestBase

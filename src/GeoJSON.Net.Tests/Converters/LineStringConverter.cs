@@ -7,11 +7,11 @@
 
 using System;
 using System.Collections.Generic;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GeoJSON.Net.Converters
+namespace GeoObject.Net.Converters
 {
 	/// <summary>
     /// Converter to read and write the <see cref="GeoLineString" /> type.

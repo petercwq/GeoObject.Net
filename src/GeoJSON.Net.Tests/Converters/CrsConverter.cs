@@ -6,11 +6,11 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
-using GeoJSON.Net.CoordinateReferenceSystem;
+using GeoObject.Net.CoordinateReferenceSystem;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GeoJSON.Net.Converters
+namespace GeoObject.Net.Converters
 {
     /// <summary>
     /// Converts <see cref="ICRSObject" /> types to and from JSON.

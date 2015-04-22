@@ -6,7 +6,7 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System.Runtime.Serialization;
-namespace GeoJSON.Net.CoordinateReferenceSystem
+namespace GeoObject.Net.CoordinateReferenceSystem
 {
 	/// <summary>
     /// The default CRS is a geographic coordinate reference system,

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace GeoJSON.Net.Geometry
+namespace GeoObject.Net.Geometry
 {
     /// <summary>
     /// In geography, a point refers to a Position on a map, expressed in y and x.

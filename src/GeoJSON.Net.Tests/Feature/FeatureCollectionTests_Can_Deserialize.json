@@ -4,7 +4,7 @@
         {
             "type": "Feature",
             "geometry": {
-                "__type": "GeoJSON.Net.Geometry.GeoPoint, GeoJSON.Net",
+                "__type": "GeoObject.Net.Geometry.GeoPoint, GeoObject.Net",
                 "type": "Point",
                 "coordinates": [ 102.0, 0.5 ]
             },
@@ -18,7 +18,7 @@
                 "name": "DD"
             },
             "geometry": {
-                "__type": "GeoJSON.Net.Geometry.GeoMultiPolygon, GeoJSON.Net",
+                "__type": "GeoObject.Net.Geometry.GeoMultiPolygon, GeoObject.Net",
                 "type": "MultiPolygon",
                 "coordinates": [
                     [
@@ -60,7 +60,7 @@
         {
             "type": "Feature",
             "geometry": {
-                "__type": "GeoJSON.Net.Geometry.GeoPolygon, GeoJSON.Net",
+                "__type": "GeoObject.Net.Geometry.GeoPolygon, GeoObject.Net",
                 "type": "Polygon",
                 "coordinates": [
                     [

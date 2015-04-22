@@ -2,7 +2,7 @@
     "type": "Feature",
     "id": "test-id",
     "geometry": {
-        "__type": "GeoJSON.Net.Geometry.GeoPoint, GeoJSON.Net",
+        "__type": "GeoObject.Net.Geometry.GeoPoint, GeoObject.Net",
         "type": "Point",
         "coordinates": [ 125.6, 10.1 ]
     },

@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 
-namespace GeoJSON.Net.Feature
+namespace GeoObject.Net.Feature
 {
     /// <summary>
     /// A GeoJSON <see cref="!:http://geojson.org/geojson-spec.html#feature-objects">Feature Object</see>.

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace GeoJSON.Net.Geometry
+namespace GeoObject.Net.Geometry
 {
     /// <summary>
     /// A position is the fundamental geometry construct. 

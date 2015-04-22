@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GeoJSON.Net
+namespace GeoObject.Net
 {
 	/// <summary>
     /// Compares doubles for equality.

@@ -8,11 +8,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GeoJSON.Net.Converters
+namespace GeoObject.Net.Converters
 {
 	/// <summary>
     /// Converts <see cref="IGeoJsonObject"/> types to and from JSON.

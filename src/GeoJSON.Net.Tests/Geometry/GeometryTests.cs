@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using ServiceStack.Text;
 
-namespace GeoJSON.Net.Tests.Geometry
+namespace GeoObject.Net.Tests.Geometry
 {
     [TestFixture]
     public class GeometryTests : TestBase

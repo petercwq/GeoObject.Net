@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace GeoJSON.Net.CoordinateReferenceSystem
+namespace GeoObject.Net.CoordinateReferenceSystem
 {
     /// <summary>
     /// Base class for all IGeometryObject implementing types

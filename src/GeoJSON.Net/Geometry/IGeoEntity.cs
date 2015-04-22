@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GeoJSON.Net.Geometry
+namespace GeoObject.Net.Geometry
 {
     //[JsonArray]
     public interface IGeoEntity : IEquatable<IGeoEntity>

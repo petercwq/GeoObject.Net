@@ -6,10 +6,10 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 using Newtonsoft.Json;
 
-namespace GeoJSON.Net.Converters
+namespace GeoObject.Net.Converters
 {
     /// <summary>
     /// Converter to read and write the <see cref="GeoPoint" /> type.

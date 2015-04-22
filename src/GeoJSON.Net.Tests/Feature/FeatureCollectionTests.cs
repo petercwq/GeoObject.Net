@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Feature;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Feature;
+using GeoObject.Net.Geometry;
 using NUnit.Framework;
 using ServiceStack.Text;
 
-namespace GeoJSON.Net.Tests.Feature
+namespace GeoObject.Net.Tests.Feature
 {
     [TestFixture]
     public class FeatureCollectionTests : TestBase

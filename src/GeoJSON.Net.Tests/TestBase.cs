@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using GeoJSON.Net.Geometry;
+using GeoObject.Net.Geometry;
 
-namespace GeoJSON.Net.Tests
+namespace GeoObject.Net.Tests
 {
     public abstract class TestBase
     {

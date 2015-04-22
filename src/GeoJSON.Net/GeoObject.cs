@@ -6,9 +6,9 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System.Runtime.Serialization;
-using GeoJSON.Net.CoordinateReferenceSystem;
+using GeoObject.Net.CoordinateReferenceSystem;
 
-namespace GeoJSON.Net
+namespace GeoObject.Net
 {
     /// <summary>
     /// Base class for all IGeometryObject implementing types

@@ -1,6 +1,6 @@
 ﻿{
     "geometry": {
-        "__type":"GeoJSON.Net.Geometry.GeoLineString, GeoJSON.Net",
+        "__type":"GeoObject.Net.Geometry.GeoLineString, GeoObject.Net",
         "coordinates": [
             [ 4.88925933837, 52.37072588121 ],
             [ 4.89526748657, 52.371145110 ],

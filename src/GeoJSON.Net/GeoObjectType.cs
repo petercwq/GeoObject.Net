@@ -6,7 +6,7 @@
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
 using System.Runtime.Serialization;
-namespace GeoJSON.Net
+namespace GeoObject.Net
 {
     /// <summary>
     /// Defines the GeoJSON Objects types as defined in the <see cref="!:http://geojson.org/geojson-spec.html#geojson-objects">geojson.org v1.0 spec</see>.
