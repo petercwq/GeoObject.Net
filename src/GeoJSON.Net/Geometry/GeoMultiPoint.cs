@@ -109,5 +109,18 @@ namespace GeoJSON.Net.Geometry
         {
             return Points.GetHashCode();
         }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Points == null)
+                return null;
+
+            var env = new Envelope();
+            foreach (var p in Points)
+            {
+                env.ExpandToInclude(p.BoundingBox);
+            }
+            return env;
+        }
     }
 }

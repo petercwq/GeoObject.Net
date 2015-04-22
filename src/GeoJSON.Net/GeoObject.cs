@@ -5,8 +5,6 @@
 //  Adapted from GeoJSON.Net https://github.com/jbattermann/GeoJSON.Net
 //  Copyright © 2014 Jörg Battermann & Other Contributors
 
-using System;
-using System.Linq;
 using System.Runtime.Serialization;
 using GeoJSON.Net.CoordinateReferenceSystem;
 
@@ -19,11 +17,31 @@ namespace GeoJSON.Net
     [DataContract]
     [KnownType(typeof(LinkedCRS))]
     [KnownType(typeof(NamedCRS))]
-    public abstract class GeoObject : IGeoObject
+    public abstract class GeoObject //: IGeoJsonObject
     {
         //internal static readonly DoubleTenDecimalPlaceComparer DoubleComparer = new DoubleTenDecimalPlaceComparer();
 
-        //protected double[] box;
+        /// <summary>
+        /// The bounding box of this <c>Geometry</c>.
+        /// </summary>
+        private Envelope _envelope;
+
+        [IgnoreDataMember]
+        public Envelope BoundingBox
+        {
+            get
+            {
+                if (_envelope == null)
+                    _envelope = ComputeBoxInternal();
+                if (_envelope == null)
+                    _envelope = new Envelope();
+                return _envelope;
+            }
+            set
+            {
+                _envelope = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the (optional)
@@ -38,23 +56,28 @@ namespace GeoJSON.Net
         /// </value>
         // [JsonProperty(PropertyName = "bbox", Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
         [DataMember(Name = "bbox", EmitDefaultValue = false, IsRequired = false)]
-        public double[] BoundingBoxes
+        internal double[] JsonBox
         {
-            get;
-            set;
-            //get
-            //{
-            //    if (box == null)
-            //        box = ComputeBoxInternal();
-            //    return (double[])box.Clone();
-            //}
-            //set
-            //{
-            //    box = value;
-            //}
-        }
+            get
+            {
+                return _envelope == null ? null : _envelope.JsonBox;
+            }
+            set
+            {
+                if (_envelope == null)
+                    _envelope = new Envelope();
 
-        //protected abstract double[] ComputeBoxInternal();
+                if (value != null && value.Length > 3)
+                {
+                    _envelope.Init(value[0], value[2], value[1], value[3]);
+
+                }
+                else
+                {
+                    _envelope.SetToNull();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the (optional)
@@ -91,6 +114,8 @@ namespace GeoJSON.Net
         //    set { this.Type = (GeoObjectType)Enum.Parse(typeof(GeoObjectType), value, true); }
         //}
 
+        protected abstract Envelope ComputeBoxInternal();
+
         //protected GeoObject()
         //{
         //    // CRS = DefaultCRS.Instance;
@@ -115,18 +140,12 @@ namespace GeoJSON.Net
                 return false;
             }
 
-            if (BoundingBoxes == null && other.BoundingBoxes == null)
-            {
-                return true;
-            }
-
-            if ((BoundingBoxes != null && other.BoundingBoxes == null) ||
-                (BoundingBoxes == null && other.BoundingBoxes != null))
+            if (!Equals(_envelope, other._envelope))
             {
                 return false;
             }
 
-            return BoundingBoxes.SequenceEqual(other.BoundingBoxes);
+            return true;
         }
 
         ///// <summary>
@@ -231,7 +250,7 @@ namespace GeoJSON.Net
         {
             unchecked
             {
-                var hashCode = (BoundingBoxes != null ? BoundingBoxes.GetHashCode() : 0);
+                var hashCode = (_envelope != null ? _envelope.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (CRS != null ? CRS.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (int)Type;
                 return hashCode;

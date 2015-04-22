@@ -24,7 +24,7 @@ namespace GeoJSON.Net.Geometry
         //[JsonProperty(PropertyName = "geometries", Required = Required.Always)]
         //[JsonConverter(typeof(GeometryConverter))]
         [DataMember(Name = "geometries", IsRequired = true)]
-        public List<IGeoObject> Geometries { get; private set; }
+        public List<GeoObject> Geometries { get; private set; }
 
         /// <summary>
         /// Determines whether the specified <see cref="GeoCollection"/>, is equal to this instance.
@@ -40,7 +40,7 @@ namespace GeoJSON.Net.Geometry
         /// Initializes a new instance of the <see cref="GeoCollection" /> class.
         /// </summary>
         /// <param name="geometries">The geometries contained in this GeometryCollection.</param>
-        public GeoCollection(List<IGeoObject> geometries)
+        public GeoCollection(List<GeoObject> geometries)
         {
             if (geometries == null)
             {
@@ -113,6 +113,19 @@ namespace GeoJSON.Net.Geometry
         public override int GetHashCode()
         {
             return Geometries.GetHashCode();
+        }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Geometries == null)
+                return null;
+
+            var env = new Envelope();
+            foreach (var g in Geometries)
+            {
+                env.ExpandToInclude(g.BoundingBox);
+            }
+            return env;
         }
     }
 }

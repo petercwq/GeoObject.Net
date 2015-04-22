@@ -8,7 +8,7 @@ namespace GeoJSON.Net.Tests
 {
     public abstract class TestBase
     {
-        protected IEnumerable<IGeoObject> Geometries
+        protected IEnumerable<GeoObject> Geometries
         {
             get
             {
@@ -98,7 +98,7 @@ namespace GeoJSON.Net.Tests
                 yield return multiLineString;
                 yield return polygon;
                 yield return multiPolygon;
-                yield return new GeoCollection(new List<IGeoObject>
+                yield return new GeoCollection(new List<GeoObject>
                 {
                     point,
                     multiPoint,

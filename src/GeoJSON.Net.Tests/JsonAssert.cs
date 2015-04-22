@@ -1,7 +1,6 @@
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
-using ServiceStack.Text;
 
 namespace GeoJSON.Net.Tests
 {

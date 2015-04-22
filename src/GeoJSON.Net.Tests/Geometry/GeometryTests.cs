@@ -8,11 +8,11 @@ namespace GeoJSON.Net.Tests.Geometry
     {
         [Test]
         [TestCaseSource("Geometries")]
-        public void Can_Serialize_And_Deserialize_Geometry(IGeoObject geometry)
+        public void Can_Serialize_And_Deserialize_Geometry(GeoObject geometry)
         {
             var json = JsonSerializer.SerializeToString(geometry);
 
-            var deserializedGeometry = JsonSerializer.DeserializeFromString<IGeoObject>(json
+            var deserializedGeometry = JsonSerializer.DeserializeFromString<GeoObject>(json
                 //, new GeometryConverter()
                 );
 
@@ -38,7 +38,7 @@ namespace GeoJSON.Net.Tests.Geometry
 
         [Test]
         [TestCaseSource("Geometries")]
-        public void Can_Serialize_And_Deserialize_Geometry_As_Object_Property(IGeoObject geometry)
+        public void Can_Serialize_And_Deserialize_Geometry_As_Object_Property(GeoObject geometry)
         {
             var classWithGeometry = new ClassWithGeometryProperty(geometry);
 
@@ -49,15 +49,22 @@ namespace GeoJSON.Net.Tests.Geometry
             Assert.AreEqual(classWithGeometry, deserializedClassWithGeometry);
         }
 
+        [Test]
+        [TestCaseSource("Geometries")]
+        public void Has_Bounding_Box(GeoObject geometry)
+        {
+            Assert.IsTrue(!geometry.BoundingBox.IsNull);
+        }
+
         private class ClassWithGeometryProperty
         {
-            public ClassWithGeometryProperty(IGeoObject geometry)
+            public ClassWithGeometryProperty(GeoObject geometry)
             {
                 Geometry = geometry;
             }
 
             // [JsonConverter(typeof(GeometryConverter))]
-            public IGeoObject Geometry { get; private set; }
+            public GeoObject Geometry { get; private set; }
 
             /// <summary>
             /// Determines whether the specified <see cref="T:System.Object" /> is equal to the current

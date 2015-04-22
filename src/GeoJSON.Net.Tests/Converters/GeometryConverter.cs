@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 namespace GeoJSON.Net.Converters
 {
 	/// <summary>
-    /// Converts <see cref="IGeoObject"/> types to and from JSON.
+    /// Converts <see cref="IGeoJsonObject"/> types to and from JSON.
     /// </summary>
     public class GeometryConverter : JsonConverter
     {
@@ -32,7 +32,7 @@ namespace GeoJSON.Net.Converters
         /// <exception cref="System.NotSupportedException">
         /// Feature and FeatureCollection types are Feature objects and not Geometry objects
         /// </exception>
-        private static IGeoObject ReadGeoJson(JObject value)
+        private static GeoObject ReadGeoJson(JObject value)
         {
             JToken token;
 
@@ -80,7 +80,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(IGeoObject).IsAssignableFrom(objectType);
+            return typeof(GeoObject).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace GeoJSON.Net.Converters
                     return ReadGeoJson(value);
                 case JsonToken.StartArray:
                     var values = JArray.Load(reader);
-                    var geometries = new List<IGeoObject>(values.Count);
+                    var geometries = new List<GeoObject>(values.Count);
                     geometries.AddRange(values.Cast<JObject>().Select(ReadGeoJson));
                     return geometries;
             }

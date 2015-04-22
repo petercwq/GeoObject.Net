@@ -35,7 +35,7 @@ namespace GeoJSON.Net.Feature
         //[JsonProperty(PropertyName = "geometry", Required = Required.AllowNull)]
         //[JsonConverter(typeof(GeometryConverter))]
         [DataMember(Name = "geometry", IsRequired = true)]
-        public IGeoObject Geometry { get; set; }
+        public GeoObject Geometry { get; set; }
 
         /// <summary>
         /// Gets or sets the id.
@@ -65,7 +65,7 @@ namespace GeoJSON.Net.Feature
         /// <param name="properties">The properties.</param>
         /// <param name="id">The (optional) identifier.</param>
         // [JsonConstructor]
-        public Feature(IGeoObject geometry, Dictionary<string, object> properties = null, string id = null)
+        public Feature(GeoObject geometry, Dictionary<string, object> properties = null, string id = null)
             : this()
         {
             Geometry = geometry;
@@ -82,7 +82,7 @@ namespace GeoJSON.Net.Feature
         /// properties
         /// </param>
         /// <param name="id">The (optional) identifier.</param>
-        public Feature(IGeoObject geometry, object properties, string id = null)
+        public Feature(GeoObject geometry, object properties, string id = null)
             : this()
         {
             Geometry = geometry;
@@ -98,6 +98,11 @@ namespace GeoJSON.Net.Feature
                     .GetProperties(BindingFlags.Instance | BindingFlags.Public)
                     .ToDictionary(prop => prop.Name, prop => prop.GetValue(properties, null));
             }
+        }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            return Geometry == null ? null : Geometry.BoundingBox;
         }
     }
 }

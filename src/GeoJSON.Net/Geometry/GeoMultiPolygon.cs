@@ -115,5 +115,18 @@ namespace GeoJSON.Net.Geometry
         {
             return Polygons.GetHashCode();
         }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Polygons == null)
+                return null;
+
+            var env = new Envelope();
+            foreach (var p in Polygons)
+            {
+                env.ExpandToInclude(p.BoundingBox);
+            }
+            return env;
+        }
     }
 }

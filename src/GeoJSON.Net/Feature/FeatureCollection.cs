@@ -45,5 +45,18 @@ namespace GeoJSON.Net.Feature
             Features = features;
             Type = GeoObjectType.FeatureCollection;
         }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Features == null)
+                return null;
+
+            var env = new Envelope();
+            foreach (var f in Features)
+            {
+                env.ExpandToInclude(f.BoundingBox);
+            }
+            return env;
+        }
     }
 }

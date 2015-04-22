@@ -27,7 +27,7 @@ namespace GeoJSON.Net.Converters
         /// </returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(ICRSObject).IsAssignableFrom(objectType);
+            return typeof(CRSBase).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace GeoJSON.Net.Converters
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var crsObject = (ICRSObject)value;
+            var crsObject = (CRSBase)value;
 
             switch (crsObject.Type)
             {

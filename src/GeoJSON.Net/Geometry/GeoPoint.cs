@@ -114,5 +114,14 @@ namespace GeoJSON.Net.Geometry
         {
             return Entity.GetHashCode();
         }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Entity == null)
+                return null;
+
+            var env = new Envelope(Entity);
+            return env;
+        }
     }
 }

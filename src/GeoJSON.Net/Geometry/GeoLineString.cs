@@ -145,5 +145,18 @@ namespace GeoJSON.Net.Geometry
         {
             return Entities.Count >= 4 && IsClosed();
         }
+
+        protected override Envelope ComputeBoxInternal()
+        {
+            if (Entities == null)
+                return null;
+
+            var env = new Envelope();
+            foreach (var e in Entities)
+            {
+                env.ExpandToInclude(e);
+            }
+            return env;
+        }
     }
 }

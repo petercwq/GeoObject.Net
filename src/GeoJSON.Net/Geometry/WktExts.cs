@@ -14,7 +14,7 @@ namespace GeoJSON.Net.Geometry
     {
         static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
 
-        public static string ToWkt(this IGeoObject geometry)
+        public static string ToWkt(this GeoObject geometry)
         {
             if (geometry is GeoPoint)
             {
@@ -108,7 +108,7 @@ namespace GeoJSON.Net.Geometry
         /// Initialize a new IGemotry object from a standard WKT geometry
         /// </summary>
         /// <param name="wkt">The geometry in WKT to convert</param>
-        public static IGeoObject ToGeometry(this string wkt)
+        public static GeoObject ToGeometry(this string wkt)
         {
             wkt = wkt.Trim().Replace(", ", ",");
             Match match = Regex.Match(wkt, @"^([A-Z]+)\s*\((.+)\)$");
@@ -130,7 +130,7 @@ namespace GeoJSON.Net.Geometry
                         return WktToMultiPolygon(match.Groups[2].Value);
                     case "GEOMETRYCOLLECTION":
                         var iterms = Regex.Matches(match.Groups[2].Value, @"\w+[\s\d,.\+\-\(\)]+\)");
-                        List<IGeoObject> objects = new List<IGeoObject>();
+                        List<GeoObject> objects = new List<GeoObject>();
                         foreach (Match item in iterms)
                         {
                             objects.Add(item.Value.ToGeometry());

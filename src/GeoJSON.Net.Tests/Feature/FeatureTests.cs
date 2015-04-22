@@ -12,7 +12,7 @@ namespace GeoJSON.Net.Tests.Feature
     {
         public FeatureTests()
         {
-            JsConfig<IGeoObject>.RawDeserializeFn = json =>
+            JsConfig<GeoObject>.RawDeserializeFn = json =>
             {
                 var geometry = JsonObject.Parse(json);
                 var geometryType = geometry.Get<string>("type");

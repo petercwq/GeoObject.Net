@@ -42,7 +42,7 @@ namespace GeoJSON.Net.Converters
                         z = coordinate[2];
                     }
 
-                    positions.Add(new GeoPoint() { Entity = new GeoEntity(x, y, z) });
+                    positions.Add(new GeoPoint(new GeoEntity(x, y, z)));
                 }
 
                 return positions;

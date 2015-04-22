@@ -50,6 +50,13 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\CrsConverter.cs" />
+    <Compile Include="Converters\GeometryConverter.cs" />
+    <Compile Include="Converters\LineStringConverter.cs" />
+    <Compile Include="Converters\MultiPointConverter.cs" />
+    <Compile Include="Converters\MultiPolygonConverter.cs" />
+    <Compile Include="Converters\PointConverter.cs" />
+    <Compile Include="Converters\PolygonConverter.cs" />
     <Compile Include="CoordinateReferenceSystem\DefaultCrsTests.cs" />
     <Compile Include="CoordinateReferenceSystem\LinkedCRSTests.cs" />
     <Compile Include="CoordinateReferenceSystem\NamedCrsTests.cs" />
