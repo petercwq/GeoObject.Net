@@ -1,4 +1,8 @@
-﻿using System;
+﻿//  Author: Weiqing Chen <kevincwq@gmail.com>
+//
+//  Copyright (c) 2015 Weiqing Chen
+
+using System;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;

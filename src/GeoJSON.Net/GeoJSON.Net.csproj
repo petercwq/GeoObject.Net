@@ -44,7 +44,6 @@
     <Compile Include="CoordinateReferenceSystem\NamedCRS.cs" />
     <Compile Include="DoubleComparers.cs" />
     <Compile Include="Envelope.cs" />
-    <Compile Include="Exceptions\ParsingException.cs" />
     <Compile Include="Feature\Feature.cs" />
     <Compile Include="Feature\FeatureCollection.cs" />
     <Compile Include="GeoObject.cs" />

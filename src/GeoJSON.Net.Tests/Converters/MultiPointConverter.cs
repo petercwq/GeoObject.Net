@@ -8,7 +8,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GeoJSON.Net.Exceptions;
 using GeoJSON.Net.Geometry;
 using Newtonsoft.Json;
 
@@ -49,7 +48,7 @@ namespace GeoJSON.Net.Converters
             }
             catch (Exception ex)
             {
-                throw new ParsingException("Could not parse GeoJSON Response. (Y or X missing from Point geometry?)", ex);
+                throw new ArgumentException("Could not parse GeoJSON Response. (Y or X missing from Point geometry?)", ex);
             }
         }
 
