@@ -71,7 +71,7 @@ namespace GeoObject.Net.Converters
                 z = coordinates[2];
             }
 
-            return new GeoEntity(y, x, z);
+            return new GeoEntity(x, y, z);
         }
 
         /// <summary>

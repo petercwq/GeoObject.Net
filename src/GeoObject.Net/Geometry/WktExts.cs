@@ -14,6 +14,11 @@ namespace GeoObject.Net.Geometry
     {
         static readonly IFormatProvider ci = CultureInfo.InvariantCulture;
 
+        /// <summary>
+        /// Serialize geometry to standard WKT string
+        /// </summary>
+        /// <param name="geometry"></param>
+        /// <returns></returns>
         public static string ToWkt(this GeoObject geometry)
         {
             if (geometry is GeoPoint)
@@ -66,6 +71,45 @@ namespace GeoObject.Net.Geometry
             return null;
         }
 
+        /// <summary>
+        /// Initialize a new IGemotry object from a standard WKT geometry
+        /// </summary>
+        /// <param name="wkt">The geometry in WKT to convert</param>
+        public static GeoObject FromWkt(this string wkt)
+        {
+            wkt = wkt.Trim().Replace(", ", ",");
+            Match match = Regex.Match(wkt, @"^([A-Z]+)\s*\((.+)\)$");
+            if (match.Success)
+            {
+                switch (match.Groups[1].Value)
+                {
+                    case "POINT":
+                        return WktToPoint(match.Groups[2].Value);
+                    case "LINESTRING":
+                        return WktToLineString(match.Groups[2].Value);
+                    case "POLYGON":
+                        return WktToPolygon(match.Groups[2].Value);
+                    case "MULTIPOINT":
+                        return WktToMultiPoint(match.Groups[2].Value);
+                    case "MULTILINESTRING":
+                        return WktToMultiLineString(match.Groups[2].Value);
+                    case "MULTIPOLYGON":
+                        return WktToMultiPolygon(match.Groups[2].Value);
+                    case "GEOMETRYCOLLECTION":
+                        var iterms = Regex.Matches(match.Groups[2].Value, @"\w+[\s\d,.\+\-\(\)]+\)");
+                        List<GeoObject> objects = new List<GeoObject>();
+                        foreach (Match item in iterms)
+                        {
+                            objects.Add(item.Value.FromWkt());
+                        }
+                        return new GeoCollection(objects);
+                }
+            }
+            throw new NotImplementedException(match.Groups[1].Value);
+        }
+
+        #region Geometry to WKT
+
         static string GeometryToWkt(IGeoEntity position)
         {
             if (position.Z.HasValue)
@@ -104,42 +148,9 @@ namespace GeoObject.Net.Geometry
             return string.Format("({0})", string.Join("),(", multiPolygon.Polygons.Select(GeometryToWkt)));
         }
 
-        /// <summary>
-        /// Initialize a new IGemotry object from a standard WKT geometry
-        /// </summary>
-        /// <param name="wkt">The geometry in WKT to convert</param>
-        public static GeoObject ToGeometry(this string wkt)
-        {
-            wkt = wkt.Trim().Replace(", ", ",");
-            Match match = Regex.Match(wkt, @"^([A-Z]+)\s*\((.+)\)$");
-            if (match.Success)
-            {
-                switch (match.Groups[1].Value)
-                {
-                    case "POINT":
-                        return WktToPoint(match.Groups[2].Value);
-                    case "LINESTRING":
-                        return WktToLineString(match.Groups[2].Value);
-                    case "POLYGON":
-                        return WktToPolygon(match.Groups[2].Value);
-                    case "MULTIPOINT":
-                        return WktToMultiPoint(match.Groups[2].Value);
-                    case "MULTILINESTRING":
-                        return WktToMultiLineString(match.Groups[2].Value);
-                    case "MULTIPOLYGON":
-                        return WktToMultiPolygon(match.Groups[2].Value);
-                    case "GEOMETRYCOLLECTION":
-                        var iterms = Regex.Matches(match.Groups[2].Value, @"\w+[\s\d,.\+\-\(\)]+\)");
-                        List<GeoObject> objects = new List<GeoObject>();
-                        foreach (Match item in iterms)
-                        {
-                            objects.Add(item.Value.ToGeometry());
-                        }
-                        return new GeoCollection(objects);
-                }
-            }
-            throw new NotImplementedException(match.Groups[1].Value);
-        }
+        #endregion
+
+        #region WKT to Geometry
 
         /// <summary>
         /// Point from WK.
@@ -152,9 +163,8 @@ namespace GeoObject.Net.Geometry
             values = wkt.Trim('(', ')').Split(' ');
             string z = (values.Length > 2 ? values[2] : null);
             var geopos = new GeoEntity(values[0], values[1], z);
-            return new GeoPoint(geopos );
+            return new GeoPoint(geopos);
         }
-
 
         /// <summary>
         /// GeoLineString from WK.
@@ -242,5 +252,7 @@ namespace GeoObject.Net.Geometry
 
             return new GeoMultiPolygon(polygons);
         }
+
+        #endregion
     }
 }

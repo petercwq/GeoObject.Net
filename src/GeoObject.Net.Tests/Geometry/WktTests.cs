@@ -20,7 +20,7 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_Point()
         {
-            var geo = Wkt_Point.ToGeometry();
+            var geo = Wkt_Point.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.Point);
             var coords = (geo as GeoPoint).Entity;
             Assert.AreEqual(coords.X, 30);
@@ -31,7 +31,7 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_LineString()
         {
-            var geo = Wkt_LineString.ToGeometry();
+            var geo = Wkt_LineString.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.LineString);
             Assert.AreEqual((geo as GeoLineString).Entities.Count, 3);
         }
@@ -39,11 +39,11 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_Polygon()
         {
-            var geo = Wkt_Polygon1.ToGeometry();
+            var geo = Wkt_Polygon1.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.Polygon);
             Assert.AreEqual((geo as GeoPolygon).LineStrings.Count, 1);
 
-            geo = Wkt_Polygon2.ToGeometry();
+            geo = Wkt_Polygon2.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.Polygon);
             Assert.AreEqual((geo as GeoPolygon).LineStrings.Count, 2);
         }
@@ -51,11 +51,11 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_MultiPoint()
         {
-            var geo = Wkt_MultiPoint1.ToGeometry();
+            var geo = Wkt_MultiPoint1.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPoint);
             Assert.AreEqual((geo as GeoMultiPoint).Points.Count, 4);
 
-            geo = Wkt_MultiPoint2.ToGeometry();
+            geo = Wkt_MultiPoint2.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPoint);
             Assert.AreEqual((geo as GeoMultiPoint).Points.Count, 4);
         }
@@ -63,7 +63,7 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_MultiLineString()
         {
-            var geo = Wkt_MultiLineString.ToGeometry();
+            var geo = Wkt_MultiLineString.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiLineString);
             Assert.AreEqual((geo as GeoMultiLineString).LineStrings.Count, 2);
         }
@@ -71,11 +71,11 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_MultiPolygon()
         {
-            var geo = Wkt_MultiPolygon1.ToGeometry();
+            var geo = Wkt_MultiPolygon1.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPolygon);
             Assert.AreEqual((geo as GeoMultiPolygon).Polygons.Count, 2);
 
-            geo = Wkt_MultiPolygon2.ToGeometry();
+            geo = Wkt_MultiPolygon2.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.MultiPolygon);
             Assert.AreEqual((geo as GeoMultiPolygon).Polygons.Count, 2);
             Assert.AreEqual((geo as GeoMultiPolygon).Polygons[1].LineStrings.Count, 2);
@@ -84,7 +84,7 @@ namespace GeoObject.Net.Tests.Geometry
         [Test]
         public void From_Wkt_GeometryCollection()
         {
-            var geo = Wkt_GeometryCollection.ToGeometry();
+            var geo = Wkt_GeometryCollection.FromWkt();
             Assert.AreEqual(geo.Type, GeoObjectType.GeometryCollection);
             Assert.AreEqual((geo as GeoCollection).Geometries.Count, 9);
         }
@@ -96,7 +96,7 @@ namespace GeoObject.Net.Tests.Geometry
             {
                 var wkt = geom.ToWkt();
                 Assert.IsNotNullOrEmpty(wkt);
-                var ng = wkt.ToGeometry();
+                var ng = wkt.FromWkt();
                 Assert.AreEqual(geom.Type, ng.Type);
             }
         }
